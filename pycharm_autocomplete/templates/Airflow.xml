@@ -1,0 +1,704 @@
+<templateSet group="Airflow">
+  <template name="Dupapapa" value="Dupapapa jdshjksd h" description="Dupapapa" toReformat="false" toShortenFQNames="true">
+    <variable name="task_" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionStartPipelineOperator" value="CloudDataFusionStartPipelineOperator(&#10;    location=GCP_REGION,&#10;    pipeline_name=PIPELINE_NAME,&#10;    instance_name=INSTANCE_NAME,&#10;    task_id='$task_$'&#10;)" description="Google Cloud - Data Fusion Start Pipeline" toReformat="false" toShortenFQNames="true">
+    <variable name="task_" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionRestartInstanceOperator" value="CloudDataFusionRestartInstanceOperator(&#10;    location=GCP_REGION, &#10;    instance_name=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion Restart Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionDeleteInstanceOperator" value="CloudDataFusionDeleteInstanceOperator(&#10;    location=GCP_REGION, &#10;    instance_name=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)&#10;" description="Google Cloud - Data Fusion Delete Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionCreateInstanceOperator" value="CloudDataFusionCreateInstanceOperator(&#10;    location=GCP_REGION,&#10;    instance_name=INSTANCE_NAME,&#10;    instance=INSTANCE,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion Create Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionUpdateInstanceOperator" value="CloudDataFusionUpdateInstanceOperator(&#10;    location=GCP_REGION,&#10;    instance_name=INSTANCE_NAME,&#10;    instance=INSTANCE,&#10;    update_mask='instance.displayName',&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion Update Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionGetInstanceOperator" value="CloudDataFusionGetInstanceOperator(&#10;    location=GCP_REGION, &#10;    instance_name=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion Get Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionCreatePipelineOperator" value="CloudDataFusionCreatePipelineOperator(&#10;    location=GCP_REGION,&#10;    pipeline_name=PIPELINE_NAME,&#10;    pipeline=PIPELINE,&#10;    instance_name=INSTANCE_NAME,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion Create Pipeline" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionStopPipelineOperator" value="CloudDataFusionStopPipelineOperator(&#10;    location=GCP_REGION,&#10;    pipeline_name=PIPELINE_NAME,&#10;    instance_name=INSTANCE_NAME,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion - Stop Pipeline" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionDeletePipelineOperator" value="CloudDataFusionDeletePipelineOperator(&#10;    location=GCP_REGION,&#10;    pipeline_name=PIPELINE_NAME,&#10;    instance_name=INSTANCE_NAME,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion Delete Pipeline" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataFusionListPipelinesOperator" value="CloudDataFusionListPipelinesOperator(&#10;    location=GCP_REGION, &#10;    instance_name=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Fusion - List Pipelines" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLCreateInstanceDatabaseOperator" value="CloudSQLCreateInstanceDatabaseOperator(&#10;    project_id=GCP_PROJECT_ID,    #if skipped, it will be retrieved from the Google Cloud connection used&#10;    body={&#10;        'instance': INSTANCE_NAME, &#10;        'name': DB_NAME, &#10;        'project': GCP_PROJECT_ID&#10;    }, &#10;    instance=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Create Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLDeleteInstanceDatabaseOperator" value="CloudSQLDeleteInstanceDatabaseOperator(&#10;    project_id=GCP_PROJECT_ID,    #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance=INSTANCE_NAME, &#10;    database=DB_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Delete Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLPatchInstanceDatabaseOperator" value="CloudSQLPatchInstanceDatabaseOperator(&#10;    project_id=GCP_PROJECT_ID,  #if skipped, it will be retrieved from the Google Cloud connection used&#10;    body={&#10;        'charset': CHARSET,&#10;        'collation': COLLATION&#10;    },&#10;    instance=INSTANCE_NAME,&#10;    database=DB_NAME,&#10;    task_id='$task_id$',&#10;)" description="Google Cloud - Cloud SQL Patch Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLDeleteInstanceOperator" value="CloudSQLDeleteInstanceOperator(&#10;    project_id=GCP_PROJECT_ID,    #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Delete Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLExportInstanceOperator" value="CloudSQLExportInstanceOperator(&#10;    project_id=GCP_PROJECT_ID,    #if skipped, it will be retrieved from the Google Cloud connection used&#10;    body={&#10;        &quot;exportContext&quot;: {&#10;            &quot;fileType&quot;: 'sql', &#10;            &quot;uri&quot;: EXPORT_URI, &#10;            &quot;sqlExportOptions&quot;: {&#10;                &quot;schemaOnly&quot;: 'False'&#10;            }&#10;        }&#10;    }, &#10;    instance=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Export Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLImportInstanceOperator" value="CloudSQLImportInstanceOperator(&#10;    project_id=GCP_PROJECT_ID,    #if skipped, it will be retrieved from the Google Cloud connection used&#10;    body={&#10;        'importContext': {&#10;            'fileType': 'sql', &#10;            'uri': IMPORT_URI&#10;        }&#10;    }, &#10;    instance=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Import Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLCreateInstanceOperator" value="CloudSQLCreateInstanceOperator(&#10;    project_id=GCP_PROJECT_ID,    #if skipped, it will be retrieved from the Google Cloud connection used&#10;    body={&#10;        'name': INSTANCE_NAME,&#10;        'settings': {&#10;            'tier': 'db-n1-standard-1',&#10;            'backupConfiguration': &#10;                {'binaryLogEnabled': 'True', &#10;                'enabled': 'True', &#10;                'startTime': '05:00'},&#10;            'activationPolicy': 'ALWAYS',&#10;            'dataDiskSizeGb': 30,&#10;            'dataDiskType': 'PD_SSD',&#10;            'databaseFlags': [],&#10;            'ipConfiguration': {&#10;                'ipv4Enabled': True,&#10;                'requireSsl': True,&#10;            },&#10;            'locationPreference': {'zone': GCP_ZONE},&#10;            'maintenanceWindow': &#10;                {'hour': 5, &#10;                'day': 7, &#10;                'updateTrack': 'canary'},&#10;            'pricingPlan': 'PER_USE',&#10;            'replicationType': 'ASYNCHRONOUS',&#10;            'storageAutoResize': True,&#10;            'storageAutoResizeLimit': 0,&#10;            'userLabels': {},&#10;        },&#10;        'failoverReplica': {'name': FAILOVER_REPLICA_NAME},&#10;        'databaseVersion': 'MYSQL_8_0',&#10;        'region': GCP_REGION,&#10;    }, &#10;    instance=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Create Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLInstancePatchOperator" value="CloudSQLInstancePatchOperator(&#10;    project_id=GCP_PROJECT_ID,  #if skipped, it will be retrieved from the Google Cloud connection used&#10;    body={&#10;        'name': INSTANCE_NAME,&#10;        'settings': {&#10;            'dataDiskSizeGb': 35,&#10;            'maintenanceWindow': {&#10;                'hour': 3, &#10;                'day': 6, &#10;                'updateTrack': 'canary'&#10;                },&#10;            'userLabels': {'my-key-patch': 'my-value-patch'},&#10;        },&#10;    }, &#10;    instance=INSTANCE_NAME, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Cloud SQL Patch Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudSQLExecuteQueryOperator" value="CloudSQLExecuteQueryOperator(&#10;    gcp_cloudsql_conn_id=CONNECTION, &#10;    task_id='$task_id$', &#10;    sql='put your query here'&#10;)" description="Google Cloud - Cloud SQL Execute Query" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLImportDataOperator" value="AutoMLImportDataOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#creating-datasets&#10;    task_id='$task_id$',&#10;    dataset_id=DATASET_ID,&#10;    location=GCP_REGION,&#10;    input_config={&#10;        'gcs_source': {&#10;            'input_uris': [GCP_AUTOML_DATASET_BUCKET]&#10;        }&#10;    }&#10;)" description="Google Cloud - AutoML Import Data" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLCreateDatasetOperator" value="AutoMLCreateDatasetOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#creating-datasets&#10;    task_id='$task_id$',&#10;    dataset=DATASET,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)&#10;&#10;// Replace TASK_ID below with the task_id from the AutoMLCreateDatasetOperator call above&#10;dataset_id = &quot;{{ task_instance.xcom_pull('TASK_ID', key='dataset_id') }}&quot;&#10;&#10;" description="Google Cloud - AutoML Create Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLTablesUpdateDatasetOperator" value="AutoMLTablesUpdateDatasetOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#creating-datasets&#10;    task_id='$task_id$',&#10;    dataset=update,&#10;    location=GCP_REGION&#10;)&#10;&#10;# To prepare an 'update' before the call above, you can use code similar to:&#10;#&#10;# update = deepcopy(DATASET)&#10;# update['tables_dataset_metadata']['target_column_spec_id'] = &quot;new_spec&quot;&#10;#" description="Google Cloud - AutoML Update Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLTablesListTableSpecsOperator" value="AutoMLTablesListTableSpecsOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-table-and-columns-specs&#10;    task_id='$task_id$',&#10;    dataset_id=TABLESET_ID,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML Tables List Table Spec" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLTablesListColumnSpecsOperator" value="AutoMLTablesListColumnSpecsOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-table-and-columns-specs&#10;    task_id='$task_id$',&#10;    dataset_id=DATASET_ID,&#10;    table_spec_id=TABLE_SPEC_ID,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)&#10;&#10;# To define table_spec_id above you can use AutoMLTablesListTableSpecsOperator return value:&#10;# table_spec_id=&quot;{{ extract_object_id(task_instance.xcom_pull('list_tables_spec_task')[0]) }}&quot;&#10;" description="Google Cloud - AutoML Tables list Column Specs" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLTrainModelOperator" value="AutoMLTrainModelOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models&#10;    task_id='$task_id$',&#10;    model=MODEL,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)&#10;&#10;# To retrieve model_id after the call above, use (replacing TASK_ID with a value from the call above)&#10;# model_id = &quot;{{ task_instance.xcom_pull('TASK_ID', key='model_id') }}&quot;&#10;" description="Google Cloud - AutoML Train Model" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLGetModelOperator" value="AutoMLGetModelOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models&#10;    task_id='$task_id$',&#10;    model_id=MODEL_ID,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML Get Model" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLDeployModelOperator" value="AutoMLDeployModelOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models&#10;    task_id='$task_id$',&#10;    model_id=MODEL_ID,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML Deploy Model" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLDeleteModelOperator" value="AutoMLDeleteModelOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models&#10;    task_id='$task_id$',&#10;    model_id=MODEL_ID,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML Delete Model" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLPredictOperator" value="AutoMLPredictOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#making-predictions&#10;    task_id='$task_id$',&#10;    model_id=MODEL_ID,&#10;    payload={},  # Add your own payload, the used model_id must be deployed&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML Predict" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLBatchPredictOperator" value="AutoMLBatchPredictOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#making-predictions&#10;    task_id='$task_id$',&#10;    model_id=MODEL_ID,&#10;    input_config={},  # Add your config&#10;    output_config={},  # Add your config&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID,&#10;)   " description="Google Cloud - AutoML Batch Predict" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLListDatasetOperator" value="AutoMLListDatasetOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-and-deleting-datasets&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML List Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="AutoMLDeleteDatasetOperator" value="AutoMLDeleteDatasetOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-and-deleting-datasets&#10;    task_id='$task_id$',&#10;    dataset_id=DATASET_ID,&#10;    location=GCP_REGION,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - AutoML Delete Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryCreateEmptyDatasetOperator" value="BigQueryCreateEmptyDatasetOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-dataset&#10;    task_id='$task_id$', &#10;    dataset_id=DATASET_ID)" description="Google Cloud - BigQuery Create Empty Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryGetDatasetOperator" value="BigQueryGetDatasetOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#get-dataset-details&#10;    task_id='$task_id$', &#10;    dataset_id=DATASET_ID&#10;)" description="Google Cloud - BigQuery Get Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryGetDatasetTablesOperator" value="BigQueryGetDatasetTablesOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#list-tables-in-dataset&#10;    task_id='$task_id$', &#10;    dataset_id=DATASET_ID&#10;)" description="Google Cloud - BigQuery Get Dataset" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryCreateExternalTableOperator" value="BigQueryCreateExternalTableOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-external-table&#10;    task_id='$task_id$',&#10;    bucket=BUCKETNAME,&#10;    source_objects=[OBJECT_NAME],&#10;    destination_project_dataset_table=f&quot;{DATASET_NAME}.table&quot;,    &#10;    skip_leading_rows=1,&#10;    schema_fields=[&#10;        {&quot;name&quot;: &quot;name&quot;, &quot;type&quot;: &quot;STRING&quot;},&#10;        {&quot;name&quot;: &quot;address&quot;, &quot;type&quot;: &quot;STRING&quot;},&#10;    ],&#10;)" description="Google Cloud - BigQuery Create External Table" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryGetDataOperator" value="BigQueryGetDataOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#fetch-data-from-table&#10;    task_id='$task_id$',&#10;    dataset_id=DATASET_NAME,&#10;    table_id=TABLE_1,&#10;    max_results=10,&#10;    selected_fields=&quot;value,name&quot;,&#10;    location=GCP_REGION&#10;)" description="Google Cloud - BigQuery Get Data" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryUpsertTableOperator" value="BigQueryUpsertTableOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#upsert-table&#10;    task_id='$task_id$',&#10;    dataset_id=DATASET_ID,&#10;    table_resource={&#10;        &quot;tableReference&quot;: {&quot;tableId&quot;: &quot;test_table_id&quot;},&#10;        &quot;expirationTime&quot;: (int(time.time()) + 300) * 1000,&#10;    },&#10;)" description="Google Cloud - BigQuery Upsert Table" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryDeleteTableOperator" value="BigQueryDeleteTableOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#delete-table&#10;    task_id='$task_id$',&#10;    deletion_dataset_table=f&quot;{PROJECT_ID}.{DATASET_NAME}.test_table&quot;,&#10;)" description="Google Cloud - BigQuery Delete Table" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryInsertJobOperator" value="BigQueryInsertJobOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#execute-bigquery-jobs&#10;    task_id='$task_id$',&#10;    configuration={&#10;        &quot;query&quot;: {&#10;            &quot;query&quot;: MY_QUERY,&#10;            &quot;useLegacySql&quot;: False,&#10;        }&#10;    },&#10;    location=GCP_REGION,&#10;)&#10;&#10;# The following query example can be used in the call above&#10;# MY_QUERY = (&#10;#    f&quot;INSERT {DATASET_NAME}.{TABLE_1} VALUES &quot;&#10;#    f&quot;(42, 'monthy python', '{INSERT_DATE}'), &quot;&#10;#    f&quot;(42, 'fishy fish', '{INSERT_DATE}');&quot;&#10;#  )&#10;" description="Google Cloud - BigQuery Insert Job" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryCheckOperator" value="BigQueryCheckOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#check-if-query-result-has-data&#10;    task_id='$task_id$',&#10;    sql=f&quot;SELECT COUNT(*) FROM {DATASET_NAME}.{TABLE_1}&quot;,&#10;    use_legacy_sql=False,&#10;    location=GCP_REGION&#10;)&#10;" description="Google Cloud - BigQuery Check" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryValueCheckOperator" value="BigQueryValueCheckOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#compare-query-result-to-pass-value&#10;    task_id='$task_id$',&#10;    sql=f&quot;SELECT COUNT(*) FROM {DATASET_NAME}.{TABLE_1}&quot;,&#10;    pass_value=4,&#10;    use_legacy_sql=False,&#10;    location=GCP_REGION,&#10;)&#10;" description="Google Cloud - BigQuery Value Check" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryIntervalCheckOperator" value="BigQueryIntervalCheckOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#compare-metrics-over-time&#10;    task_id='$task_id$',&#10;    table=f&quot;{DATASET_NAME}.{TABLE_1}&quot;,&#10;    days_back=1,&#10;    metrics_thresholds={&quot;COUNT(*)&quot;: 1.5},&#10;    use_legacy_sql=False,&#10;    location=GCP_REGION&#10;)" description="Google Cloud - BigQuery Interval Check" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryTableExistenceSensor" value="BigQueryTableExistenceSensor(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#check-that-a-table-exists&#10;    task_id='$task_id$', &#10;    project_id=PROJECT_ID, &#10;    dataset_id=DATASET_NAME, &#10;    table_id=TABLE_NAME&#10;)" description="Google Cloud - BigQuery Table Existence Sensor" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryTablePartitionExistenceSensor" value="BigQueryTablePartitionExistenceSensor(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#check-that-a-table-partition-exists&#10;    task_id='$task_id$',&#10;    project_id=PROJECT_ID,&#10;    dataset_id=DATASET_NAME,&#10;    table_id=TABLE_NAME,&#10;    partition_id=PARTITION_NAME,&#10;)" description="Google Cloud - BigQuery Partition Existence Sensor" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryCreateDataTransfer" value="BigQueryCreateDataTransferOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#creating-transfer-configuration&#10;    transfer_config=TRANSFER_CONFIG,&#10;    project_id=GCP_PROJECT_ID,&#10;    task_id='$task_id$'&#10;)&#10;&#10;# You can use the following code to define TRANSFER_CONFIG above:&#10;#&#10;# TRANSFER_CONFIG = {&#10;#    &quot;destination_dataset_id&quot;: GCP_DTS_BQ_DATASET,&#10;#    &quot;display_name&quot;: &quot;GCS Test Config&quot;,&#10;#    &quot;data_source_id&quot;: &quot;google_cloud_storage&quot;,&#10;#    &quot;schedule_options&quot;: schedule_options,&#10;#    &quot;params&quot;: PARAMS,&#10;#  }&#10;#&#10;# where PARAMS is:&#10;# &#10;# PARAMS = {&#10;#    &quot;field_delimiter&quot;: &quot;,&quot;,&#10;#    &quot;max_bad_records&quot;: &quot;0&quot;,&#10;#    &quot;skip_leading_rows&quot;: &quot;1&quot;,&#10;#    &quot;data_path_template&quot;: BUCKET_URI,&#10;#    &quot;destination_table_name_template&quot;: GCP_DTS_BQ_TABLE,&#10;#    &quot;file_format&quot;: &quot;CSV&quot;,&#10;#  }&#10;#&#10;# The result of the operator call above can be retrieved using:&#10;# &#10;# transfer_config_id = (&#10;#    &quot;{{ task_instance.xcom_pull('TASK_ID', key='transfer_config_id') }}&quot;&#10;# )" description="Google Cloud - BigQuery Create Data Transfer" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryDeleteDataTransferConfig" value="BigQueryDeleteDataTransferConfigOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#deleting-transfer-configuration&#10;    transfer_config_id=TRANSFER_CONFIG_ID, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - BigQuery Delete Data Transfer" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryDataTransferServiceStartTransferRuns" value="BigQueryDataTransferServiceStartTransferRunsOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#manually-starting-transfer-runs&#10;    task_id='$task_id$',&#10;    transfer_config_id=TRANSFER_CONFIG_ID,&#10;    requested_run_time={&quot;seconds&quot;: int(time.time() + 60)},&#10;)&#10;&#10;# You can retrieve the result of this call using:&#10;# &#10;# run_id = &quot;{{ task_instance.xcom_pull('TASK_ID', key='run_id') }}&quot;" description="Google Cloud - BigQuery Data Transfer Start Transfer Run" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigQueryDataTransferServiceTransferRunSensor" value="BigQueryDataTransferServiceTransferRunSensor(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#manually-starting-transfer-runs&#10;    task_id='$task_id$',&#10;    transfer_config_id=TRANSFER_CONFIG_ID,&#10;    run_id=RUN_ID,&#10;    expected_statuses={&quot;SUCCEEDED&quot;},&#10;)" description="Google Cloud - BigQuery Data Transfer Transfer Run Sensor" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableCreateInstance" value="BigtableCreateInstanceOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtablecreateinstanceoperator&#10;    project_id=GCP_PROJECT_ID,          #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID,&#10;    main_cluster_id=CBT_CLUSTER_ID,&#10;    main_cluster_zone=CBT_CLUSTER_ZONE,&#10;    instance_display_name=CBT_INSTANCE_DISPLAY_NAME,&#10;    instance_type=int(CBT_INSTANCE_TYPE),&#10;    instance_labels=json.loads(CBT_INSTANCE_LABELS),&#10;    cluster_nodes=None,&#10;    cluster_storage_type=int(CBT_CLUSTER_STORAGE_TYPE),&#10;    task_id='$task_id$',&#10;)" description="Google Cloud - Big Table Create Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableUpdateInstance" value="BigtableUpdateInstanceOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtableupdateinstanceoperator&#10;    project_id=GCP_PROJECT_ID,      #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID, &#10;    instance_display_name=CBT_INSTANCE_DISPLAY_NAME_UPDATED,&#10;    instance_type=int(CBT_INSTANCE_TYPE_PROD),&#10;    instance_labels=json.loads(CBT_INSTANCE_LABELS_UPDATED),&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Big Table Update Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableDeleteInstance" value="BigtableDeleteInstanceOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtabledeleteinstanceoperator&#10;    project_id=GCP_PROJECT_ID,           #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Big Table Delete Instancee" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableUpdateCluster" value="BigtableUpdateClusterOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtableupdateclusteroperator&#10;    project_id=GCP_PROJECT_ID,            #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID,&#10;    cluster_id=CBT_CLUSTER_ID,&#10;    nodes=int(CBT_CLUSTER_NODES_UPDATED),&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Big Table Update Cluster" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableCreateTable" value="BigtableCreateTableOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtablecreatetableoperator&#10;    project_id=GCP_PROJECT_ID,                   #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID,&#10;    table_id=CBT_TABLE_ID,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Big Table Create Table" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableDeleteTable" value="BigtableDeleteTableOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtabledeletetableoperator&#10;    project_id=GCP_PROJECT_ID,                     #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID,&#10;    table_id=CBT_TABLE_ID,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Big Table Delete Table" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="BigtableTableReplicationCompletedSensor" value="BigtableTableReplicationCompletedSensor(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#bigtabletablereplicationcompletedsensor&#10;    project_id=GCP_PROJECT_ID,                        #if skipped, it will be retrieved from the Google Cloud connection used&#10;    instance_id=CBT_INSTANCE_ID,&#10;    table_id=CBT_TABLE_ID,&#10;    poke_interval=int(CBT_POKE_INTERVAL),&#10;    timeout=180,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Big Table Table Replication Completed Sensor" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudBuildCreateBuild" value="CloudBuildCreateBuildOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_build.html#build-configuration-overview&#10;    task_id='$task_id$', &#10;    project_id=GCP_PROJECT_ID, &#10;    body=BUILD_BODY&#10;)&#10;&#10;# &#10;# BUILD_BODY could be:&#10;# BUILD_BODY = str(CURRENT_FOLDER.joinpath('example_cloud_build.yaml'))&#10;# &#10;# or:&#10;# &#10;# BUILD_BODY = {&#10;#     &quot;source&quot;: SOURCE,&#10;#     &quot;steps&quot;: [&#10;#         {&#10;#             &quot;name&quot;: &quot;gcr.io/cloud-builders/docker&quot;,&#10;#             &quot;args&quot;: [&quot;build&quot;, &quot;-t&quot;, f&quot;gcr.io/$PROJECT_ID/{GCP_SOURCE_BUCKET_NAME}&quot;, &quot;.&quot;],&#10;#         }&#10;#     ],&#10;#     &quot;images&quot;: [f&quot;gcr.io/$PROJECT_ID/{GCP_SOURCE_BUCKET_NAME}&quot;],&#10;# }&#10;# &#10;# where SOURCE could be:&#10;# SOURCE = {&quot;storageSource&quot;: {&quot;bucket&quot;: &quot;bucket-name&quot;, &quot;object&quot;: &quot;object-name.tar.gz&quot;}}&#10;# or: &#10;# SOURCE = {&quot;storageSource&quot;: &quot;gs://bucket-name/object-name.tar.gz&quot;}&#10;# or:&#10;# SOURCE = {&#10;#     &quot;repoSource&quot;: {&#10;#         &quot;projectId&quot;: &quot;airflow-project&quot;,&#10;#         &quot;repoName&quot;: &quot;airflow-repo&quot;,&#10;#         &quot;branchName&quot;: &quot;master&quot;,&#10;#     }&#10;# }&#10;# or: &#10;# SOURCE = {&quot;repoSource&quot;: &quot;https://source.developers.google.com/p/airflow-project/r/airflow-repo&quot;}" description="Google Cloud - Cloud Build Create Build" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreCreateInstance" value="CloudMemorystoreCreateInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_REDIS_INSTANCE_NAME,&#10;    instance={&quot;tier&quot;: Instance.Tier.BASIC, &quot;memory_size_gb&quot;: 1},&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Create Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreDeleteInstance" value="CloudMemorystoreDeleteInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_REDIS_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Delete Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreExportInstance" value="CloudMemorystoreExportInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_REDIS_INSTANCE_NAME,&#10;    output_config={&quot;gcs_destination&quot;: {&quot;uri&quot;: EXPORT_GCS_URL}},&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Export Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreFailoverInstance" value="CloudMemorystoreFailoverInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_REDIS_INSTANCE_NAME_2,&#10;    data_protection_mode=FailoverInstanceRequest.DataProtectionMode.LIMITED_DATA_LOSS,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Failover Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreGetInstance" value="CloudMemorystoreGetInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_REDIS_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID,&#10;    do_xcom_push=True&#10;)" description="Google Cloud - Memorystore Get Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreImport" value="CloudMemorystoreImportOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_REDIS_INSTANCE_NAME_2,&#10;    input_config={&quot;gcs_source&quot;: {&quot;uri&quot;: EXPORT_GCS_URL}},&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Import" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreListInstances" value="CloudMemorystoreListInstancesOperator(&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    page_size=100, &#10;    project_id=GCP_PROJECT_ID&#10;)&#10;&#10;# the result is saved to XCOM" description="Google Cloud - Memorystore List Instances" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreUpdateInstance" value="CloudMemorystoreUpdateInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_REDIS_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID,&#10;    update_mask={&quot;paths&quot;: [&quot;memory_size_gb&quot;]},&#10;    instance={&quot;memory_size_gb&quot;: 2},&#10;)" description="Google Cloud - Memorystore Update Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreScaleInstance" value="CloudMemorystoreScaleInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_REDIS_INSTANCE_NAME_3,&#10;    project_id=GCP_PROJECT_ID,&#10;    memory_size_gb=3&#10;)" description="Google Cloud - Memorystore Scale Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedCreateInstance" value="CloudMemorystoreMemcachedCreateInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,&#10;    instance={&#10;        &quot;name&quot;: &quot;&quot;, &#10;        &quot;node_count&quot;: 1, &#10;        &quot;node_config&quot;: {&#10;            &quot;cpu_count&quot;: 1, &#10;            &quot;memory_size_mb&quot;: 1024&#10;         }&#10;    },&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Memcached Create Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedDeleteInstance" value="CloudMemorystoreMemcachedDeleteInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Memcached Delete Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedGetInstance" value="CloudMemorystoreMemcachedGetInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Memcached Get Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedListInstances" value="CloudMemorystoreMemcachedListInstancesOperator(&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Memorystore Memcached List Instances" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedUpdateInstance" value="CloudMemorystoreMemcachedUpdateInstanceOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID,&#10;    update_mask=cloud_memcache.field_mask.FieldMask(paths=[&quot;node_count&quot;]),&#10;    instance={&quot;node_count&quot;: 2}&#10;)" description="Google Cloud - Memorystore Memcached Update Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedUpdateParameters" value="CloudMemorystoreMemcachedUpdateParametersOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID,&#10;    update_mask={&quot;paths&quot;: [&quot;params&quot;]},&#10;    parameters={&quot;params&quot;: {&quot;protocol&quot;: &quot;ascii&quot;, &quot;hash_algorithm&quot;: &quot;jenkins&quot;}}&#10;)&#10;&#10;# Run CloudMemorystoreMemcachedApplyParametersOperator task after the update to apply the parameters&#10;" description="Google Cloud - Memorystore Memcached Update Parameters" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudMemorystoreMemcachedApplyParameters" value="CloudMemorystoreMemcachedApplyParametersOperator(&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,&#10;    project_id=GCP_PROJECT_ID,&#10;    node_ids=[&quot;node-a-1&quot;],&#10;    apply_all=False&#10;)" description="Google Cloud - Memorystore Memcached Apply Parameters" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceCreateJob" value="CloudDataTransferServiceCreateJobOperator(&#10;    task_id='$task_id$', &#10;    body=transfer_body&#10;)&#10;&#10;# Where transfer body can be (AWS to GCS case): &#10;# &#10;# transfer_body = {&#10;#    DESCRIPTION: GCP_DESCRIPTION,&#10;#    STATUS: GcpTransferJobsStatus.ENABLED,&#10;#    PROJECT_ID: GCP_PROJECT_ID,&#10;#    JOB_NAME: GCP_TRANSFER_JOB_NAME,&#10;#    SCHEDULE: {&#10;#        SCHEDULE_START_DATE: datetime(2015, 1, 1).date(),&#10;#        SCHEDULE_END_DATE: datetime(2030, 1, 1).date(),&#10;#        START_TIME_OF_DAY: (datetime.utcnow() + timedelta(minutes=2)).time(),&#10;#    },&#10;#    TRANSFER_SPEC: {&#10;#        AWS_S3_DATA_SOURCE: {BUCKET_NAME: GCP_TRANSFER_SOURCE_AWS_BUCKET},&#10;#        GCS_DATA_SINK: {BUCKET_NAME: GCP_TRANSFER_FIRST_TARGET_BUCKET},&#10;#        TRANSFER_OPTIONS: {ALREADY_EXISTING_IN_SINK: True},&#10;#    },&#10;# }&#10;# &#10;# &#10;# or (GCS to GCS case):&#10;#&#10;# transfer_body = {&#10;#    DESCRIPTION: &quot;description&quot;,&#10;#    STATUS: GcpTransferJobsStatus.ENABLED,&#10;#    PROJECT_ID: GCP_PROJECT_ID,&#10;#    SCHEDULE: {&#10;#        SCHEDULE_START_DATE: datetime(2015, 1, 1).date(),&#10;#        SCHEDULE_END_DATE: datetime(2030, 1, 1).date(),&#10;#        START_TIME_OF_DAY: (datetime.utcnow() + timedelta(seconds=120)).time(),&#10;#    },&#10;#    TRANSFER_SPEC: {&#10;#        GCS_DATA_SOURCE: {BUCKET_NAME: GCP_TRANSFER_FIRST_TARGET_BUCKET},&#10;#        GCS_DATA_SINK: {BUCKET_NAME: GCP_TRANSFER_SECOND_TARGET_BUCKET},&#10;#        TRANSFER_OPTIONS: {ALREADY_EXISTING_IN_SINK: True},&#10;#    },&#10;# }&#10;" description="Google Cloud - Data Transfer Create Job" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceDeleteJob" value="CloudDataTransferServiceDeleteJobOperator(&#10;    task_id='$task_id$',&#10;    job_name=&quot;{{task_instance.xcom_pull('create_transfer_job_from_aws')['name']}}&quot;,&#10;    project_id=GCP_PROJECT_ID,&#10;)" description="Google Cloud - Data Transfer Delete Job" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceUpdateJob" value="CloudDataTransferServiceUpdateJobOperator(&#10;    task_id='$task_id$',&#10;    job_name=&quot;{{task_instance.xcom_pull('create_transfer')['name']}}&quot;,&#10;    body=update_body&#10;)&#10;&#10;# where update_body can be define in the following way:&#10;#&#10;# update_body = {&#10;#    PROJECT_ID: GCP_PROJECT_ID,&#10;#    TRANSFER_JOB: {DESCRIPTION: &quot;description_updated&quot;},&#10;#    TRANSFER_JOB_FIELD_MASK: &quot;description&quot;,&#10;# }&#10;" description="Google Cloud - Data Transfer Update Job" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceCancelOperation" value="CloudDataTransferServiceCancelOperationOperator(&#10;    task_id='$task_id$',&#10;    operation_name=&quot;{{task_instance.xcom_pull(&quot;&#10;    &quot;'wait_for_second_operation_to_start', key='sensed_operations')[0]['name']}}&quot;,&#10;)" description="Google Cloud - Data Transfer Cancel Operation" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceGetOperation" value="CloudDataTransferServiceGetOperationOperator(&#10;    task_id='$task_id$', &#10;    operation_name=&quot;{{task_instance.xcom_pull('list_operations')[0]['name']}}&quot;&#10;)" description="Google Cloud - Data Transfer Get Operation" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceListOperations" value="CloudDataTransferServiceListOperationsOperator(&#10;    task_id='$task_id$',&#10;    request_filter={&#10;        FILTER_PROJECT_ID: GCP_PROJECT_ID,&#10;        FILTER_JOB_NAMES: [&quot;{{task_instance.xcom_pull('TASK_ID')['name']}}&quot;],&#10;    },&#10;)" description="Google Cloud - Data Transfer List Operations" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServicePauseOperation" value="CloudDataTransferServicePauseOperationOperator(&#10;    task_id='$task_id$',&#10;    operation_name=&quot;{{task_instance.xcom_pull('operation_key', key='sensed_operations')[0]['name']}}&quot;,&#10;)&#10;&#10;# operation_key above is a task_id from a call to CloudDataTransferServiceJobStatusSensor" description="Google Cloud - Data Transfer Service Pause" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceResumeOperation" value="CloudDataTransferServiceResumeOperationOperator(&#10;    task_id='$task_id$', &#10;    operation_name=&quot;{{task_instance.xcom_pull('GET_OPERATION_TASK')['name']}}&quot;&#10;)&#10;&#10;" description="Google Cloud - Data Transfer Resume Operation" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataTransferServiceJobStatusSensor" value="CloudDataTransferServiceJobStatusSensor(&#10;    task_id='$task_id$',&#10;    job_name=&quot;{{task_instance.xcom_pull('JOB_NAME_TASK')['name']}}&quot;,&#10;    project_id=GCP_PROJECT_ID,&#10;    expected_statuses={GcpTransferOperationStatus.SUCCESS},&#10;    poke_interval=WAIT_FOR_OPERATION_POKE_INTERVAL&#10;)" description="Google Cloud - Data Transfer Job Status Sensor" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="ComputeEngineStartInstance" value="ComputeEngineStartInstanceOperator(&#10;    project_id=GCP_PROJECT_ID,        #if skipped, it will be retrieved from the Google Cloud connection used&#10;    zone=GCE_ZONE, &#10;    resource_id=GCE_INSTANCE, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Compute Engine Start Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="ComputeEngineStopInstance" value="ComputeEngineStopInstanceOperator(&#10;    project_id=GCP_PROJECT_ID,   #if skipped, it will be retrieved from the Google Cloud connection used&#10;    zone=GCE_ZONE, &#10;    resource_id=GCE_INSTANCE, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Compute Engine Stop Instance" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="ComputeEngineSetMachineType" value="ComputeEngineSetMachineTypeOperator(&#10;    project_id=GCP_PROJECT_ID,       #if skipped, it will be retrieved from the Google Cloud connection used&#10;    zone=GCE_ZONE,&#10;    resource_id=GCE_INSTANCE,&#10;    body={'machineType': f'zones/{GCE_ZONE}/machineTypes/{GCE_SHORT_MACHINE_TYPE_NAME}'},&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Compute Engine Set Machine Type" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="ComputeEngineCopyInstanceTemplate" value="ComputeEngineCopyInstanceTemplateOperator(&#10;    project_id=GCP_PROJECT_ID,           #if skipped, it will be retrieved from the Google Cloud connection used&#10;    resource_id=GCE_TEMPLATE_NAME,&#10;    body_patch=GCE_INSTANCE_TEMPLATE_BODY_UPDATE,&#10;    task_id='$task_id$'&#10;)&#10;&#10;# Where GCE_INSTANCE_TEMPLATE_BODY_UPDATE can be defined as follows:&#10;#&#10;# GCE_INSTANCE_TEMPLATE_BODY_UPDATE = {&#10;#    &quot;name&quot;: GCE_NEW_TEMPLATE_NAME,&#10;#    &quot;description&quot;: GCE_NEW_DESCRIPTION,&#10;#    &quot;properties&quot;: {&quot;machineType&quot;: &quot;n1-standard-2&quot;},&#10;# }&#10;" description="Google Cloud - Compute Engine Copy Instance Template" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="ComputeEngineInstanceGroupUpdateManagerTemplate" value="ComputeEngineInstanceGroupUpdateManagerTemplateOperator(&#10;    project_id=GCP_PROJECT_ID,                 #if skipped, it will be retrieved from the Google Cloud connection used&#10;    resource_id=GCE_INSTANCE_GROUP_MANAGER_NAME,&#10;    zone=GCE_ZONE,&#10;    source_template=SOURCE_TEMPLATE_URL,&#10;    destination_template=DESTINATION_TEMPLATE_URL,&#10;    update_policy=UPDATE_POLICY,&#10;    task_id='$task_id$'&#10;)&#10;&#10;#&#10;# Where: &#10;# SOURCE_TEMPLATE_URL  = &quot;https://www.googleapis.com/compute/beta/projects/&quot;&#10;# SOURCE_TEMPLATE_URL += GCP_PROJECT_ID &#10;# SOURCE_TEMPLATE_URL += &quot;/global/instanceTemplates/instance-template-test&quot;&#10;# &#10;# DESTINATION_TEMPLATE_URL = &quot;https://www.googleapis.com/compute/beta/projects/&quot;&#10;# DESTINATION_TEMPLATE_URL += GCP_PROJECT_ID&#10;# DESTINATION_TEMPLATE_URL += &quot;/global/instanceTemplates/&quot;&#10;# DESTINATION_TEMPLATE_URL += GCE_NEW_TEMPLATE_NAME&#10;#&#10;# UPDATE_POLICY = {&#10;#    &quot;type&quot;: &quot;OPPORTUNISTIC&quot;,&#10;#    &quot;minimalAction&quot;: &quot;RESTART&quot;,&#10;#    &quot;maxSurge&quot;: {&quot;fixed&quot;: 1},&#10;#    &quot;minReadySec&quot;: 1800,&#10;# }&#10;#" description="Google Cloud - Compute Engine Instance Group Update Manager" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="SSHOperator" value="SSHOperator(&#10;    task_id='$task_id$',&#10;    ssh_hook=ComputeEngineSSHHook(&#10;        instance_name=GCE_INSTANCE,&#10;        zone=GCE_ZONE,&#10;        project_id=GCP_PROJECT_ID,          #if skipped, it will be retrieved from the Google Cloud connection used&#10;        use_oslogin=True,&#10;        use_iap_tunnel=False&#10;    ),&#10;    command=&quot;echo hello&quot;,&#10;)" description="Google Cloud - Compute Engine SSH Operator" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPCreateStoredInfoType" value="CloudDLPCreateStoredInfoTypeOperator(&#10;    project_id=GCP_PROJECT_ID,&#10;    config=CUSTOM_INFO_TYPES,&#10;    stored_info_type_id=CUSTOM_INFO_TYPE_ID,&#10;    task_id='$task_id$'&#10;)&#10;" description="Google Cloud - Data Loss Prevention Create Stored Info Type" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPUpdateStoredInfoType" value="CloudDLPUpdateStoredInfoTypeOperator(&#10;    project_id=GCP_PROJECT_ID,&#10;    stored_info_type_id=CUSTOM_INFO_TYPE_ID,&#10;    config=UPDATE_CUSTOM_INFO_TYPE,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Loss Prevention Update Stored Info Type" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPDeleteStoredInfoType" value="CloudDLPDeleteStoredInfoTypeOperator(&#10;    project_id=GCP_PROJECT,&#10;    stored_info_type_id=CUSTOM_INFO_TYPE_ID,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Loss Prevention Delete Stored Info Type" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPCreateInspectTemplate" value="CloudDLPCreateInspectTemplateOperator(&#10;    project_id=GCP_PROJECT_ID,&#10;    inspect_template=INSPECT_TEMPLATE,&#10;    template_id=TEMPLATE_ID,&#10;    task_id='$task_id$',&#10;    do_xcom_push=True&#10;)" description="Google Cloud - Data Loss Prevention Create Inspection Template" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPInspectContent" value="CloudDLPInspectContentOperator(&#10;    task_id='$task_id$',&#10;    project_id=GCP_PROJECT,&#10;    item=ITEM,&#10;    inspect_template_name=&quot;{{ task_instance.xcom_pull('CREATE_TASK_ID', key='return_value')['name'] }}&quot;,&#10;)" description="Google Cloud - Data Loss Prevention Inspect Content" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPDeleteInspectTemplate" value="CloudDLPDeleteInspectTemplateOperator(&#10;    task_id='$task_id$',&#10;    template_id=TEMPLATE_ID,&#10;    project_id=GCP_PROJECT_ID&#10;)" description="Google Cloud - Data Loss Prevention Delete Inspection Template" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPCreateJobTrigger" value="CloudDLPCreateJobTriggerOperator(&#10;    project_id=GCP_PROJECT_ID,&#10;    job_trigger=JOB_TRIGGER,&#10;    trigger_id=TRIGGER_ID,&#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Loss Prevention Create Job Trigger" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPUpdateJobTrigger" value="CloudDLPUpdateJobTriggerOperator(&#10;    project_id=GCP_PROJECT,&#10;    job_trigger_id=TRIGGER_ID,&#10;    job_trigger=JOB_TRIGGER,&#10;    task_id='$task_id$'&#10;)&#10;" description="Google Cloud - Data Loss Prevention Update Job Trigger" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDLPDeleteJobTrigger" value="CloudDLPDeleteJobTriggerOperator(&#10;    project_id=GCP_PROJECT, &#10;    job_trigger_id=TRIGGER_ID, &#10;    task_id='$task_id$'&#10;)" description="Google Cloud - Data Loss Prevention Delete Job Trigger" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogGetEntry" value="CloudDataCatalogGetEntryOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    entry_group=ENTRY_GROUP_ID, &#10;    entry=ENTRY_ID&#10;)" description="Google Cloud - Data Catalog Get Entry" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogLookupEntry" value="CloudDataCatalogLookupEntryOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry&#10;    task_id='$task_id$',&#10;    linked_resource=current_entry_template.format(&#10;        project_id=PROJECT_ID, &#10;        location=GCP_REGION, &#10;        entry_group=ENTRY_GROUP_ID, &#10;        entry=ENTRY_ID&#10;    ),&#10;)&#10;&#10;# Prior to running the call to the operator above, set the current_entry_level&#10;#&#10;# current_entry_template = (&#10;#    &quot;//datacatalog.googleapis.com/projects/{project_id}/locations/{location}/&quot;&#10;#    &quot;entryGroups/{entry_group}/entries/{entry}&quot;&#10;# )" description="Google Cloud - Data Catalog Lookup Entry" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogCreateEntry" value="CloudDataCatalogCreateEntryOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-an-entry&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    entry_group=ENTRY_GROUP_ID,&#10;    entry_id=ENTRY_ID,&#10;    entry={&#10;        &quot;display_name&quot;: &quot;Wizard&quot;,&#10;        &quot;type_&quot;: &quot;FILESET&quot;,&#10;        &quot;gcs_fileset_spec&quot;: {&quot;file_patterns&quot;: [&quot;gs://test-datacatalog/**&quot;]},&#10;    },&#10;)" description="Google Cloud - Data Catalog Create Entry" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogUpdateEntry" value="CloudDataCatalogUpdateEntryOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-an-entry&#10;    task_id='$task_id$',&#10;    entry={&quot;display_name&quot;: &quot;New Wizard&quot;},&#10;    update_mask={&quot;paths&quot;: [&quot;display_name&quot;]},&#10;    location=GCP_REGION,&#10;    entry_group=ENTRY_GROUP_ID,&#10;    entry_id=ENTRY_ID&#10;)" description="Google Cloud - Data Catalog Update Entry" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogDeleteEntry" value="CloudDataCatalogDeleteEntryOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-entry&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    entry_group=ENTRY_GROUP_ID, &#10;    entry=ENTRY_ID&#10;)" description="Google Cloud - Data Catalog Delete Entry" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogCreateEntryGroup" value="CloudDataCatalogCreateEntryGroupOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-an-entry-group&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    entry_group_id=ENTRY_GROUP_ID,&#10;    entry_group={&quot;display_name&quot;: &quot;analytics data - jan 2011&quot;},&#10;)" description="Google Cloud - Data Catalog Create Entry Group" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogGetEntryGroup" value="CloudDataCatalogGetEntryGroupOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry-group&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    entry_group=ENTRY_GROUP_ID,&#10;    read_mask={&quot;paths&quot;: [&quot;name&quot;, &quot;display_name&quot;]},&#10;)" description="Google Cloud - Data Catalog Get Entry Group" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogDeleteEntryGroup" value="CloudDataCatalogDeleteEntryGroupOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-an-entry-group&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    entry_group=ENTRY_GROUP_ID&#10;)" description="Google Cloud - Data Catalog Delete Entry Group" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogCreateTagTemplate" value="CloudDataCatalogCreateTagTemplateOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-a-tag-templates&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    tag_template_id=TEMPLATE_ID,&#10;    tag_template={&#10;        &quot;display_name&quot;: &quot;Awesome Tag Template&quot;,&#10;        &quot;fields&quot;: {&#10;            FIELD_NAME_1: TagTemplateField(&#10;                display_name=&quot;first-field&quot;, type_=dict(primitive_type=&quot;STRING&quot;)&#10;            )&#10;        },&#10;    },&#10;)" description="Google Cloud - Data Catalog Create Tag Template" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogDeleteTagTemplate" value="CloudDataCatalogDeleteTagTemplateOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-tag-template&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    tag_template=TEMPLATE_ID, &#10;    force=True&#10;)" description="Google Cloud - Data Catalog Delete Tag Template" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogGetTagTemplate" value="CloudDataCatalogGetTagTemplateOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-a-tag-template&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    tag_template=TEMPLATE_ID&#10;)" description="Google Cloud - Data Catalog Delete Tag Template" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogCreateTag" value="CloudDataCatalogCreateTagOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-a-tag-on-an-entry&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    entry_group=ENTRY_GROUP_ID,&#10;    entry=ENTRY_ID,&#10;    template_id=TEMPLATE_ID,&#10;    tag={&#10;        &quot;fields&quot;: {&#10;            FIELD_NAME_1: TagField(string_value=&quot;example-value-string&quot;)&#10;        }&#10;    }&#10;)" description="Google Cloud - Data Catalog Create Tag" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogUpdateTagTemplate" value="CloudDataCatalogUpdateTagTemplateOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-a-tag-template&#10;    task_id='$task_id$',&#10;    tag_template={&quot;display_name&quot;: &quot;Awesome Tag Template&quot;},&#10;    update_mask={&quot;paths&quot;: [&quot;display_name&quot;]},&#10;    location=GCP_REGION,&#10;    tag_template_id=TEMPLATE_ID,&#10;)" description="Google Cloud - Data Catalog Update Tag" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogListTags" value="CloudDataCatalogListTagsOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#listing-an-tags-on-an-entry&#10;    task_id='$task_id$', &#10;    location=GCP_REGION, &#10;    entry_group=ENTRY_GROUP_ID, &#10;    entry=ENTRY_ID&#10;)" description="Google Cloud - Data Catalog List Tags" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogCreateTagTemplateField" value="CloudDataCatalogCreateTagTemplateFieldOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-a-field&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    tag_template=TEMPLATE_ID,&#10;    tag_template_field_id=FIELD_NAME_2,&#10;    tag_template_field=TagTemplateField(&#10;        display_name=&quot;second-field&quot;, &#10;        type_=FieldType(primitive_type=&quot;STRING&quot;)&#10;    ),&#10;)" description="Google Cloud - Data Catalog Create Tag Template Field" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogRenameTagTemplateField" value="CloudDataCatalogRenameTagTemplateFieldOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#renaming-a-field&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    tag_template=TEMPLATE_ID,&#10;    field=FIELD_NAME_1,&#10;    new_tag_template_field_id=FIELD_NAME_3&#10;)" description="Google Cloud - Data Catalog Rename Tag Template Field" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogUpdateTagTemplateField" value="CloudDataCatalogUpdateTagTemplateFieldOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-a-field&#10;    task_id='$task_id$',&#10;    tag_template_field={&quot;display_name&quot;: &quot;Updated template field&quot;},&#10;    update_mask={&quot;paths&quot;: [&quot;display_name&quot;]},&#10;    location=GCP_REGION,&#10;    tag_template=TEMPLATE_ID,&#10;    tag_template_field_id=FIELD_NAME_1&#10;)" description="Google Cloud - Data Catalog Update Tag Template Field" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogDeleteTagTemplateField" value="CloudDataCatalogDeleteTagTemplateFieldOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-field&#10;    task_id='$task_id$',&#10;    location=GCP_REGION,&#10;    tag_template=TEMPLATE_ID,&#10;    field=FIELD_NAME_2,&#10;    force=True&#10;)" description="Google Cloud - Data Catalog Delete Tag Template Field" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="CloudDataCatalogSearchCatalog" value="CloudDataCatalogSearchCatalogOperator(&#10;    # Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#search-resources&#10;    task_id='$task_id$', &#10;    scope={&#10;        &quot;include_project_ids&quot;: [PROJECT_ID]&#10;    }, &#10;    query=f&quot;projectid:{PROJECT_ID}&quot;&#10;)" description="Google Cloud - Data Catalog Search Catalog" toReformat="false" toShortenFQNames="true">
+    <variable name="task_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+</templateSet>
