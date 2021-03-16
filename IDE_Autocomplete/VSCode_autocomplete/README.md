@@ -1,6 +1,8 @@
 # VS Code Autocomplete for Apache Airflow
 
-This code enables Airflow Operators and Sensors autocomplete for VS Code. 
+This code enables Airflow Operators and Sensors autocomplete for VS Code as shown below:
+
+![VS Code](../Images/VSCode.gif)
 
 To install Airflow Autocomplete for VS Code, follow this process:
 1. Open VS Code

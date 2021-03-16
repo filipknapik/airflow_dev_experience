@@ -1,6 +1,8 @@
 # PyCharm Autocomplete for Apache Airflow
 
-This code enables Airflow Operators and Sensors autocomplete for PyCharm. 
+This code enables Airflow Operators and Sensors autocomplete for PyCharm as shown below:
+
+![VS Code](../Images/PyCharm.gif) 
 
 To install Airflow Autocomplete for PyCharm, follow these steps:
 1. Clone this repo to your local file system
