@@ -1,8 +1,6 @@
-# IDE Autocomplete for Apache Airflow
+# VS Code Autocomplete for Apache Airflow
 
-IDE Autocomplete provides Airflow developers with live templates for Operators and Sensors, automatically suggested by an IDE during DAG editing. 
-Example for PyCharm:
-
+This code allows 
 Example for VS Code:
 
 In both cases, the code comes with a URL to the full specification and additional context on a particular Operator or Sensor. Both IDEs allow clicking on the link, which provides seamless documentation access. 
