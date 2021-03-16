@@ -1,10 +1,7 @@
 import requests
 import re
 
-files = ['https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html']
-#,
-#'https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html',
-#'https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html']
+files = []
 
 toRemove = ['<span class="o">','<span class="n">','<span class="p">','<span class="mf">','<span class="kc">',
     '<span class="mi">','<span class="sa">','<span class="si">','</span>','<span>','<pre>',
@@ -12,8 +9,18 @@ toRemove = ['<span class="o">','<span class="n">','<span class="p">','<span clas
 
 entries = []
 
+def loadURLs(fileName):
+    URLs = open(fileName, "r")
+    TempFiles = URLs.readlines()
+    Files = []
+    for item in TempFiles:
+        Files.append(item.strip())
+    return Files
+
+
 def addEntry(newEntry):
     entries.append(newEntry)
+    return
 
 def downloadFile(url):
     r = requests.get(url, allow_redirects=True)
@@ -21,6 +28,7 @@ def downloadFile(url):
 
 def processURLs(files):
     for inpfile in files:
+        print(inpfile)
         fileStr = downloadFile(inpfile)
         for removeItem in toRemove:
             fileStr = fileStr.replace(removeItem, '')
@@ -31,8 +39,10 @@ def processURLs(files):
     
         for item in allItems:
             newEntry = {}
-            body = re.findall(r" = (.*?)$", item)[0]
-
+            try:
+                body = re.findall(r" = (.*?)$", item)[0]
+            except:
+                continue
             methodName = body[:body.find("(")]
             
             body = body.replace("'    ","\n    ")
@@ -67,7 +77,9 @@ def html_encode(s):
     htmlCodes = (
             ('&#39;',"'"),
             ('&quot;','"'),
-            ('&#10;','\n')
+            ('&#10;','\n'),
+            ('&gt;','>'),
+            ('&lt;','<')
         )
     for code in htmlCodes:
         s = s.replace(code[1], code[0])
@@ -75,13 +87,13 @@ def html_encode(s):
 
 def createPyCharm(entries):
     buffer = ""
-    buffer += "<templateSet>\n"
+    buffer += "<templateSet group=\"Airflow\">\n"
 
     pycharmTemplateFile = open("pycharmTemplate.txt", "r")
     pycharmTemplate = pycharmTemplateFile.read()
 
     for theEntry in entries:
-        value = html_encode(theEntry['body']+"\n# Reference available at: " + theEntry['link'])
+        value = html_encode(theEntry['body']+"\n# Reference available at: " + theEntry['link'] + "\n")
         newEntry = pycharmTemplate
         newEntry = newEntry.replace("#value",value)
         newEntry = newEntry.replace("#method",theEntry['method'])
@@ -92,5 +104,6 @@ def createPyCharm(entries):
     AirflowFile.write(buffer)
     return
 
+files = loadURLs("url.txt")
 processURLs(files)
 createPyCharm(entries)
