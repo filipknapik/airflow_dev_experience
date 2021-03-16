@@ -2,17 +2,16 @@ import requests
 import re
 
 files = []
+methodsUsed = []
 
-toRemove = ['<span class="o">','<span class="n">','<span class="p">','<span class="mf">','<span class="kc">',
-    '<span class="mi">','<span class="sa">','<span class="si">','</span>','<span>','<pre>',
-    '<div class="highlight">','<span class="s2">','<span class="c1">','<span class="s1">']
+toRemove = ['</span>','<span>','<pre>','<div class="highlight">']
 
 entries = []
 
 def loadURLs(fileName):
+    Files = []
     URLs = open(fileName, "r")
     TempFiles = URLs.readlines()
-    Files = []
     for item in TempFiles:
         Files.append(item.strip())
     return Files
@@ -31,6 +30,9 @@ def processURLs(files):
         fileStr = downloadFile(inpfile)
         for removeItem in toRemove:
             fileStr = fileStr.replace(removeItem, '')
+        spanSections = re.findall(r"<span class=(.*?)>", fileStr)
+        for span in spanSections:
+            fileStr = fileStr.replace("<span class="+span+">","")
         fileStr = fileStr.replace("&quot;","'")
         fileStr = fileStr.replace("\n","'")
         fileStr = fileStr.replace("&#39","'")
@@ -53,24 +55,26 @@ def processURLs(files):
             body = body.replace(')\'',')')
 
             if len(methodName)>0 and ("Operator" in methodName or "Sensor" in methodName):
-                newEntry['method'] = methodName
-                
-                searchFor = " = "+methodName+"("
-                position = fileStr.index(searchFor)
-                if(position>0):
-                    beginning = fileStr[1:position]
-                    linkStart = beginning.rindex("class=\"headerlink\"")
-                    theLink = beginning[linkStart:]
-                    theLink = theLink[:theLink.index(">")]
-                    properties = theLink.split(" ")
-                    for prop in properties:
-                        if(prop.find("href=")>=0):
-                            tag = prop.replace("href=","")
-                            tag = tag.replace("\"","")
-                            finalLink = inpfile + tag
-                            newEntry['link'] = finalLink
-                    newEntry['body'] = body
-                    addEntry(newEntry)
+                if methodName not in methodsUsed:
+                    methodsUsed.append(methodName)
+                    newEntry['method'] = methodName
+                    
+                    searchFor = " = "+methodName+"("
+                    position = fileStr.index(searchFor)
+                    if(position>0):
+                        beginning = fileStr[1:position]
+                        linkStart = beginning.rindex("class=\"headerlink\"")
+                        theLink = beginning[linkStart:]
+                        theLink = theLink[:theLink.index(">")]
+                        properties = theLink.split(" ")
+                        for prop in properties:
+                            if(prop.find("href=")>=0):
+                                tag = prop.replace("href=","")
+                                tag = tag.replace("\"","")
+                                finalLink = inpfile + tag
+                                newEntry['link'] = finalLink
+                        newEntry['body'] = body
+                        addEntry(newEntry)
 
 def html_encode(s):
     htmlCodes = (
@@ -92,7 +96,7 @@ def createPyCharm(entries):
     pycharmTemplate = pycharmTemplateFile.read()
 
     for theEntry in entries:
-        value = html_encode(theEntry['body']+"\n# Reference available at: " + theEntry['link'] + "\n")
+        value = html_encode(theEntry['body']+"\n# Reference: " + theEntry['link'] + "\n")
         newEntry = pycharmTemplate
         newEntry = newEntry.replace("#value",value)
         newEntry = newEntry.replace("#method",theEntry['method'])
@@ -110,9 +114,10 @@ def createVSCode(entries):
     vscodeTemplate = vscodeTemplateFile.read()
 
     for theEntry in entries:
-        value = theEntry['body']+"\n# Reference available at: " + theEntry['link'] + "\n"
+        value = theEntry['body']+"\n# Reference: " + theEntry['link'] + "\n"
         value = value.replace("\"","\\\"")
         value = value.replace("\n","\",\n\"")
+        value = value.replace("\\'","'")
         newEntry = vscodeTemplate
         newEntry = newEntry.replace("#value",value)
         newEntry = newEntry.replace("#method",theEntry['method'])
