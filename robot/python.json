@@ -1,0 +1,3869 @@
+{
+"BigQueryCreateEmptyDatasetOperator":{
+    "prefix": "BigQueryCreateEmptyDatasetOperator",
+    "body": [
+        "BigQueryCreateEmptyDatasetOperator(task_id='create-dataset', dataset_id=DATASET_NAME)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-dataset",
+""
+    ]
+},
+"BigQueryGetDatasetOperator":{
+    "prefix": "BigQueryGetDatasetOperator",
+    "body": [
+        "BigQueryGetDatasetOperator(task_id='get-dataset', dataset_id=DATASET_NAME)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#get-dataset-details",
+""
+    ]
+},
+"BigQueryGetDatasetTablesOperator":{
+    "prefix": "BigQueryGetDatasetTablesOperator",
+    "body": [
+        "BigQueryGetDatasetTablesOperator(",
+"    task_id='get_dataset_tables', dataset_id=DATASET_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#list-tables-in-dataset",
+""
+    ]
+},
+"BigQueryUpdateTableOperator":{
+    "prefix": "BigQueryUpdateTableOperator",
+    "body": [
+        "BigQueryUpdateTableOperator(",
+"    task_id='update_table',",
+"    dataset_id=DATASET_NAME,",
+"    table_id='test_table',",
+"    fields=[",
+"        {'name': 'emp_name', 'type': 'STRING', 'mode': 'REQUIRED'},",
+"        {'name': 'salary', 'type': 'INTEGER', 'mode': 'NULLABLE'},",
+"    ],",
+"    table_resource={",
+"        'friendlyName': 'Updated Table',",
+"        'description': 'Updated Table',",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#update-table",
+""
+    ]
+},
+"BigQueryPatchDatasetOperator":{
+    "prefix": "BigQueryPatchDatasetOperator",
+    "body": [
+        "BigQueryPatchDatasetOperator(",
+"    task_id='patch_dataset',",
+"    dataset_id=DATASET_NAME,",
+"    dataset_resource={",
+"        'friendlyName': 'Patched Dataset',",
+"        'description': 'Patched dataset',",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#patch-dataset",
+""
+    ]
+},
+"BigQueryUpdateDatasetOperator":{
+    "prefix": "BigQueryUpdateDatasetOperator",
+    "body": [
+        "BigQueryUpdateDatasetOperator(",
+"    task_id='update_dataset',",
+"    dataset_id=DATASET_NAME,",
+"    dataset_resource={'description': 'Updated dataset'}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#update-dataset",
+""
+    ]
+},
+"BigQueryDeleteDatasetOperator":{
+    "prefix": "BigQueryDeleteDatasetOperator",
+    "body": [
+        "BigQueryDeleteDatasetOperator(",
+"    task_id='delete_dataset', dataset_id=DATASET_NAME, delete_contents=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#delete-dataset",
+""
+    ]
+},
+"BigQueryCreateEmptyTableOperator":{
+    "prefix": "BigQueryCreateEmptyTableOperator",
+    "body": [
+        "BigQueryCreateEmptyTableOperator(",
+"    task_id='create_table',",
+"    dataset_id=DATASET_NAME,",
+"    table_id='test_table',",
+"    schema_fields=[",
+"        {'name': 'emp_name', 'type': 'STRING', 'mode': 'REQUIRED'},",
+"        {'name': 'salary', 'type': 'INTEGER', 'mode': 'NULLABLE'},",
+"    ]",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-native-table",
+""
+    ]
+},
+"BigQueryCreateEmptyTableOperator":{
+    "prefix": "BigQueryCreateEmptyTableOperator",
+    "body": [
+        "BigQueryCreateEmptyTableOperator(",
+"    task_id='create_view',",
+"    dataset_id=DATASET_NAME,",
+"    table_id='test_view',",
+"    view={",
+"        'query': f'SELECT * FROM `{PROJECT_ID}.{DATASET_NAME}.test_table`',",
+"        'useLegacySql': False,",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-native-table",
+""
+    ]
+},
+"BigQueryCreateEmptyTableOperator":{
+    "prefix": "BigQueryCreateEmptyTableOperator",
+    "body": [
+        "BigQueryCreateEmptyTableOperator(",
+"    task_id='create_materialized_view',",
+"    dataset_id=DATASET_NAME,",
+"    table_id='test_materialized_view',",
+"    materialized_view={",
+"        'query': f'SELECT SUM(salary)  AS sum_salary FROM `{PROJECT_ID}.{DATASET_NAME}.test_table`',",
+"        'enableRefresh': True,",
+"        'refreshIntervalMs': 2000000,",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-native-table",
+""
+    ]
+},
+"BigQueryCreateExternalTableOperator":{
+    "prefix": "BigQueryCreateExternalTableOperator",
+    "body": [
+        "BigQueryCreateExternalTableOperator(",
+"    task_id='create_external_table',",
+"    bucket=DATA_SAMPLE_GCS_BUCKET_NAME,",
+"    source_objects=[DATA_SAMPLE_GCS_OBJECT_NAME],",
+"    destination_project_dataset_table=f'{DATASET_NAME}.external_table',",
+"    skip_leading_rows=1,",
+"    schema_fields=[",
+"        {'name': 'name', 'type': 'STRING'},",
+"        {'name': 'post_abbr', 'type': 'STRING'},",
+"    ]",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#create-external-table",
+""
+    ]
+},
+"BigQueryGetDataOperator":{
+    "prefix": "BigQueryGetDataOperator",
+    "body": [
+        "BigQueryGetDataOperator(",
+"    task_id='get_data',",
+"    dataset_id=DATASET_NAME,",
+"    table_id=TABLE_1,",
+"    max_results=10,",
+"    selected_fields='value,name',",
+"    location=location",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#fetch-data-from-table",
+""
+    ]
+},
+"BigQueryUpsertTableOperator":{
+    "prefix": "BigQueryUpsertTableOperator",
+    "body": [
+        "BigQueryUpsertTableOperator(",
+"    task_id='upsert_table',",
+"    dataset_id=DATASET_NAME,",
+"    table_resource={",
+"        'tableReference': {'tableId': 'test_table_id'},",
+"        'expirationTime': (<span class=\"nb\">int(time.time()) + 300) * 1000,",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#upsert-table",
+""
+    ]
+},
+"BigQueryDeleteTableOperator":{
+    "prefix": "BigQueryDeleteTableOperator",
+    "body": [
+        "BigQueryDeleteTableOperator(",
+"    task_id='delete_table',",
+"    deletion_dataset_table=f'{PROJECT_ID}.{DATASET_NAME}.test_table'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#delete-table",
+""
+    ]
+},
+"BigQueryDeleteTableOperator":{
+    "prefix": "BigQueryDeleteTableOperator",
+    "body": [
+        "BigQueryDeleteTableOperator(",
+"    task_id='delete_view', deletion_dataset_table=f'{PROJECT_ID}.{DATASET_NAME}.test_view'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#delete-table",
+""
+    ]
+},
+"BigQueryDeleteTableOperator":{
+    "prefix": "BigQueryDeleteTableOperator",
+    "body": [
+        "BigQueryDeleteTableOperator(",
+"    task_id='delete_materialized_view',",
+"    deletion_dataset_table=f'{PROJECT_ID}.{DATASET_NAME}.test_materialized_view'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#delete-table",
+""
+    ]
+},
+"BigQueryInsertJobOperator":{
+    "prefix": "BigQueryInsertJobOperator",
+    "body": [
+        "BigQueryInsertJobOperator(",
+"    task_id='insert_query_job',",
+"    configuration={",
+"        'query': {",
+"            'query': INSERT_ROWS_QUERY,",
+"            'useLegacySql': False,",
+"        }",
+"    },",
+"    location=location",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#execute-bigquery-jobs",
+""
+    ]
+},
+"BigQueryInsertJobOperator":{
+    "prefix": "BigQueryInsertJobOperator",
+    "body": [
+        "BigQueryInsertJobOperator(",
+"    task_id='select_query_job',",
+"    configuration={",
+"        'query': {",
+"            'query': '{% include 'example_bigquery_query.sql' %}',",
+"            'useLegacySql': False,",
+"        }",
+"    },",
+"    location=location",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#execute-bigquery-jobs",
+""
+    ]
+},
+"BigQueryCheckOperator":{
+    "prefix": "BigQueryCheckOperator",
+    "body": [
+        "BigQueryCheckOperator(",
+"    task_id='check_count',",
+"    sql=f'SELECT COUNT(*) FROM {DATASET_NAME}.{TABLE_1}',",
+"    use_legacy_sql=False,",
+"    location=location",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#check-if-query-result-has-data",
+""
+    ]
+},
+"BigQueryValueCheckOperator":{
+    "prefix": "BigQueryValueCheckOperator",
+    "body": [
+        "BigQueryValueCheckOperator(",
+"    task_id='check_value',",
+"    sql=f'SELECT COUNT(*) FROM {DATASET_NAME}.{TABLE_1}',",
+"    pass_value=4,",
+"    use_legacy_sql=False,",
+"    location=location",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#compare-query-result-to-pass-value",
+""
+    ]
+},
+"BigQueryIntervalCheckOperator":{
+    "prefix": "BigQueryIntervalCheckOperator",
+    "body": [
+        "BigQueryIntervalCheckOperator(",
+"    task_id='check_interval',",
+"    table=f'{DATASET_NAME}.{TABLE_1}',",
+"    days_back=1,",
+"    metrics_thresholds={'COUNT(*): 1.5},",
+"    use_legacy_sql=False,",
+"    location=location",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#compare-metrics-over-time",
+""
+    ]
+},
+"BigQueryTableExistenceSensor":{
+    "prefix": "BigQueryTableExistenceSensor",
+    "body": [
+        "BigQueryTableExistenceSensor(",
+"    task_id='check_table_exists', project_id=PROJECT_ID, dataset_id=DATASET_NAME, table_id=TABLE_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#check-that-a-table-exists",
+""
+    ]
+},
+"BigQueryTablePartitionExistenceSensor":{
+    "prefix": "BigQueryTablePartitionExistenceSensor",
+    "body": [
+        "BigQueryTablePartitionExistenceSensor(",
+"    task_id='check_table_partition_exists',",
+"    project_id=PROJECT_ID,",
+"    dataset_id=DATASET_NAME,",
+"    table_id=TABLE_NAME,",
+"    partition_id=PARTITION_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery.html#check-that-a-table-partition-exists",
+""
+    ]
+},
+"CloudDataFusionRestartInstanceOperator":{
+    "prefix": "CloudDataFusionRestartInstanceOperator",
+    "body": [
+        "CloudDataFusionRestartInstanceOperator(",
+"    location=LOCATION, instance_name=INSTANCE_NAME, task_id='restart_instance'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#restart-datafusion-instance",
+""
+    ]
+},
+"CloudDataFusionDeleteInstanceOperator":{
+    "prefix": "CloudDataFusionDeleteInstanceOperator",
+    "body": [
+        "CloudDataFusionDeleteInstanceOperator(",
+"    location=LOCATION, instance_name=INSTANCE_NAME, task_id='delete_instance'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#delete-datafusion-instance",
+""
+    ]
+},
+"CloudDataFusionCreateInstanceOperator":{
+    "prefix": "CloudDataFusionCreateInstanceOperator",
+    "body": [
+        "CloudDataFusionCreateInstanceOperator(",
+"    location=LOCATION,",
+"    instance_name=INSTANCE_NAME,",
+"    instance=INSTANCE,",
+"    task_id='create_instance'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#create-datafusion-instance",
+""
+    ]
+},
+"CloudDataFusionUpdateInstanceOperator":{
+    "prefix": "CloudDataFusionUpdateInstanceOperator",
+    "body": [
+        "CloudDataFusionUpdateInstanceOperator(",
+"    location=LOCATION,",
+"    instance_name=INSTANCE_NAME,",
+"    instance=INSTANCE,",
+"    update_mask='instance.displayName',",
+"    task_id='update_instance'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#update-datafusion-instance",
+""
+    ]
+},
+"CloudDataFusionGetInstanceOperator":{
+    "prefix": "CloudDataFusionGetInstanceOperator",
+    "body": [
+        "CloudDataFusionGetInstanceOperator(",
+"    location=LOCATION, instance_name=INSTANCE_NAME, task_id='get_instance'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#get-datafusion-instance",
+""
+    ]
+},
+"CloudDataFusionCreatePipelineOperator":{
+    "prefix": "CloudDataFusionCreatePipelineOperator",
+    "body": [
+        "CloudDataFusionCreatePipelineOperator(",
+"    location=LOCATION,",
+"    pipeline_name=PIPELINE_NAME,",
+"    pipeline=PIPELINE,",
+"    instance_name=INSTANCE_NAME,",
+"    task_id='create_pipeline'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#create-a-datafusion-pipeline",
+""
+    ]
+},
+"CloudDataFusionStartPipelineOperator":{
+    "prefix": "CloudDataFusionStartPipelineOperator",
+    "body": [
+        "CloudDataFusionStartPipelineOperator(",
+"    location=LOCATION,",
+"    pipeline_name=PIPELINE_NAME,",
+"    instance_name=INSTANCE_NAME,",
+"    task_id='start_pipeline'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#start-a-datafusion-pipeline",
+""
+    ]
+},
+"CloudDataFusionStopPipelineOperator":{
+    "prefix": "CloudDataFusionStopPipelineOperator",
+    "body": [
+        "CloudDataFusionStopPipelineOperator(",
+"    location=LOCATION,",
+"    pipeline_name=PIPELINE_NAME,",
+"    instance_name=INSTANCE_NAME,",
+"    task_id='stop_pipeline'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#stop-a-datafusion-pipeline",
+""
+    ]
+},
+"CloudDataFusionDeletePipelineOperator":{
+    "prefix": "CloudDataFusionDeletePipelineOperator",
+    "body": [
+        "CloudDataFusionDeletePipelineOperator(",
+"    location=LOCATION,",
+"    pipeline_name=PIPELINE_NAME,",
+"    instance_name=INSTANCE_NAME,",
+"    task_id='delete_pipeline'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#delete-a-datafusion-pipeline",
+""
+    ]
+},
+"CloudDataFusionListPipelinesOperator":{
+    "prefix": "CloudDataFusionListPipelinesOperator",
+    "body": [
+        "CloudDataFusionListPipelinesOperator(",
+"    location=LOCATION, instance_name=INSTANCE_NAME, task_id='list_pipelines'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datafusion.html#list-datafusion-pipelines",
+""
+    ]
+},
+"AutoMLCreateDatasetOperator":{
+    "prefix": "AutoMLCreateDatasetOperator",
+    "body": [
+        "AutoMLCreateDatasetOperator(",
+"    task_id='create_dataset_task',",
+"    dataset=DATASET,",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"",
+"dataset_id = '{{ task_instance.xcom_pull('create_dataset_task', key='dataset_id') }}'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#creating-datasets",
+""
+    ]
+},
+"AutoMLImportDataOperator":{
+    "prefix": "AutoMLImportDataOperator",
+    "body": [
+        "AutoMLImportDataOperator(",
+"    task_id='import_dataset_task',",
+"    dataset_id=dataset_id,",
+"    location=GCP_AUTOML_LOCATION,",
+"    input_config=IMPORT_INPUT_CONFIG",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#creating-datasets",
+""
+    ]
+},
+"AutoMLTablesListTableSpecsOperator":{
+    "prefix": "AutoMLTablesListTableSpecsOperator",
+    "body": [
+        "AutoMLTablesListTableSpecsOperator(",
+"    task_id='list_tables_spec_task',",
+"    dataset_id=dataset_id,",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-table-and-columns-specs",
+""
+    ]
+},
+"AutoMLTablesListColumnSpecsOperator":{
+    "prefix": "AutoMLTablesListColumnSpecsOperator",
+    "body": [
+        "AutoMLTablesListColumnSpecsOperator(",
+"    task_id='list_columns_spec_task',",
+"    dataset_id=dataset_id,",
+"    table_spec_id='{{ extract_object_id(task_instance.xcom_pull('list_tables_spec_task')[0]) }}',",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-table-and-columns-specs",
+""
+    ]
+},
+"AutoMLTrainModelOperator":{
+    "prefix": "AutoMLTrainModelOperator",
+    "body": [
+        "AutoMLTrainModelOperator(",
+"    task_id='create_model_task',",
+"    model=MODEL,",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"",
+"model_id = '{{ task_instance.xcom_pull('create_model_task', key='model_id') }}'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models",
+""
+    ]
+},
+"AutoMLGetModelOperator":{
+    "prefix": "AutoMLGetModelOperator",
+    "body": [
+        "AutoMLGetModelOperator(",
+"    task_id='get_model_task',",
+"    model_id=MODEL_ID,",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models",
+""
+    ]
+},
+"AutoMLDeployModelOperator":{
+    "prefix": "AutoMLDeployModelOperator",
+    "body": [
+        "AutoMLDeployModelOperator(",
+"    task_id='deploy_model_task',",
+"    model_id=MODEL_ID,",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models",
+""
+    ]
+},
+"AutoMLDeleteModelOperator":{
+    "prefix": "AutoMLDeleteModelOperator",
+    "body": [
+        "AutoMLDeleteModelOperator(",
+"    task_id='delete_model_task',",
+"    model_id=model_id,",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#operations-on-models",
+""
+    ]
+},
+"AutoMLPredictOperator":{
+    "prefix": "AutoMLPredictOperator",
+    "body": [
+        "AutoMLPredictOperator(",
+"    task_id='predict_task',",
+"    model_id=MODEL_ID,",
+"    payload={},  # Add your own payload, the used model_id must be deployed",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#making-predictions",
+""
+    ]
+},
+"AutoMLBatchPredictOperator":{
+    "prefix": "AutoMLBatchPredictOperator",
+    "body": [
+        "AutoMLBatchPredictOperator(",
+"    task_id='batch_predict_task',",
+"    model_id=MODEL_ID,",
+"    input_config={},  # Add your config",
+"    output_config={},  # Add your config",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#making-predictions",
+""
+    ]
+},
+"AutoMLListDatasetOperator":{
+    "prefix": "AutoMLListDatasetOperator",
+    "body": [
+        "AutoMLListDatasetOperator(",
+"    task_id='list_datasets_task',",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-and-deleting-datasets",
+""
+    ]
+},
+"AutoMLDeleteDatasetOperator":{
+    "prefix": "AutoMLDeleteDatasetOperator",
+    "body": [
+        "AutoMLDeleteDatasetOperator(",
+"    task_id='delete_datasets_task',",
+"    dataset_id='{{ task_instance.xcom_pull('list_datasets_task', key='dataset_id_list') | list }}',",
+"    location=GCP_AUTOML_LOCATION,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/automl.html#listing-and-deleting-datasets",
+""
+    ]
+},
+"BigQueryCreateDataTransferOperator":{
+    "prefix": "BigQueryCreateDataTransferOperator",
+    "body": [
+        "BigQueryCreateDataTransferOperator(",
+"    transfer_config=TRANSFER_CONFIG,",
+"    project_id=GCP_PROJECT_ID,",
+"    task_id='gcp_bigquery_create_transfer'",
+")",
+"",
+"transfer_config_id = (",
+"    '{{ task_instance.xcom_pull('gcp_bigquery_create_transfer', key='transfer_config_id') }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#creating-transfer-configuration",
+""
+    ]
+},
+"BigQueryDeleteDataTransferConfigOperator":{
+    "prefix": "BigQueryDeleteDataTransferConfigOperator",
+    "body": [
+        "BigQueryDeleteDataTransferConfigOperator(",
+"    transfer_config_id=transfer_config_id, task_id='gcp_bigquery_delete_transfer'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#deleting-transfer-configuration",
+""
+    ]
+},
+"BigQueryDataTransferServiceStartTransferRunsOperator":{
+    "prefix": "BigQueryDataTransferServiceStartTransferRunsOperator",
+    "body": [
+        "BigQueryDataTransferServiceStartTransferRunsOperator(",
+"    task_id='gcp_bigquery_start_transfer',",
+"    transfer_config_id=transfer_config_id,",
+"    requested_run_time={'seconds': <span class=\"nb\">int(time.time() + 60)}",
+")run_id = '{{ task_instance.xcom_pull('gcp_bigquery_start_transfer', key='run_id') }}'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#manually-starting-transfer-runs",
+""
+    ]
+},
+"BigQueryDataTransferServiceTransferRunSensor":{
+    "prefix": "BigQueryDataTransferServiceTransferRunSensor",
+    "body": [
+        "BigQueryDataTransferServiceTransferRunSensor(",
+"    task_id='gcp_run_sensor',",
+"    transfer_config_id=transfer_config_id,",
+"    run_id=run_id,",
+"    expected_statuses={'SUCCEEDED'}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigquery_dts.html#manually-starting-transfer-runs",
+""
+    ]
+},
+"BigtableCreateInstanceOperator":{
+    "prefix": "BigtableCreateInstanceOperator",
+    "body": [
+        "BigtableCreateInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=CBT_INSTANCE_ID,",
+"    main_cluster_id=CBT_CLUSTER_ID,",
+"    main_cluster_zone=CBT_CLUSTER_ZONE,",
+"    instance_display_name=CBT_INSTANCE_DISPLAY_NAME,",
+"    instance_type=<span class=\"nb\">int(CBT_INSTANCE_TYPE),",
+"    instance_labels=json.loads(CBT_INSTANCE_LABELS),",
+"    cluster_nodes=None,",
+"    cluster_storage_type=<span class=\"nb\">int(CBT_CLUSTER_STORAGE_TYPE),",
+"    task_id='create_instance_task'",
+")create_instance_task2 = BigtableCreateInstanceOperator(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    main_cluster_id=CBT_CLUSTER_ID,",
+"    main_cluster_zone=CBT_CLUSTER_ZONE,",
+"    instance_display_name=CBT_INSTANCE_DISPLAY_NAME,",
+"    instance_type=<span class=\"nb\">int(CBT_INSTANCE_TYPE),",
+"    instance_labels=json.loads(CBT_INSTANCE_LABELS),",
+"    cluster_nodes=<span class=\"nb\">int(CBT_CLUSTER_NODES),",
+"    cluster_storage_type=<span class=\"nb\">int(CBT_CLUSTER_STORAGE_TYPE),",
+"    task_id='create_instance_task2'",
+")create_instance_task &gt;&gt; create_instance_task2'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#using-the-operator",
+""
+    ]
+},
+"BigtableUpdateInstanceOperator":{
+    "prefix": "BigtableUpdateInstanceOperator",
+    "body": [
+        "BigtableUpdateInstanceOperator(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    instance_display_name=CBT_INSTANCE_DISPLAY_NAME_UPDATED,",
+"    instance_type=<span class=\"nb\">int(CBT_INSTANCE_TYPE_PROD),",
+"    instance_labels=json.loads(CBT_INSTANCE_LABELS_UPDATED),",
+"    task_id='update_instance_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#id1",
+""
+    ]
+},
+"BigtableDeleteInstanceOperator":{
+    "prefix": "BigtableDeleteInstanceOperator",
+    "body": [
+        "BigtableDeleteInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=CBT_INSTANCE_ID,",
+"    task_id='delete_instance_task'",
+")delete_instance_task2 = BigtableDeleteInstanceOperator(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    task_id='delete_instance_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#id2",
+""
+    ]
+},
+"BigtableUpdateClusterOperator":{
+    "prefix": "BigtableUpdateClusterOperator",
+    "body": [
+        "BigtableUpdateClusterOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=CBT_INSTANCE_ID,",
+"    cluster_id=CBT_CLUSTER_ID,",
+"    nodes=<span class=\"nb\">int(CBT_CLUSTER_NODES_UPDATED),",
+"    task_id='update_cluster_task'",
+")cluster_update_task2 = BigtableUpdateClusterOperator(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    cluster_id=CBT_CLUSTER_ID,",
+"    nodes=<span class=\"nb\">int(CBT_CLUSTER_NODES_UPDATED),",
+"    task_id='update_cluster_task2'",
+")cluster_update_task &gt;&gt; cluster_update_task2'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#id3",
+""
+    ]
+},
+"BigtableCreateTableOperator":{
+    "prefix": "BigtableCreateTableOperator",
+    "body": [
+        "BigtableCreateTableOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=CBT_INSTANCE_ID,",
+"    table_id=CBT_TABLE_ID,",
+"    task_id='create_table'",
+")create_table_task2 = BigtableCreateTableOperator(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    table_id=CBT_TABLE_ID,",
+"    task_id='create_table_task2'",
+")create_table_task &gt;&gt; create_table_task2'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#id4",
+""
+    ]
+},
+"BigtableDeleteTableOperator":{
+    "prefix": "BigtableDeleteTableOperator",
+    "body": [
+        "BigtableDeleteTableOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=CBT_INSTANCE_ID,",
+"    table_id=CBT_TABLE_ID,",
+"    task_id='delete_table_task'",
+")delete_table_task2 = BigtableDeleteTableOperator(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    table_id=CBT_TABLE_ID,",
+"    task_id='delete_table_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#id5",
+""
+    ]
+},
+"BigtableTableReplicationCompletedSensor":{
+    "prefix": "BigtableTableReplicationCompletedSensor",
+    "body": [
+        "BigtableTableReplicationCompletedSensor(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=CBT_INSTANCE_ID,",
+"    table_id=CBT_TABLE_ID,",
+"    poke_interval=<span class=\"nb\">int(CBT_POKE_INTERVAL),",
+"    timeout=180,",
+"    task_id='wait_for_table_replication_task'",
+")wait_for_table_replication_task2 = BigtableTableReplicationCompletedSensor(",
+"    instance_id=CBT_INSTANCE_ID,",
+"    table_id=CBT_TABLE_ID,",
+"    poke_interval=<span class=\"nb\">int(CBT_POKE_INTERVAL),",
+"    timeout=180,",
+"    task_id='wait_for_table_replication_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/bigtable.html#id6",
+""
+    ]
+},
+"CloudBuildCreateBuildOperator":{
+    "prefix": "CloudBuildCreateBuildOperator",
+    "body": [
+        "CloudBuildCreateBuildOperator(",
+"        task_id='create_build_from_file',",
+"        project_id=GCP_PROJECT_ID,",
+"        body=<span class=\"nb\">str(CURRENT_FOLDER.joinpath('example_cloud_build.yaml')),",
+"        params={'name': 'Airflow'},",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_build.html#build-configuration-overview",
+""
+    ]
+},
+"CloudBuildCreateBuildOperator":{
+    "prefix": "CloudBuildCreateBuildOperator",
+    "body": [
+        "CloudBuildCreateBuildOperator(",
+"    task_id='create_build_from_storage', project_id=GCP_PROJECT_ID, body=create_build_from_storage_body",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_build.html#build-configuration-overview",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo '{{ task_instance.xcom_pull('create_build_from_storage')['images'][0] }}',",
+"    task_id='create_build_from_storage_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_build.html#trigger-a-build",
+""
+    ]
+},
+"GCSBucketCreateAclEntryOperator":{
+    "prefix": "GCSBucketCreateAclEntryOperator",
+    "body": [
+        "GCSBucketCreateAclEntryOperator(",
+"    task_id='gcs-set-acl-permission',",
+"    bucket=BUCKET_NAME,",
+"    entity='user-{{ task_instance.xcom_pull('get-instance')['persistence_iam_identity']'",
+"    '.split(':', 2)[1] }}',",
+"    role='OWNER'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#configuration-of-bucket-permissions-for-import-export",
+""
+    ]
+},
+"CloudMemorystoreCreateInstanceOperator":{
+    "prefix": "CloudMemorystoreCreateInstanceOperator",
+    "body": [
+        "CloudMemorystoreCreateInstanceOperator(",
+"    task_id='create-instance',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_REDIS_INSTANCE_NAME,",
+"    instance=FIRST_INSTANCE,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#create-instance",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create-instance-result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create-instance') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#create-instance",
+""
+    ]
+},
+"CloudMemorystoreDeleteInstanceOperator":{
+    "prefix": "CloudMemorystoreDeleteInstanceOperator",
+    "body": [
+        "CloudMemorystoreDeleteInstanceOperator(",
+"    task_id='delete-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_REDIS_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#delete-instance",
+""
+    ]
+},
+"CloudMemorystoreExportInstanceOperator":{
+    "prefix": "CloudMemorystoreExportInstanceOperator",
+    "body": [
+        "CloudMemorystoreExportInstanceOperator(",
+"    task_id='export-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_REDIS_INSTANCE_NAME,",
+"    output_config={'gcs_destination': {'uri': EXPORT_GCS_URL}},",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#export-instance",
+""
+    ]
+},
+"CloudMemorystoreFailoverInstanceOperator":{
+    "prefix": "CloudMemorystoreFailoverInstanceOperator",
+    "body": [
+        "CloudMemorystoreFailoverInstanceOperator(",
+"    task_id='failover-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_REDIS_INSTANCE_NAME_2,",
+"    data_protection_mode=FailoverInstanceRequest.DataProtectionMode.LIMITED_DATA_LOSS,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#failover-instance",
+""
+    ]
+},
+"CloudMemorystoreGetInstanceOperator":{
+    "prefix": "CloudMemorystoreGetInstanceOperator",
+    "body": [
+        "CloudMemorystoreGetInstanceOperator(",
+"    task_id='get-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_REDIS_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID,",
+"    do_xcom_push=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#get-instance",
+""
+    ]
+},
+"CloudMemorystoreImportOperator":{
+    "prefix": "CloudMemorystoreImportOperator",
+    "body": [
+        "CloudMemorystoreImportOperator(",
+"    task_id='import-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_REDIS_INSTANCE_NAME_2,",
+"    input_config={'gcs_source': {'uri': EXPORT_GCS_URL}},",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#import-instance",
+""
+    ]
+},
+"CloudMemorystoreListInstancesOperator":{
+    "prefix": "CloudMemorystoreListInstancesOperator",
+    "body": [
+        "CloudMemorystoreListInstancesOperator(",
+"    task_id='list-instances', location='-', page_size=100, project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#list-instances",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='list-instances-result', bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('get-instance') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#create-instance",
+""
+    ]
+},
+"CloudMemorystoreUpdateInstanceOperator":{
+    "prefix": "CloudMemorystoreUpdateInstanceOperator",
+    "body": [
+        "CloudMemorystoreUpdateInstanceOperator(",
+"    task_id='update-instance',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_REDIS_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID,",
+"    update_mask={'paths': ['memory_size_gb']},",
+"    instance={'memory_size_gb': 2}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#update-instance",
+""
+    ]
+},
+"CloudMemorystoreScaleInstanceOperator":{
+    "prefix": "CloudMemorystoreScaleInstanceOperator",
+    "body": [
+        "CloudMemorystoreScaleInstanceOperator(",
+"    task_id='scale-instance',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_REDIS_INSTANCE_NAME_3,",
+"    project_id=GCP_PROJECT_ID,",
+"    memory_size_gb=3",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore.html#scale-instance",
+""
+    ]
+},
+"CloudMemorystoreMemcachedCreateInstanceOperator":{
+    "prefix": "CloudMemorystoreMemcachedCreateInstanceOperator",
+    "body": [
+        "CloudMemorystoreMemcachedCreateInstanceOperator(",
+"    task_id='create-instance',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,",
+"    instance=MEMCACHED_INSTANCE,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore_memcached.html#create-instance",
+""
+    ]
+},
+"CloudMemorystoreMemcachedDeleteInstanceOperator":{
+    "prefix": "CloudMemorystoreMemcachedDeleteInstanceOperator",
+    "body": [
+        "CloudMemorystoreMemcachedDeleteInstanceOperator(",
+"    task_id='delete-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore_memcached.html#delete-instance",
+""
+    ]
+},
+"CloudMemorystoreMemcachedGetInstanceOperator":{
+    "prefix": "CloudMemorystoreMemcachedGetInstanceOperator",
+    "body": [
+        "CloudMemorystoreMemcachedGetInstanceOperator(",
+"    task_id='get-instance',",
+"    location='europe-north1',",
+"    instance=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore_memcached.html#get-instance",
+""
+    ]
+},
+"CloudMemorystoreMemcachedListInstancesOperator":{
+    "prefix": "CloudMemorystoreMemcachedListInstancesOperator",
+    "body": [
+        "CloudMemorystoreMemcachedListInstancesOperator(",
+"    task_id='list-instances', location='-', project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore_memcached.html#list-instances",
+""
+    ]
+},
+"CloudMemorystoreMemcachedUpdateInstanceOperator":{
+    "prefix": "CloudMemorystoreMemcachedUpdateInstanceOperator",
+    "body": [
+        "CloudMemorystoreMemcachedUpdateInstanceOperator(",
+"    task_id='update-instance',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID,",
+"    update_mask=cloud_memcache.field_mask.FieldMask(paths=['node_count']),",
+"    instance={'node_count': 2}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore_memcached.html#update-instance",
+""
+    ]
+},
+"CloudMemorystoreMemcachedUpdateParametersOperator":{
+    "prefix": "CloudMemorystoreMemcachedUpdateParametersOperator",
+    "body": [
+        "CloudMemorystoreMemcachedUpdateParametersOperator(",
+"    task_id='update-parameters',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID,",
+"    update_mask={'paths': ['params']},",
+"    parameters={'params': {'protocol': 'ascii', 'hash_algorithm': 'jenkins'}}",
+")",
+"",
+"apply_memcached_parameters = CloudMemorystoreMemcachedApplyParametersOperator(",
+"    task_id='apply-parameters',",
+"    location='europe-north1',",
+"    instance_id=MEMORYSTORE_MEMCACHED_INSTANCE_NAME,",
+"    project_id=GCP_PROJECT_ID,",
+"    node_ids=['node-a-1'],",
+"    apply_all=False",
+")",
+"",
+"# update_parameters &gt;&gt; apply_parameters'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_memorystore_memcached.html#update-and-apply-parameters-to-an-instance",
+""
+    ]
+},
+"CloudSQLCreateInstanceDatabaseOperator":{
+    "prefix": "CloudSQLCreateInstanceDatabaseOperator",
+    "body": [
+        "CloudSQLCreateInstanceDatabaseOperator(",
+"    project_id=GCP_PROJECT_ID, body=db_create_body, instance=INSTANCE_NAME, task_id='sql_db_create_task'",
+")sql_db_create_task2 = CloudSQLCreateInstanceDatabaseOperator(",
+"    body=db_create_body, instance=INSTANCE_NAME, task_id='sql_db_create_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#using-the-operator",
+""
+    ]
+},
+"CloudSQLDeleteInstanceDatabaseOperator":{
+    "prefix": "CloudSQLDeleteInstanceDatabaseOperator",
+    "body": [
+        "CloudSQLDeleteInstanceDatabaseOperator(",
+"    project_id=GCP_PROJECT_ID, instance=INSTANCE_NAME, database=DB_NAME, task_id='sql_db_delete_task'",
+")sql_db_delete_task2 = CloudSQLDeleteInstanceDatabaseOperator(",
+"    instance=INSTANCE_NAME, database=DB_NAME, task_id='sql_db_delete_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id1",
+""
+    ]
+},
+"CloudSQLPatchInstanceDatabaseOperator":{
+    "prefix": "CloudSQLPatchInstanceDatabaseOperator",
+    "body": [
+        "CloudSQLPatchInstanceDatabaseOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    body=db_patch_body,",
+"    instance=INSTANCE_NAME,",
+"    database=DB_NAME,",
+"    task_id='sql_db_patch_task'",
+")sql_db_patch_task2 = CloudSQLPatchInstanceDatabaseOperator(",
+"    body=db_patch_body, instance=INSTANCE_NAME, database=DB_NAME, task_id='sql_db_patch_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id4",
+""
+    ]
+},
+"CloudSQLDeleteInstanceOperator":{
+    "prefix": "CloudSQLDeleteInstanceOperator",
+    "body": [
+        "CloudSQLDeleteInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, instance=INSTANCE_NAME, task_id='sql_instance_delete_task'",
+")sql_instance_delete_task2 = CloudSQLDeleteInstanceOperator(",
+"    instance=INSTANCE_NAME2, task_id='sql_instance_delete_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id7",
+""
+    ]
+},
+"CloudSQLDeleteInstanceOperator":{
+    "prefix": "CloudSQLDeleteInstanceOperator",
+    "body": [
+        "CloudSQLDeleteInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance=FAILOVER_REPLICA_NAME,",
+"    task_id='sql_instance_failover_replica_delete_task'",
+")",
+"",
+"sql_instance_read_replica_delete_task = CloudSQLDeleteInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, instance=READ_REPLICA_NAME, task_id='sql_instance_read_replica_delete_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id7",
+""
+    ]
+},
+"CloudSQLExportInstanceOperator":{
+    "prefix": "CloudSQLExportInstanceOperator",
+    "body": [
+        "CloudSQLExportInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, body=export_body, instance=INSTANCE_NAME, task_id='sql_export_task'",
+")sql_export_task2 = CloudSQLExportInstanceOperator(",
+"    body=export_body, instance=INSTANCE_NAME, task_id='sql_export_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id10",
+""
+    ]
+},
+"GCSBucketCreateAclEntryOperator":{
+    "prefix": "GCSBucketCreateAclEntryOperator",
+    "body": [
+        "GCSBucketCreateAclEntryOperator(",
+"    entity='user-{{ task_instance.xcom_pull('",
+"    'sql_instance_create_task', key='service_account_email') '",
+"    '}}',",
+"    role='WRITER',",
+"    bucket=export_url_split[1],  # netloc (bucket)",
+"    task_id='sql_gcp_add_bucket_permission_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#troubleshooting",
+""
+    ]
+},
+"CloudSQLImportInstanceOperator":{
+    "prefix": "CloudSQLImportInstanceOperator",
+    "body": [
+        "CloudSQLImportInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, body=import_body, instance=INSTANCE_NAME2, task_id='sql_import_task'",
+")sql_import_task2 = CloudSQLImportInstanceOperator(",
+"    body=import_body, instance=INSTANCE_NAME2, task_id='sql_import_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id14",
+""
+    ]
+},
+"GCSObjectCreateAclEntryOperator":{
+    "prefix": "GCSObjectCreateAclEntryOperator",
+    "body": [
+        "GCSObjectCreateAclEntryOperator(",
+"    entity='user-{{ task_instance.xcom_pull('",
+"    'sql_instance_create_task2', key='service_account_email')",
+"    ' }}',",
+"    role='READER',",
+"    bucket=import_url_split[1],  # netloc (bucket)",
+"    object_name=import_url_split[2][1:],  # path (strip first '/')",
+"    task_id='sql_gcp_add_object_permission_task'",
+")",
+"",
+"# For import to work we also need to add the Cloud SQL instance's Service Account'# write access to the whole bucket!.'sql_gcp_add_bucket_permission_2_task = GCSBucketCreateAclEntryOperator(",
+"    entity='user-{{ task_instance.xcom_pull('",
+"    'sql_instance_create_task2', key='service_account_email') '",
+"    '}}',",
+"    role='WRITER',",
+"    bucket=import_url_split[1],  # netloc",
+"    task_id='sql_gcp_add_bucket_permission_2_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id17",
+""
+    ]
+},
+"CloudSQLCreateInstanceOperator":{
+    "prefix": "CloudSQLCreateInstanceOperator",
+    "body": [
+        "CloudSQLCreateInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, body=body, instance=INSTANCE_NAME, task_id='sql_instance_create_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id19",
+""
+    ]
+},
+"CloudSQLInstancePatchOperator":{
+    "prefix": "CloudSQLInstancePatchOperator",
+    "body": [
+        "CloudSQLInstancePatchOperator(",
+"    project_id=GCP_PROJECT_ID, body=patch_body, instance=INSTANCE_NAME, task_id='sql_instance_patch_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_sql.html#id23",
+""
+    ]
+},
+"CloudDataTransferServiceCreateJobOperator":{
+    "prefix": "CloudDataTransferServiceCreateJobOperator",
+    "body": [
+        "CloudDataTransferServiceCreateJobOperator(",
+"    task_id='create_transfer_job_from_aws', body=aws_to_gcs_transfer_body",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#using-the-operator",
+""
+    ]
+},
+"CloudDataTransferServiceDeleteJobOperator":{
+    "prefix": "CloudDataTransferServiceDeleteJobOperator",
+    "body": [
+        "CloudDataTransferServiceDeleteJobOperator(",
+"    task_id='delete_transfer_from_aws_job',",
+"    job_name='{{task_instance.xcom_pull('create_transfer_job_from_aws')['name']}}',",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id2",
+""
+    ]
+},
+"CloudDataTransferServiceUpdateJobOperator":{
+    "prefix": "CloudDataTransferServiceUpdateJobOperator",
+    "body": [
+        "CloudDataTransferServiceUpdateJobOperator(",
+"    task_id='update_transfer',",
+"    job_name='{{task_instance.xcom_pull('create_transfer')['name']}}',",
+"    body=update_body",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id5",
+""
+    ]
+},
+"CloudDataTransferServiceCancelOperationOperator":{
+    "prefix": "CloudDataTransferServiceCancelOperationOperator",
+    "body": [
+        "CloudDataTransferServiceCancelOperationOperator(",
+"    task_id='cancel_operation',",
+"    operation_name='{{task_instance.xcom_pull('",
+"    'wait_for_second_operation_to_start', key='sensed_operations')[0]['name']}}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id8",
+""
+    ]
+},
+"CloudDataTransferServiceGetOperationOperator":{
+    "prefix": "CloudDataTransferServiceGetOperationOperator",
+    "body": [
+        "CloudDataTransferServiceGetOperationOperator(",
+"    task_id='get_operation', operation_name='{{task_instance.xcom_pull('list_operations')[0]['name']}}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id11",
+""
+    ]
+},
+"CloudDataTransferServiceListOperationsOperator":{
+    "prefix": "CloudDataTransferServiceListOperationsOperator",
+    "body": [
+        "CloudDataTransferServiceListOperationsOperator(",
+"    task_id='list_operations',",
+"    request_filter={",
+"        FILTER_PROJECT_ID: GCP_PROJECT_ID,",
+"        FILTER_JOB_NAMES: ['{{task_instance.xcom_pull('create_transfer_job_from_aws')['name']}}'],",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id14",
+""
+    ]
+},
+"CloudDataTransferServicePauseOperationOperator":{
+    "prefix": "CloudDataTransferServicePauseOperationOperator",
+    "body": [
+        "CloudDataTransferServicePauseOperationOperator(",
+"    task_id='pause_operation',",
+"    operation_name='{{task_instance.xcom_pull('wait_for_operation_to_start', '",
+"    'key='sensed_operations')[0]['name']}}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id17",
+""
+    ]
+},
+"CloudDataTransferServiceResumeOperationOperator":{
+    "prefix": "CloudDataTransferServiceResumeOperationOperator",
+    "body": [
+        "CloudDataTransferServiceResumeOperationOperator(",
+"    task_id='resume_operation', operation_name='{{task_instance.xcom_pull('get_operation')['name']}}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id20",
+""
+    ]
+},
+"CloudDataTransferServiceJobStatusSensor":{
+    "prefix": "CloudDataTransferServiceJobStatusSensor",
+    "body": [
+        "CloudDataTransferServiceJobStatusSensor(",
+"    task_id='wait_for_operation_to_end',",
+"    job_name='{{task_instance.xcom_pull('create_transfer_job_from_aws')['name']}}',",
+"    project_id=GCP_PROJECT_ID,",
+"    expected_statuses={GcpTransferOperationStatus.SUCCESS},",
+"    poke_interval=WAIT_FOR_OPERATION_POKE_INTERVAL",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/cloud_storage_transfer_service.html#id23",
+""
+    ]
+},
+"ComputeEngineStartInstanceOperator":{
+    "prefix": "ComputeEngineStartInstanceOperator",
+    "body": [
+        "ComputeEngineStartInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, zone=GCE_ZONE, resource_id=GCE_INSTANCE, task_id='gcp_compute_start_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#using-the-operator",
+""
+    ]
+},
+"ComputeEngineStartInstanceOperator":{
+    "prefix": "ComputeEngineStartInstanceOperator",
+    "body": [
+        "ComputeEngineStartInstanceOperator(",
+"    zone=GCE_ZONE, resource_id=GCE_INSTANCE, task_id='gcp_compute_start_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#using-the-operator",
+""
+    ]
+},
+"ComputeEngineStopInstanceOperator":{
+    "prefix": "ComputeEngineStopInstanceOperator",
+    "body": [
+        "ComputeEngineStopInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, zone=GCE_ZONE, resource_id=GCE_INSTANCE, task_id='gcp_compute_stop_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id1",
+""
+    ]
+},
+"ComputeEngineStopInstanceOperator":{
+    "prefix": "ComputeEngineStopInstanceOperator",
+    "body": [
+        "ComputeEngineStopInstanceOperator(",
+"    zone=GCE_ZONE, resource_id=GCE_INSTANCE, task_id='gcp_compute_stop_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id1",
+""
+    ]
+},
+"ComputeEngineSetMachineTypeOperator":{
+    "prefix": "ComputeEngineSetMachineTypeOperator",
+    "body": [
+        "ComputeEngineSetMachineTypeOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    zone=GCE_ZONE,",
+"    resource_id=GCE_INSTANCE,",
+"    body={'machineType': f'zones/{GCE_ZONE}/machineTypes/{GCE_SHORT_MACHINE_TYPE_NAME}'},",
+"    task_id='gcp_compute_set_machine_type'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id4",
+""
+    ]
+},
+"ComputeEngineSetMachineTypeOperator":{
+    "prefix": "ComputeEngineSetMachineTypeOperator",
+    "body": [
+        "ComputeEngineSetMachineTypeOperator(",
+"    zone=GCE_ZONE,",
+"    resource_id=GCE_INSTANCE,",
+"    body={'machineType': f'zones/{GCE_ZONE}/machineTypes/{GCE_SHORT_MACHINE_TYPE_NAME}'},",
+"    task_id='gcp_compute_set_machine_type2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id4",
+""
+    ]
+},
+"ComputeEngineCopyInstanceTemplateOperator":{
+    "prefix": "ComputeEngineCopyInstanceTemplateOperator",
+    "body": [
+        "ComputeEngineCopyInstanceTemplateOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    resource_id=GCE_TEMPLATE_NAME,",
+"    body_patch=GCE_INSTANCE_TEMPLATE_BODY_UPDATE,",
+"    task_id='gcp_compute_igm_copy_template_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id7",
+""
+    ]
+},
+"ComputeEngineCopyInstanceTemplateOperator":{
+    "prefix": "ComputeEngineCopyInstanceTemplateOperator",
+    "body": [
+        "ComputeEngineCopyInstanceTemplateOperator(",
+"    resource_id=GCE_TEMPLATE_NAME,",
+"    body_patch=GCE_INSTANCE_TEMPLATE_BODY_UPDATE,",
+"    task_id='gcp_compute_igm_copy_template_task_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id7",
+""
+    ]
+},
+"ComputeEngineInstanceGroupUpdateManagerTemplateOperator":{
+    "prefix": "ComputeEngineInstanceGroupUpdateManagerTemplateOperator",
+    "body": [
+        "ComputeEngineInstanceGroupUpdateManagerTemplateOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    resource_id=GCE_INSTANCE_GROUP_MANAGER_NAME,",
+"    zone=GCE_ZONE,",
+"    source_template=SOURCE_TEMPLATE_URL,",
+"    destination_template=DESTINATION_TEMPLATE_URL,",
+"    update_policy=UPDATE_POLICY,",
+"    task_id='gcp_compute_igm_group_manager_update_template'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id11",
+""
+    ]
+},
+"ComputeEngineInstanceGroupUpdateManagerTemplateOperator":{
+    "prefix": "ComputeEngineInstanceGroupUpdateManagerTemplateOperator",
+    "body": [
+        "ComputeEngineInstanceGroupUpdateManagerTemplateOperator(",
+"    resource_id=GCE_INSTANCE_GROUP_MANAGER_NAME,",
+"    zone=GCE_ZONE,",
+"    source_template=SOURCE_TEMPLATE_URL,",
+"    destination_template=DESTINATION_TEMPLATE_URL,",
+"    task_id='gcp_compute_igm_group_manager_update_template_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute.html#id11",
+""
+    ]
+},
+"SSHOperator":{
+    "prefix": "SSHOperator",
+    "body": [
+        "SSHOperator(",
+"    task_id='os_login_without_iap_tunnel',",
+"    ssh_hook=ComputeEngineSSHHook(",
+"        instance_name=GCE_INSTANCE,",
+"        zone=GCE_ZONE,",
+"        project_id=GCP_PROJECT_ID,",
+"        use_oslogin=True,",
+"        use_iap_tunnel=False,",
+"    ),",
+"    command='echo os_login_without_iap_tunnel'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute_ssh.html#computeengineremoteinstancesshoperator",
+""
+    ]
+},
+"SSHOperator":{
+    "prefix": "SSHOperator",
+    "body": [
+        "SSHOperator(",
+"    task_id='metadata_without_iap_tunnel',",
+"    ssh_hook=ComputeEngineSSHHook(",
+"        instance_name=GCE_INSTANCE,",
+"        zone=GCE_ZONE,",
+"        use_oslogin=False,",
+"        use_iap_tunnel=False,",
+"    ),",
+"    command='echo metadata_without_iap_tunnel'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/compute_ssh.html#computeengineremoteinstancesshoperator",
+""
+    ]
+},
+"CloudDLPCreateStoredInfoTypeOperator":{
+    "prefix": "CloudDLPCreateStoredInfoTypeOperator",
+    "body": [
+        "CloudDLPCreateStoredInfoTypeOperator(",
+"    project_id=GCP_PROJECT,",
+"    config=CUSTOM_INFO_TYPES,",
+"    stored_info_type_id=CUSTOM_INFO_TYPE_ID,",
+"    task_id='create_info_type'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#create-stored-info-type",
+""
+    ]
+},
+"CloudDLPUpdateStoredInfoTypeOperator":{
+    "prefix": "CloudDLPUpdateStoredInfoTypeOperator",
+    "body": [
+        "CloudDLPUpdateStoredInfoTypeOperator(",
+"    project_id=GCP_PROJECT,",
+"    stored_info_type_id=CUSTOM_INFO_TYPE_ID,",
+"    config=UPDATE_CUSTOM_INFO_TYPE,",
+"    task_id='update_info_type'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#update-stored-info-type",
+""
+    ]
+},
+"CloudDLPDeleteStoredInfoTypeOperator":{
+    "prefix": "CloudDLPDeleteStoredInfoTypeOperator",
+    "body": [
+        "CloudDLPDeleteStoredInfoTypeOperator(",
+"    project_id=GCP_PROJECT,",
+"    stored_info_type_id=CUSTOM_INFO_TYPE_ID,",
+"    task_id='delete_info_type'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#deleting-stored-info-type",
+""
+    ]
+},
+"CloudDLPCreateInspectTemplateOperator":{
+    "prefix": "CloudDLPCreateInspectTemplateOperator",
+    "body": [
+        "CloudDLPCreateInspectTemplateOperator(",
+"    project_id=GCP_PROJECT,",
+"    inspect_template=INSPECT_TEMPLATE,",
+"    template_id=TEMPLATE_ID,",
+"    task_id='create_template',",
+"    do_xcom_push=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#creating-template",
+""
+    ]
+},
+"CloudDLPInspectContentOperator":{
+    "prefix": "CloudDLPInspectContentOperator",
+    "body": [
+        "CloudDLPInspectContentOperator(",
+"    task_id='inspect_content',",
+"    project_id=GCP_PROJECT,",
+"    item=ITEM,",
+"    inspect_template_name='{{ task_instance.xcom_pull('create_template', key='return_value')['name'] }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#using-template",
+""
+    ]
+},
+"CloudDLPDeleteInspectTemplateOperator":{
+    "prefix": "CloudDLPDeleteInspectTemplateOperator",
+    "body": [
+        "CloudDLPDeleteInspectTemplateOperator(",
+"    task_id='delete_template',",
+"    template_id=TEMPLATE_ID,",
+"    project_id=GCP_PROJECT",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#deleting-template",
+""
+    ]
+},
+"CloudDLPCreateJobTriggerOperator":{
+    "prefix": "CloudDLPCreateJobTriggerOperator",
+    "body": [
+        "CloudDLPCreateJobTriggerOperator(",
+"    project_id=GCP_PROJECT,",
+"    job_trigger=JOB_TRIGGER,",
+"    trigger_id=TRIGGER_ID,",
+"    task_id='create_trigger'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#creating-job-trigger",
+""
+    ]
+},
+"CloudDLPUpdateJobTriggerOperator":{
+    "prefix": "CloudDLPUpdateJobTriggerOperator",
+    "body": [
+        "CloudDLPUpdateJobTriggerOperator(",
+"    project_id=GCP_PROJECT,",
+"    job_trigger_id=TRIGGER_ID,",
+"    job_trigger=JOB_TRIGGER,",
+"    task_id='update_info_type'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#updating-job-trigger",
+""
+    ]
+},
+"CloudDLPDeleteJobTriggerOperator":{
+    "prefix": "CloudDLPDeleteJobTriggerOperator",
+    "body": [
+        "CloudDLPDeleteJobTriggerOperator(",
+"    project_id=GCP_PROJECT, job_trigger_id=TRIGGER_ID, task_id='delete_info_type'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#deleting-job-trigger",
+""
+    ]
+},
+"CloudDLPDeidentifyContentOperator":{
+    "prefix": "CloudDLPDeidentifyContentOperator",
+    "body": [
+        "CloudDLPDeidentifyContentOperator(",
+"    project_id=GCP_PROJECT,",
+"    item=ITEM,",
+"    deidentify_config=DEIDENTIFY_CONFIG,",
+"    inspect_config=INSPECT_CONFIG,",
+"    task_id='deidentify_content'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/data_loss_prevention.html#de-identify-content",
+""
+    ]
+},
+"CloudDataCatalogGetEntryOperator":{
+    "prefix": "CloudDataCatalogGetEntryOperator",
+    "body": [
+        "CloudDataCatalogGetEntryOperator(",
+"    task_id='get_entry', location=LOCATION, entry_group=ENTRY_GROUP_ID, entry=ENTRY_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='get_entry_result', bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('get_entry') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='lookup_entry_result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('lookup_entry')['display_name'] }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogCreateEntryOperator":{
+    "prefix": "CloudDataCatalogCreateEntryOperator",
+    "body": [
+        "CloudDataCatalogCreateEntryOperator(",
+"    task_id='create_entry_gcs',",
+"    location=LOCATION,",
+"    entry_group=ENTRY_GROUP_ID,",
+"    entry_id=ENTRY_ID,",
+"    entry={",
+"        'display_name': 'Wizard',",
+"        'type_': 'FILESET',",
+"        'gcs_fileset_spec': {'file_patterns': ['gs://test-datacatalog/**']},",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_entry_gcs_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_entry_gcs') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_entry_gcs_result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_entry_gcs', key='entry_id') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogUpdateEntryOperator":{
+    "prefix": "CloudDataCatalogUpdateEntryOperator",
+    "body": [
+        "CloudDataCatalogUpdateEntryOperator(",
+"    task_id='update_entry',",
+"    entry={'display_name': 'New Wizard'},",
+"    update_mask={'paths': ['display_name']},",
+"    location=LOCATION,",
+"    entry_group=ENTRY_GROUP_ID,",
+"    entry_id=ENTRY_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-an-entry",
+""
+    ]
+},
+"CloudDataCatalogDeleteEntryOperator":{
+    "prefix": "CloudDataCatalogDeleteEntryOperator",
+    "body": [
+        "CloudDataCatalogDeleteEntryOperator(",
+"    task_id='delete_entry', location=LOCATION, entry_group=ENTRY_GROUP_ID, entry=ENTRY_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-entry",
+""
+    ]
+},
+"CloudDataCatalogCreateEntryGroupOperator":{
+    "prefix": "CloudDataCatalogCreateEntryGroupOperator",
+    "body": [
+        "CloudDataCatalogCreateEntryGroupOperator(",
+"    task_id='create_entry_group',",
+"    location=LOCATION,",
+"    entry_group_id=ENTRY_GROUP_ID,",
+"    entry_group={'display_name': 'analytics data - jan 2011'}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-an-entry-group",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_entry_group_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_entry_group') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_entry_group_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_entry_group') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogGetEntryGroupOperator":{
+    "prefix": "CloudDataCatalogGetEntryGroupOperator",
+    "body": [
+        "CloudDataCatalogGetEntryGroupOperator(",
+"    task_id='get_entry_group',",
+"    location=LOCATION,",
+"    entry_group=ENTRY_GROUP_ID,",
+"    read_mask={'paths': ['name', 'display_name']}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry-group",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='get_entry_group_result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('get_entry_group') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogDeleteEntryGroupOperator":{
+    "prefix": "CloudDataCatalogDeleteEntryGroupOperator",
+    "body": [
+        "CloudDataCatalogDeleteEntryGroupOperator(",
+"    task_id='delete_entry_group', location=LOCATION, entry_group=ENTRY_GROUP_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-an-entry-group",
+""
+    ]
+},
+"CloudDataCatalogCreateTagTemplateOperator":{
+    "prefix": "CloudDataCatalogCreateTagTemplateOperator",
+    "body": [
+        "CloudDataCatalogCreateTagTemplateOperator(",
+"    task_id='create_tag_template',",
+"    location=LOCATION,",
+"    tag_template_id=TEMPLATE_ID,",
+"    tag_template={",
+"        'display_name': 'Awesome Tag Template',",
+"        'fields': {",
+"            FIELD_NAME_1: TagTemplateField(",
+"                display_name='first-field', type_=<span class=\"nb\">dict(primitive_type='STRING')",
+"            )",
+"        },",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-a-tag-templates",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_tag_template_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_tag_template') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_tag_template_result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_tag_template', key='tag_template_id') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogDeleteTagTemplateOperator":{
+    "prefix": "CloudDataCatalogDeleteTagTemplateOperator",
+    "body": [
+        "CloudDataCatalogDeleteTagTemplateOperator(",
+"    task_id='delete_tag_template', location=LOCATION, tag_template=TEMPLATE_ID, force=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-tag-template",
+""
+    ]
+},
+"CloudDataCatalogGetTagTemplateOperator":{
+    "prefix": "CloudDataCatalogGetTagTemplateOperator",
+    "body": [
+        "CloudDataCatalogGetTagTemplateOperator(",
+"    task_id='get_tag_template', location=LOCATION, tag_template=TEMPLATE_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-a-tag-template",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='get_tag_template_result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('get_tag_template') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogUpdateTagTemplateOperator":{
+    "prefix": "CloudDataCatalogUpdateTagTemplateOperator",
+    "body": [
+        "CloudDataCatalogUpdateTagTemplateOperator(",
+"    task_id='update_tag_template',",
+"    tag_template={'display_name': 'Awesome Tag Template'},",
+"    update_mask={'paths': ['display_name']},",
+"    location=LOCATION,",
+"    tag_template_id=TEMPLATE_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-a-tag-template",
+""
+    ]
+},
+"CloudDataCatalogCreateTagOperator":{
+    "prefix": "CloudDataCatalogCreateTagOperator",
+    "body": [
+        "CloudDataCatalogCreateTagOperator(",
+"    task_id='create_tag',",
+"    location=LOCATION,",
+"    entry_group=ENTRY_GROUP_ID,",
+"    entry=ENTRY_ID,",
+"    template_id=TEMPLATE_ID,",
+"    tag={'fields': {FIELD_NAME_1: TagField(string_value='example-value-string')}}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-a-tag-on-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_tag_result2', bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_tag') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_entry_group_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_entry_group') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogUpdateTagTemplateOperator":{
+    "prefix": "CloudDataCatalogUpdateTagTemplateOperator",
+    "body": [
+        "CloudDataCatalogUpdateTagTemplateOperator(",
+"    task_id='update_tag_template',",
+"    tag_template={'display_name': 'Awesome Tag Template'},",
+"    update_mask={'paths': ['display_name']},",
+"    location=LOCATION,",
+"    tag_template_id=TEMPLATE_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-a-tag-template",
+""
+    ]
+},
+"CloudDataCatalogDeleteTagTemplateOperator":{
+    "prefix": "CloudDataCatalogDeleteTagTemplateOperator",
+    "body": [
+        "CloudDataCatalogDeleteTagTemplateOperator(",
+"    task_id='delete_tag_template', location=LOCATION, tag_template=TEMPLATE_ID, force=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-tag-template",
+""
+    ]
+},
+"CloudDataCatalogListTagsOperator":{
+    "prefix": "CloudDataCatalogListTagsOperator",
+    "body": [
+        "CloudDataCatalogListTagsOperator(",
+"    task_id='list_tags', location=LOCATION, entry_group=ENTRY_GROUP_ID, entry=ENTRY_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#listing-an-tags-on-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='list_tags_result', bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('list_tags') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogCreateTagTemplateFieldOperator":{
+    "prefix": "CloudDataCatalogCreateTagTemplateFieldOperator",
+    "body": [
+        "CloudDataCatalogCreateTagTemplateFieldOperator(",
+"    task_id='create_tag_template_field',",
+"    location=LOCATION,",
+"    tag_template=TEMPLATE_ID,",
+"    tag_template_field_id=FIELD_NAME_2,",
+"    tag_template_field=TagTemplateField(",
+"        display_name='second-field', type_=FieldType(primitive_type='STRING')",
+"    )",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#creating-a-field",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_tag_template_field_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_tag_template_field') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='create_entry_group_result2',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('create_entry_group') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"CloudDataCatalogRenameTagTemplateFieldOperator":{
+    "prefix": "CloudDataCatalogRenameTagTemplateFieldOperator",
+    "body": [
+        "CloudDataCatalogRenameTagTemplateFieldOperator(",
+"    task_id='rename_tag_template_field',",
+"    location=LOCATION,",
+"    tag_template=TEMPLATE_ID,",
+"    field=FIELD_NAME_1,",
+"    new_tag_template_field_id=FIELD_NAME_3",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#renaming-a-field",
+""
+    ]
+},
+"CloudDataCatalogUpdateTagTemplateFieldOperator":{
+    "prefix": "CloudDataCatalogUpdateTagTemplateFieldOperator",
+    "body": [
+        "CloudDataCatalogUpdateTagTemplateFieldOperator(",
+"    task_id='update_tag_template_field',",
+"    tag_template_field={'display_name': 'Updated template field'},",
+"    update_mask={'paths': ['display_name']},",
+"    location=LOCATION,",
+"    tag_template=TEMPLATE_ID,",
+"    tag_template_field_id=FIELD_NAME_1",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#updating-a-field",
+""
+    ]
+},
+"CloudDataCatalogDeleteTagTemplateFieldOperator":{
+    "prefix": "CloudDataCatalogDeleteTagTemplateFieldOperator",
+    "body": [
+        "CloudDataCatalogDeleteTagTemplateFieldOperator(",
+"    task_id='delete_tag_template_field',",
+"    location=LOCATION,",
+"    tag_template=TEMPLATE_ID,",
+"    field=FIELD_NAME_2,",
+"    force=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#deleting-a-field",
+""
+    ]
+},
+"CloudDataCatalogSearchCatalogOperator":{
+    "prefix": "CloudDataCatalogSearchCatalogOperator",
+    "body": [
+        "CloudDataCatalogSearchCatalogOperator(",
+"    task_id='search_catalog', scope={'include_project_ids': [PROJECT_ID]}, query=f'projectid:{PROJECT_ID}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#search-resources",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='search_catalog_result',",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('search_catalog') }}<span class=\"se\">\'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datacatalog.html#getting-an-entry",
+""
+    ]
+},
+"DataflowCreateJavaJobOperator":{
+    "prefix": "DataflowCreateJavaJobOperator",
+    "body": [
+        "DataflowCreateJavaJobOperator(",
+"    task_id='start-java-job',",
+"    jar=GCS_JAR,",
+"    job_name='{{task.task_id}}',",
+"    options={",
+"        'output': GCS_OUTPUT,",
+"    },",
+"    poll_sleep=10,",
+"    job_class='org.apache.beam.examples.WordCount',",
+"    check_if_running=CheckJobRunning.IgnoreJob,",
+"    location='europe-west3'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#java-sdk-pipelines",
+""
+    ]
+},
+"GCSToLocalFilesystemOperator":{
+    "prefix": "GCSToLocalFilesystemOperator",
+    "body": [
+        "GCSToLocalFilesystemOperator(",
+"    task_id='jar-to-local',",
+"    bucket=GCS_JAR_BUCKET_NAME,",
+"    object_name=GCS_JAR_OBJECT_NAME,",
+"    filename='/tmp/dataflow-{{ ds_nodash }}.jar'",
+")",
+"",
+"start_java_job_local = DataflowCreateJavaJobOperator(",
+"    task_id='start-java-job-local',",
+"    jar='/tmp/dataflow-{{ ds_nodash }}.jar',",
+"    job_name='{{task.task_id}}',",
+"    options={",
+"        'output': GCS_OUTPUT,",
+"    },",
+"    poll_sleep=10,",
+"    job_class='org.apache.beam.examples.WordCount',",
+"    check_if_running=CheckJobRunning.WaitForRun",
+")jar_to_local &gt;&gt; start_java_job_local'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#java-sdk-pipelines",
+""
+    ]
+},
+"DataflowCreatePythonJobOperator":{
+    "prefix": "DataflowCreatePythonJobOperator",
+    "body": [
+        "DataflowCreatePythonJobOperator(",
+"    task_id='start-python-job',",
+"    py_file=GCS_PYTHON,",
+"    py_options=[],",
+"    job_name='{{task.task_id}}',",
+"    options={",
+"        'output': GCS_OUTPUT,",
+"    },",
+"    py_requirements=['apache-beam[gcp]==2.21.0'],",
+"    py_interpreter='python3',",
+"    py_system_site_packages=False,",
+"    location='europe-west3'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#python-sdk-pipelines",
+""
+    ]
+},
+"DataflowCreatePythonJobOperator":{
+    "prefix": "DataflowCreatePythonJobOperator",
+    "body": [
+        "DataflowCreatePythonJobOperator(",
+"    task_id='start-python-job-async',",
+"    py_file=GCS_PYTHON,",
+"    py_options=[],",
+"    job_name='{{task.task_id}}',",
+"    options={",
+"        'output': GCS_OUTPUT,",
+"    },",
+"    py_requirements=['apache-beam[gcp]==2.25.0'],",
+"    py_interpreter='python3',",
+"    py_system_site_packages=False,",
+"    location='europe-west3',",
+"    wait_until_finished=False",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#python-sdk-pipelines",
+""
+    ]
+},
+"DataflowTemplatedJobStartOperator":{
+    "prefix": "DataflowTemplatedJobStartOperator",
+    "body": [
+        "DataflowTemplatedJobStartOperator(",
+"    task_id='start-template-job',",
+"    template='gs://dataflow-templates/latest/Word_Count',",
+"    parameters={'inputFile': 'gs://dataflow-samples/shakespeare/kinglear.txt', 'output': GCS_OUTPUT},",
+"    location='europe-west3'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#templated-jobs",
+""
+    ]
+},
+"DataflowStartFlexTemplateOperator":{
+    "prefix": "DataflowStartFlexTemplateOperator",
+    "body": [
+        "DataflowStartFlexTemplateOperator(",
+"    task_id='start_flex_template_streaming_beam_sql',",
+"    body={",
+"        'launchParameter': {",
+"            'containerSpecGcsPath': GCS_FLEX_TEMPLATE_TEMPLATE_PATH,",
+"            'jobName': DATAFLOW_FLEX_TEMPLATE_JOB_NAME,",
+"            'parameters': {",
+"                'inputSubscription': PUBSUB_FLEX_TEMPLATE_SUBSCRIPTION,",
+"                'outputTable': f'{GCP_PROJECT_ID}:{BQ_FLEX_TEMPLATE_DATASET}.streaming_beam_sql',",
+"            },",
+"        }",
+"    },",
+"    do_xcom_push=True,",
+"    location=BQ_FLEX_TEMPLATE_LOCATION",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#templated-jobs",
+""
+    ]
+},
+"DataflowStartSqlJobOperator":{
+    "prefix": "DataflowStartSqlJobOperator",
+    "body": [
+        "DataflowStartSqlJobOperator(",
+"    task_id='start_sql_query',",
+"    job_name=DATAFLOW_SQL_JOB_NAME,",
+"    query=f''",
+"        SELECT",
+"            sales_region as sales_region,",
+"            count(state_id) as count_state",
+"        FROM",
+"            bigquery.table.`{GCP_PROJECT_ID}`.`{BQ_SQL_DATASET}`.`{BQ_SQL_TABLE_INPUT}`",
+"        WHERE state_id &gt;= @state_id_min",
+"        GROUP BY sales_region;",
+"    '',",
+"    options={",
+"        'bigquery-project': GCP_PROJECT_ID,",
+"        'bigquery-dataset': BQ_SQL_DATASET,",
+"        'bigquery-table': BQ_SQL_TABLE_OUTPUT,",
+"        'bigquery-write-disposition': 'write-truncate',",
+"        'parameter': 'state_id_min:INT64:2',",
+"    },",
+"    location=DATAFLOW_SQL_LOCATION,",
+"    do_xcom_push=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#dataflow-sql",
+""
+    ]
+},
+"DataflowJobStatusSensor":{
+    "prefix": "DataflowJobStatusSensor",
+    "body": [
+        "DataflowJobStatusSensor(",
+"    task_id='wait-for-python-job-async-done',",
+"    job_id='{{task_instance.xcom_pull('start-python-job-async')['job_id']}}',",
+"    expected_statuses={DataflowJobStatus.JOB_STATE_DONE},",
+"    location='europe-west3'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#sensors",
+""
+    ]
+},
+"DataflowJobMessagesSensor":{
+    "prefix": "DataflowJobMessagesSensor",
+    "body": [
+        "DataflowJobMessagesSensor(",
+"    task_id='wait-for-python-job-async-message',",
+"    job_id='{{task_instance.xcom_pull('start-python-job-async')['job_id']}}',",
+"    location='europe-west3',",
+"    callback=check_message",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#sensors",
+""
+    ]
+},
+"DataflowJobAutoScalingEventsSensor":{
+    "prefix": "DataflowJobAutoScalingEventsSensor",
+    "body": [
+        "DataflowJobAutoScalingEventsSensor(",
+"    task_id='wait-for-python-job-async-autoscaling-event',",
+"    job_id='{{task_instance.xcom_pull('start-python-job-async')['job_id']}}',",
+"    location='europe-west3',",
+"    callback=check_autoscaling_event",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataflow.html#sensors",
+""
+    ]
+},
+"DataprepRunJobGroupOperator":{
+    "prefix": "DataprepRunJobGroupOperator",
+    "body": [
+        "DataprepRunJobGroupOperator(task_id='run_job_group', body_request=DATA)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataprep.html#run-job-group",
+""
+    ]
+},
+"DataprepGetJobsForJobGroupOperator":{
+    "prefix": "DataprepGetJobsForJobGroupOperator",
+    "body": [
+        "DataprepGetJobsForJobGroupOperator(",
+"    task_id='get_jobs_for_job_group', job_id=DATAPREP_JOB_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataprep.html#get-jobs-for-job-group",
+""
+    ]
+},
+"DataprepGetJobGroupOperator":{
+    "prefix": "DataprepGetJobGroupOperator",
+    "body": [
+        "DataprepGetJobGroupOperator(",
+"    task_id='get_job_group',",
+"    job_group_id=DATAPREP_JOB_ID,",
+"    embed=',",
+"    include_deleted=False",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataprep.html#get-job-group",
+""
+    ]
+},
+"DataprocCreateClusterOperator":{
+    "prefix": "DataprocCreateClusterOperator",
+    "body": [
+        "DataprocCreateClusterOperator(",
+"    task_id='create_cluster',",
+"    project_id=PROJECT_ID,",
+"    cluster_config=CLUSTER_CONFIG,",
+"    region=REGION,",
+"    cluster_name=CLUSTER_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#create-a-cluster",
+""
+    ]
+},
+"DataprocUpdateClusterOperator":{
+    "prefix": "DataprocUpdateClusterOperator",
+    "body": [
+        "DataprocUpdateClusterOperator(",
+"    task_id='scale_cluster',",
+"    cluster_name=CLUSTER_NAME,",
+"    cluster=CLUSTER_UPDATE,",
+"    update_mask=UPDATE_MASK,",
+"    graceful_decommission_timeout=TIMEOUT,",
+"    project_id=PROJECT_ID,",
+"    location=REGION",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#update-a-cluster",
+""
+    ]
+},
+"DataprocDeleteClusterOperator":{
+    "prefix": "DataprocDeleteClusterOperator",
+    "body": [
+        "DataprocDeleteClusterOperator(",
+"    task_id='delete_cluster', project_id=PROJECT_ID, cluster_name=CLUSTER_NAME, region=REGION",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#deleting-a-cluster",
+""
+    ]
+},
+"DataprocSubmitJobOperator":{
+    "prefix": "DataprocSubmitJobOperator",
+    "body": [
+        "DataprocSubmitJobOperator(",
+"    task_id='pyspark_task', job=PYSPARK_JOB, location=REGION, project_id=PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#submit-a-job-to-a-cluster",
+""
+    ]
+},
+"DataprocCreateWorkflowTemplateOperator":{
+    "prefix": "DataprocCreateWorkflowTemplateOperator",
+    "body": [
+        "DataprocCreateWorkflowTemplateOperator(",
+"    task_id='create_workflow_template',",
+"    template=WORKFLOW_TEMPLATE,",
+"    project_id=PROJECT_ID,",
+"    location=REGION",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#working-with-workflows-templates",
+""
+    ]
+},
+"DataprocInstantiateWorkflowTemplateOperator":{
+    "prefix": "DataprocInstantiateWorkflowTemplateOperator",
+    "body": [
+        "DataprocInstantiateWorkflowTemplateOperator(",
+"    task_id='trigger_workflow', region=REGION, project_id=PROJECT_ID, template_id=WORKFLOW_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#working-with-workflows-templates",
+""
+    ]
+},
+"CloudDatastoreExportEntitiesOperator":{
+    "prefix": "CloudDatastoreExportEntitiesOperator",
+    "body": [
+        "CloudDatastoreExportEntitiesOperator(",
+"    task_id='export_task',",
+"    bucket=BUCKET,",
+"    project_id=GCP_PROJECT_ID,",
+"    overwrite_existing=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#export-entities",
+""
+    ]
+},
+"CloudDatastoreImportEntitiesOperator":{
+    "prefix": "CloudDatastoreImportEntitiesOperator",
+    "body": [
+        "CloudDatastoreImportEntitiesOperator(",
+"    task_id='import_task',",
+"    bucket='{{ task_instance.xcom_pull('export_task')['response']['outputUrl'].split('/')[2] }}',",
+"    file='{{ '/'.join(task_instance.xcom_pull('export_task')['response']['outputUrl'].split('/')[3:]) }}',",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#import-entities",
+""
+    ]
+},
+"CloudDatastoreAllocateIdsOperator":{
+    "prefix": "CloudDatastoreAllocateIdsOperator",
+    "body": [
+        "CloudDatastoreAllocateIdsOperator(",
+"    task_id='allocate_ids', partial_keys=KEYS, project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#allocate-ids",
+""
+    ]
+},
+"CloudDatastoreBeginTransactionOperator":{
+    "prefix": "CloudDatastoreBeginTransactionOperator",
+    "body": [
+        "CloudDatastoreBeginTransactionOperator(",
+"    task_id='begin_transaction_commit',",
+"    transaction_options=TRANSACTION_OPTIONS,",
+"    project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#begin-transaction",
+""
+    ]
+},
+"CloudDatastoreCommitOperator":{
+    "prefix": "CloudDatastoreCommitOperator",
+    "body": [
+        "CloudDatastoreCommitOperator(",
+"    task_id='commit_task', body=COMMIT_BODY, project_id=GCP_PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#commit-transaction",
+""
+    ]
+},
+"CloudDatastoreRunQueryOperator":{
+    "prefix": "CloudDatastoreRunQueryOperator",
+    "body": [
+        "CloudDatastoreRunQueryOperator(task_id='run_query', body=QUERY, project_id=GCP_PROJECT_ID)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#run-query",
+""
+    ]
+},
+"CloudDatastoreRollbackOperator":{
+    "prefix": "CloudDatastoreRollbackOperator",
+    "body": [
+        "CloudDatastoreRollbackOperator(",
+"    task_id='rollback_transaction',",
+"    transaction='{{ task_instance.xcom_pull('begin_transaction_to_rollback') }}'",
+")begin_transaction_to_rollback &gt;&gt; rollback_transaction'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/datastore.html#roll-back-transaction",
+""
+    ]
+},
+"CloudFunctionDeleteFunctionOperator":{
+    "prefix": "CloudFunctionDeleteFunctionOperator",
+    "body": [
+        "CloudFunctionDeleteFunctionOperator(task_id='gcf_delete_task', name=FUNCTION_NAME)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/functions.html#using-the-operator",
+""
+    ]
+},
+"CloudFunctionDeployFunctionOperator":{
+    "prefix": "CloudFunctionDeployFunctionOperator",
+    "body": [
+        "CloudFunctionDeployFunctionOperator(",
+"    task_id='gcf_deploy_task',",
+"    project_id=GCP_PROJECT_ID,",
+"    location=GCP_LOCATION,",
+"    body=body,",
+"    validate_body=GCP_VALIDATE_BODY",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/functions.html#id1",
+""
+    ]
+},
+"CloudFunctionDeployFunctionOperator":{
+    "prefix": "CloudFunctionDeployFunctionOperator",
+    "body": [
+        "CloudFunctionDeployFunctionOperator(",
+"    task_id='gcf_deploy2_task', location=GCP_LOCATION, body=body, validate_body=GCP_VALIDATE_BODY",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/functions.html#id1",
+""
+    ]
+},
+"GCSToBigQueryOperator":{
+    "prefix": "GCSToBigQueryOperator",
+    "body": [
+        "GCSToBigQueryOperator(",
+"    task_id='gcs_to_bigquery_example',",
+"    bucket='cloud-samples-data',",
+"    source_objects=['bigquery/us-states/us-states.csv'],",
+"    destination_project_dataset_table=f'{DATASET_NAME}.{TABLE_NAME}',",
+"    schema_fields=[",
+"        {'name': 'name', 'type': 'STRING', 'mode': 'NULLABLE'},",
+"        {'name': 'post_abbr', 'type': 'STRING', 'mode': 'NULLABLE'},",
+"    ],",
+"    write_disposition='WRITE_TRUNCATE',",
+"    dag=dag",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#gcstobigqueryoperator",
+""
+    ]
+},
+"GCSBucketCreateAclEntryOperator":{
+    "prefix": "GCSBucketCreateAclEntryOperator",
+    "body": [
+        "GCSBucketCreateAclEntryOperator(",
+"    bucket=BUCKET_1,",
+"    entity=GCS_ACL_ENTITY,",
+"    role=GCS_ACL_BUCKET_ROLE,",
+"    task_id='gcs_bucket_create_acl_entry_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#using-the-operator",
+""
+    ]
+},
+"GCSObjectCreateAclEntryOperator":{
+    "prefix": "GCSObjectCreateAclEntryOperator",
+    "body": [
+        "GCSObjectCreateAclEntryOperator(",
+"    bucket=BUCKET_1,",
+"    object_name=BUCKET_FILE_LOCATION,",
+"    entity=GCS_ACL_ENTITY,",
+"    role=GCS_ACL_OBJECT_ROLE,",
+"    task_id='gcs_object_create_acl_entry_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#id1",
+""
+    ]
+},
+"GCSDeleteBucketOperator":{
+    "prefix": "GCSDeleteBucketOperator",
+    "body": [
+        "GCSDeleteBucketOperator(task_id='delete_bucket_1', bucket_name=BUCKET_1)delete_bucket_2 = GCSDeleteBucketOperator(task_id='delete_bucket_2', bucket_name=BUCKET_2)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#deleting-bucket",
+""
+    ]
+},
+"GCSObjectExistenceSensor":{
+    "prefix": "GCSObjectExistenceSensor",
+    "body": [
+        "GCSObjectExistenceSensor(",
+"    bucket=BUCKET_1,",
+"    <span class=\"nb\">object=PATH_TO_UPLOAD_FILE,",
+"    mode='poke',",
+"    task_id='gcs_object_exists_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#gcsobjectexistencesensor",
+""
+    ]
+},
+"GCSObjectsWithPrefixExistenceSensor":{
+    "prefix": "GCSObjectsWithPrefixExistenceSensor",
+    "body": [
+        "GCSObjectsWithPrefixExistenceSensor(",
+"    bucket=BUCKET_1,",
+"    prefix=PATH_TO_UPLOAD_FILE_PREFIX,",
+"    mode='poke',",
+"    task_id='gcs_object_with_prefix_exists_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#gcsobjectswithprefixexistencesensor",
+""
+    ]
+},
+"GKECreateClusterOperator":{
+    "prefix": "GKECreateClusterOperator",
+    "body": [
+        "GKECreateClusterOperator(",
+"    task_id='create_cluster',",
+"    project_id=GCP_PROJECT_ID,",
+"    location=GCP_LOCATION,",
+"    body=CLUSTER",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/kubernetes_engine.html#create-gke-cluster",
+""
+    ]
+},
+"GKEDeleteClusterOperator":{
+    "prefix": "GKEDeleteClusterOperator",
+    "body": [
+        "GKEDeleteClusterOperator(",
+"    task_id='delete_cluster',",
+"    name=CLUSTER_NAME,",
+"    project_id=GCP_PROJECT_ID,",
+"    location=GCP_LOCATION",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/kubernetes_engine.html#delete-gke-cluster",
+""
+    ]
+},
+"GKEStartPodOperator":{
+    "prefix": "GKEStartPodOperator",
+    "body": [
+        "GKEStartPodOperator(",
+"    task_id='pod_task_xcom',",
+"    project_id=GCP_PROJECT_ID,",
+"    location=GCP_LOCATION,",
+"    cluster_name=CLUSTER_NAME,",
+"    do_xcom_push=True,",
+"    namespace='default',",
+"    image='alpine',",
+"    cmds=['sh', '-c', 'mkdir -p /airflow/xcom/;echo <span class=\"se\">\'[1,2,3,4]<span class=\"se\">\' &gt; /airflow/xcom/return.json'],",
+"    name='test-pod-xcom'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/kubernetes_engine.html#use-of-xcom",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('pod_task_xcom')[0] }}<span class=\"se\">\',",
+"    task_id='pod_task_xcom_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/kubernetes_engine.html#use-of-xcom",
+""
+    ]
+},
+"LifeSciencesRunPipelineOperator":{
+    "prefix": "LifeSciencesRunPipelineOperator",
+    "body": [
+        "LifeSciencesRunPipelineOperator(",
+"        task_id='simple-action-pipeline',",
+"        body=SIMPLE_ACTION_PIPELINE,",
+"        project_id=PROJECT_ID,",
+"        location=LOCATION,",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/life_sciences.html#running-a-pipeline",
+""
+    ]
+},
+"MLEngineStartTrainingJobOperator":{
+    "prefix": "MLEngineStartTrainingJobOperator",
+    "body": [
+        "MLEngineStartTrainingJobOperator(",
+"    task_id='training',",
+"    project_id=PROJECT_ID,",
+"    region='us-central1',",
+"    job_id='training-job-{{ ts_nodash }}-{{ params.model_name }}',",
+"    runtime_version='1.15',",
+"    python_version='3.7',",
+"    job_dir=JOB_DIR,",
+"    package_uris=[TRAINER_URI],",
+"    training_python_module=TRAINER_PY_MODULE,",
+"    training_args=[],",
+"    labels={'job_type': 'training'}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#launching-a-job",
+""
+    ]
+},
+"MLEngineCreateModelOperator":{
+    "prefix": "MLEngineCreateModelOperator",
+    "body": [
+        "MLEngineCreateModelOperator(",
+"    task_id='create-model',",
+"    project_id=PROJECT_ID,",
+"    model={",
+"        'name': MODEL_NAME,",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#creating-a-model",
+""
+    ]
+},
+"MLEngineGetModelOperator":{
+    "prefix": "MLEngineGetModelOperator",
+    "body": [
+        "MLEngineGetModelOperator(",
+"    task_id='get-model',",
+"    project_id=PROJECT_ID,",
+"    model_name=MODEL_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#getting-a-model",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('get-model') }}<span class=\"se\">\',",
+"    task_id='get-model-result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#getting-a-model",
+""
+    ]
+},
+"MLEngineCreateVersionOperator":{
+    "prefix": "MLEngineCreateVersionOperator",
+    "body": [
+        "MLEngineCreateVersionOperator(",
+"    task_id='create-version',",
+"    project_id=PROJECT_ID,",
+"    model_name=MODEL_NAME,",
+"    version={",
+"        'name': 'v1',",
+"        'description': 'First-version',",
+"        'deployment_uri': f'{JOB_DIR}/keras_export/',",
+"        'runtime_version': '1.15',",
+"        'machineType': 'mls1-c1-m2',",
+"        'framework': 'TENSORFLOW',",
+"        'pythonVersion': '3.7',",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#creating-model-versions",
+""
+    ]
+},
+"MLEngineCreateVersionOperator":{
+    "prefix": "MLEngineCreateVersionOperator",
+    "body": [
+        "MLEngineCreateVersionOperator(",
+"    task_id='create-version-2',",
+"    project_id=PROJECT_ID,",
+"    model_name=MODEL_NAME,",
+"    version={",
+"        'name': 'v2',",
+"        'description': 'Second version',",
+"        'deployment_uri': SAVED_MODEL_PATH,",
+"        'runtime_version': '1.15',",
+"        'machineType': 'mls1-c1-m2',",
+"        'framework': 'TENSORFLOW',",
+"        'pythonVersion': '3.7',",
+"    }",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#creating-model-versions",
+""
+    ]
+},
+"MLEngineSetDefaultVersionOperator":{
+    "prefix": "MLEngineSetDefaultVersionOperator",
+    "body": [
+        "MLEngineSetDefaultVersionOperator(",
+"    task_id='set-default-version',",
+"    project_id=PROJECT_ID,",
+"    model_name=MODEL_NAME,",
+"    version_name='v2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#managing-model-versions",
+""
+    ]
+},
+"MLEngineListVersionsOperator":{
+    "prefix": "MLEngineListVersionsOperator",
+    "body": [
+        "MLEngineListVersionsOperator(",
+"    task_id='list-version',",
+"    project_id=PROJECT_ID,",
+"    model_name=MODEL_NAME",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#managing-model-versions",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('list-version') }}<span class=\"se\">\',",
+"    task_id='list-version-result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#getting-a-model",
+""
+    ]
+},
+"MLEngineStartBatchPredictionJobOperator":{
+    "prefix": "MLEngineStartBatchPredictionJobOperator",
+    "body": [
+        "MLEngineStartBatchPredictionJobOperator(",
+"    task_id='prediction',",
+"    project_id=PROJECT_ID,",
+"    job_id='prediction-{{ ts_nodash }}-{{ params.model_name }}',",
+"    region='us-central1',",
+"    model_name=MODEL_NAME,",
+"    data_format='TEXT',",
+"    input_paths=[PREDICTION_INPUT],",
+"    output_path=PREDICTION_OUTPUT,",
+"    labels={'job_type': 'prediction'}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#making-predictions",
+""
+    ]
+},
+"MLEngineDeleteVersionOperator":{
+    "prefix": "MLEngineDeleteVersionOperator",
+    "body": [
+        "MLEngineDeleteVersionOperator(",
+"    task_id='delete-version', project_id=PROJECT_ID, model_name=MODEL_NAME, version_name='v1'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#cleaning-up",
+""
+    ]
+},
+"MLEngineDeleteModelOperator":{
+    "prefix": "MLEngineDeleteModelOperator",
+    "body": [
+        "MLEngineDeleteModelOperator(",
+"    task_id='delete-model', project_id=PROJECT_ID, model_name=MODEL_NAME, delete_contents=True",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/mlengine.html#cleaning-up",
+""
+    ]
+},
+"CloudNaturalLanguageAnalyzeEntitiesOperator":{
+    "prefix": "CloudNaturalLanguageAnalyzeEntitiesOperator",
+    "body": [
+        "CloudNaturalLanguageAnalyzeEntitiesOperator(",
+"    document=document, task_id='analyze_entities'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-entities",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('analyze_entities') }}<span class=\"se\">\',",
+"    task_id='analyze_entities_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-entities",
+""
+    ]
+},
+"CloudNaturalLanguageAnalyzeEntitySentimentOperator":{
+    "prefix": "CloudNaturalLanguageAnalyzeEntitySentimentOperator",
+    "body": [
+        "CloudNaturalLanguageAnalyzeEntitySentimentOperator(",
+"    document=document, task_id='analyze_entity_sentiment'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-entity-sentiment",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('analyze_entity_sentiment') }}<span class=\"se\">\',",
+"    task_id='analyze_entity_sentiment_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-entities",
+""
+    ]
+},
+"CloudNaturalLanguageAnalyzeSentimentOperator":{
+    "prefix": "CloudNaturalLanguageAnalyzeSentimentOperator",
+    "body": [
+        "CloudNaturalLanguageAnalyzeSentimentOperator(",
+"    document=document, task_id='analyze_sentiment'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-sentiment",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('analyze_sentiment') }}<span class=\"se\">\',",
+"    task_id='analyze_sentiment_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-entities",
+""
+    ]
+},
+"CloudNaturalLanguageClassifyTextOperator":{
+    "prefix": "CloudNaturalLanguageClassifyTextOperator",
+    "body": [
+        "CloudNaturalLanguageClassifyTextOperator(",
+"    document=document, task_id='analyze_classify_text'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#classifying-content",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo <span class=\"se\">\'{{ task_instance.xcom_pull('analyze_classify_text') }}<span class=\"se\">\',",
+"    task_id='analyze_classify_text_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/natural_language.html#analyzing-entities",
+""
+    ]
+},
+"PubSubCreateTopicOperator":{
+    "prefix": "PubSubCreateTopicOperator",
+    "body": [
+        "PubSubCreateTopicOperator(",
+"        task_id='create_topic', topic=TOPIC_FOR_SENSOR_DAG, project_id=GCP_PROJECT_ID, fail_if_exists=False",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/pubsub.html#creating-a-pubsub-topic",
+""
+    ]
+},
+"PubSubCreateSubscriptionOperator":{
+    "prefix": "PubSubCreateSubscriptionOperator",
+    "body": [
+        "PubSubCreateSubscriptionOperator(",
+"        task_id='subscribe_task', project_id=GCP_PROJECT_ID, topic=TOPIC_FOR_SENSOR_DAG",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/pubsub.html#creating-a-pubsub-subscription",
+""
+    ]
+},
+"PubSubPublishMessageOperator":{
+    "prefix": "PubSubPublishMessageOperator",
+    "body": [
+        "PubSubPublishMessageOperator(",
+"        task_id='publish_task',",
+"        project_id=GCP_PROJECT_ID,",
+"        topic=TOPIC_FOR_SENSOR_DAG,",
+"        messages=[MESSAGE] * 10,",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/pubsub.html#publishing-pubsub-messages",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(task_id='pull_messages_result', bash_command=echo_cmd)",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/pubsub.html#pulling-messages-from-a-pubsub-subscription",
+""
+    ]
+},
+"PubSubDeleteSubscriptionOperator":{
+    "prefix": "PubSubDeleteSubscriptionOperator",
+    "body": [
+        "PubSubDeleteSubscriptionOperator(",
+"        task_id='unsubscribe_task',",
+"        project_id=GCP_PROJECT_ID,",
+"        subscription='{{ task_instance.xcom_pull('subscribe_task') }}',",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/pubsub.html#deleting-a-pubsub-subscription",
+""
+    ]
+},
+"PubSubDeleteTopicOperator":{
+    "prefix": "PubSubDeleteTopicOperator",
+    "body": [
+        "PubSubDeleteTopicOperator(",
+"        task_id='delete_topic', topic=TOPIC_FOR_SENSOR_DAG, project_id=GCP_PROJECT_ID",
+"    )",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/pubsub.html#deleting-a-pubsub-topic",
+""
+    ]
+},
+"SpannerDeployInstanceOperator":{
+    "prefix": "SpannerDeployInstanceOperator",
+    "body": [
+        "SpannerDeployInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    configuration_name=GCP_SPANNER_CONFIG_NAME,",
+"    node_count=<span class=\"nb\">int(GCP_SPANNER_NODE_COUNT),",
+"    display_name=GCP_SPANNER_DISPLAY_NAME,",
+"    task_id='spanner_instance_create_task'",
+")spanner_instance_update_task = SpannerDeployInstanceOperator(",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    configuration_name=GCP_SPANNER_CONFIG_NAME,",
+"    node_count=<span class=\"nb\">int(GCP_SPANNER_NODE_COUNT) + 1,",
+"    display_name=GCP_SPANNER_DISPLAY_NAME + '_updated',",
+"    task_id='spanner_instance_update_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#using-the-operator",
+""
+    ]
+},
+"SpannerDeleteDatabaseInstanceOperator":{
+    "prefix": "SpannerDeleteDatabaseInstanceOperator",
+    "body": [
+        "SpannerDeleteDatabaseInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    task_id='spanner_database_delete_task'",
+")spanner_database_delete_task2 = SpannerDeleteDatabaseInstanceOperator(",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    task_id='spanner_database_delete_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#id1",
+""
+    ]
+},
+"SpannerDeployDatabaseInstanceOperator":{
+    "prefix": "SpannerDeployDatabaseInstanceOperator",
+    "body": [
+        "SpannerDeployDatabaseInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    ddl_statements=[",
+"        'CREATE TABLE my_table1 (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"        'CREATE TABLE my_table2 (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"    ],",
+"    task_id='spanner_database_deploy_task'",
+")spanner_database_deploy_task2 = SpannerDeployDatabaseInstanceOperator(",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    ddl_statements=[",
+"        'CREATE TABLE my_table1 (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"        'CREATE TABLE my_table2 (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"    ],",
+"    task_id='spanner_database_deploy_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#id4",
+""
+    ]
+},
+"SpannerUpdateDatabaseInstanceOperator":{
+    "prefix": "SpannerUpdateDatabaseInstanceOperator",
+    "body": [
+        "SpannerUpdateDatabaseInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    ddl_statements=[",
+"        'CREATE TABLE my_table3 (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"    ],",
+"    task_id='spanner_database_update_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#id7",
+""
+    ]
+},
+"SpannerUpdateDatabaseInstanceOperator":{
+    "prefix": "SpannerUpdateDatabaseInstanceOperator",
+    "body": [
+        "SpannerUpdateDatabaseInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    operation_id=OPERATION_ID,",
+"    ddl_statements=[",
+"        'CREATE TABLE my_table_unique (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"    ],",
+"    task_id='spanner_database_update_idempotent1_task'",
+")spanner_database_update_idempotent2_task = SpannerUpdateDatabaseInstanceOperator(",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    operation_id=OPERATION_ID,",
+"    ddl_statements=[",
+"        'CREATE TABLE my_table_unique (id INT64, name STRING(MAX)) PRIMARY KEY (id),",
+"    ],",
+"    task_id='spanner_database_update_idempotent2_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#id7",
+""
+    ]
+},
+"SpannerQueryDatabaseInstanceOperator":{
+    "prefix": "SpannerQueryDatabaseInstanceOperator",
+    "body": [
+        "SpannerQueryDatabaseInstanceOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    query=['DELETE FROM my_table2 WHERE true'],",
+"    task_id='spanner_instance_query_task'",
+")spanner_instance_query_task2 = SpannerQueryDatabaseInstanceOperator(",
+"    instance_id=GCP_SPANNER_INSTANCE_ID,",
+"    database_id=GCP_SPANNER_DATABASE_ID,",
+"    query=['DELETE FROM my_table2 WHERE true'],",
+"    task_id='spanner_instance_query_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#id10",
+""
+    ]
+},
+"SpannerDeleteInstanceOperator":{
+    "prefix": "SpannerDeleteInstanceOperator",
+    "body": [
+        "SpannerDeleteInstanceOperator(",
+"    project_id=GCP_PROJECT_ID, instance_id=GCP_SPANNER_INSTANCE_ID, task_id='spanner_instance_delete_task'",
+")spanner_instance_delete_task2 = SpannerDeleteInstanceOperator(",
+"    instance_id=GCP_SPANNER_INSTANCE_ID, task_id='spanner_instance_delete_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/spanner.html#id13",
+""
+    ]
+},
+"CloudSpeechToTextRecognizeSpeechOperator":{
+    "prefix": "CloudSpeechToTextRecognizeSpeechOperator",
+    "body": [
+        "CloudSpeechToTextRecognizeSpeechOperator(",
+"    config=CONFIG, audio=AUDIO, task_id='speech_to_text_recognize_task'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/speech_to_text.html#using-the-operator",
+""
+    ]
+},
+"StackdriverListAlertPoliciesOperator":{
+    "prefix": "StackdriverListAlertPoliciesOperator",
+    "body": [
+        "StackdriverListAlertPoliciesOperator(",
+"    task_id='list-alert-policies'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#using-the-operator",
+""
+    ]
+},
+"StackdriverEnableAlertPoliciesOperator":{
+    "prefix": "StackdriverEnableAlertPoliciesOperator",
+    "body": [
+        "StackdriverEnableAlertPoliciesOperator(",
+"    task_id='enable-alert-policies',",
+"    filter_='(displayName='test alert 1' OR displayName='test alert 2",
+");",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id1",
+""
+    ]
+},
+"StackdriverDisableAlertPoliciesOperator":{
+    "prefix": "StackdriverDisableAlertPoliciesOperator",
+    "body": [
+        "StackdriverDisableAlertPoliciesOperator(",
+"    task_id='disable-alert-policies',",
+"    filter_='displayName='test alert 1'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id2",
+""
+    ]
+},
+"StackdriverUpsertAlertOperator":{
+    "prefix": "StackdriverUpsertAlertOperator",
+    "body": [
+        "StackdriverUpsertAlertOperator(",
+"    task_id='create-alert-policies',",
+"    alerts=json.dumps({'policies': [TEST_ALERT_POLICY_1, TEST_ALERT_POLICY_2]})",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id3",
+""
+    ]
+},
+"StackdriverDeleteAlertOperator":{
+    "prefix": "StackdriverDeleteAlertOperator",
+    "body": [
+        "StackdriverDeleteAlertOperator(",
+"    task_id='delete-alert-policy',",
+"    name='{{ task_instance.xcom_pull('list-alert-policies')[0]['name'] }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id4",
+""
+    ]
+},
+"StackdriverListNotificationChannelsOperator":{
+    "prefix": "StackdriverListNotificationChannelsOperator",
+    "body": [
+        "StackdriverListNotificationChannelsOperator(",
+"    task_id='list-notification-channel', filter_='type='slack'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id5",
+""
+    ]
+},
+"StackdriverEnableNotificationChannelsOperator":{
+    "prefix": "StackdriverEnableNotificationChannelsOperator",
+    "body": [
+        "StackdriverEnableNotificationChannelsOperator(",
+"    task_id='enable-notification-channel', filter_='type='slack'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id6",
+""
+    ]
+},
+"StackdriverDisableNotificationChannelsOperator":{
+    "prefix": "StackdriverDisableNotificationChannelsOperator",
+    "body": [
+        "StackdriverDisableNotificationChannelsOperator(",
+"    task_id='disable-notification-channel', filter_='displayName='channel1'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id7",
+""
+    ]
+},
+"StackdriverDisableNotificationChannelsOperator":{
+    "prefix": "StackdriverDisableNotificationChannelsOperator",
+    "body": [
+        "StackdriverDisableNotificationChannelsOperator(",
+"    task_id='disable-notification-channel', filter_='displayName='channel1'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id7",
+""
+    ]
+},
+"StackdriverDeleteNotificationChannelOperator":{
+    "prefix": "StackdriverDeleteNotificationChannelOperator",
+    "body": [
+        "StackdriverDeleteNotificationChannelOperator(",
+"    task_id='delete-notification-channel',",
+"    name='{{ task_instance.xcom_pull('list-notification-channel')[0]['name'] }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/stackdriver.html#id9",
+""
+    ]
+},
+"CloudTextToSpeechSynthesizeOperator":{
+    "prefix": "CloudTextToSpeechSynthesizeOperator",
+    "body": [
+        "CloudTextToSpeechSynthesizeOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    input_data=INPUT,",
+"    voice=VOICE,",
+"    audio_config=AUDIO_CONFIG,",
+"    target_bucket_name=BUCKET_NAME,",
+"    target_filename=FILENAME,",
+"    task_id='text_to_speech_synthesize_task'",
+")text_to_speech_synthesize_task2 = CloudTextToSpeechSynthesizeOperator(",
+"    input_data=INPUT,",
+"    voice=VOICE,",
+"    audio_config=AUDIO_CONFIG,",
+"    target_bucket_name=BUCKET_NAME,",
+"    target_filename=FILENAME,",
+"    task_id='text_to_speech_synthesize_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/text_to_speech.html#using-the-operator",
+""
+    ]
+},
+"CloudTranslateTextOperator":{
+    "prefix": "CloudTranslateTextOperator",
+    "body": [
+        "CloudTranslateTextOperator(",
+"    task_id='translate',",
+"    values=['zażółć gęślą jaźń'],",
+"    target_language='en',",
+"    format_='text',",
+"    source_language=None,",
+"    model='base'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/translate.html#using-the-operator",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    task_id='access', bash_command='echo '{{ task_instance.xcom_pull(<span class=\"se\">\'translate<span class=\"se\">\')[0] }}'",
+")product_set_create &gt;&gt; translation_access'",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/translate.html#using-the-operator",
+""
+    ]
+},
+"CloudTranslateSpeechOperator":{
+    "prefix": "CloudTranslateSpeechOperator",
+    "body": [
+        "CloudTranslateSpeechOperator(",
+"    project_id=GCP_PROJECT_ID,",
+"    audio=AUDIO,",
+"    config=CONFIG,",
+"    target_language=TARGET_LANGUAGE,",
+"    format_=FORMAT,",
+"    source_language=SOURCE_LANGUAGE,",
+"    model=MODEL,",
+"    task_id='translate_speech_task'",
+")translate_speech_task2 = CloudTranslateSpeechOperator(",
+"    audio=AUDIO,",
+"    config=CONFIG,",
+"    target_language=TARGET_LANGUAGE,",
+"    format_=FORMAT,",
+"    source_language=SOURCE_LANGUAGE,",
+"    model=MODEL,",
+"    task_id='translate_speech_task2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/translate_speech.html#using-the-operator",
+""
+    ]
+},
+"CloudVideoIntelligenceDetectVideoLabelsOperator":{
+    "prefix": "CloudVideoIntelligenceDetectVideoLabelsOperator",
+    "body": [
+        "CloudVideoIntelligenceDetectVideoLabelsOperator(",
+"    input_uri=INPUT_URI,",
+"    output_uri=None,",
+"    video_context=None,",
+"    timeout=5,",
+"    task_id='detect_video_label'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/video_intelligence.html#using-the-operator",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('detect_video_label')",
+"    '['annotationResults'][0]['shotLabelAnnotations'][0]['entity']}}',",
+"    task_id='detect_video_label_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/video_intelligence.html#using-the-operator",
+""
+    ]
+},
+"CloudVideoIntelligenceDetectVideoExplicitContentOperator":{
+    "prefix": "CloudVideoIntelligenceDetectVideoExplicitContentOperator",
+    "body": [
+        "CloudVideoIntelligenceDetectVideoExplicitContentOperator(",
+"    input_uri=INPUT_URI,",
+"    output_uri=None,",
+"    video_context=None,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='detect_video_explicit_content'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/video_intelligence.html#id1",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('detect_video_explicit_content')",
+"    '['annotationResults'][0]['explicitAnnotation']['frames'][0]}}',",
+"    task_id='detect_video_explicit_content_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/video_intelligence.html#using-the-operator",
+""
+    ]
+},
+"CloudVideoIntelligenceDetectVideoShotsOperator":{
+    "prefix": "CloudVideoIntelligenceDetectVideoShotsOperator",
+    "body": [
+        "CloudVideoIntelligenceDetectVideoShotsOperator(",
+"    input_uri=INPUT_URI,",
+"    output_uri=None,",
+"    video_context=None,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='detect_video_shots'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/video_intelligence.html#id5",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('detect_video_shots')",
+"    '['annotationResults'][0]['shotAnnotations'][0]}}',",
+"    task_id='detect_video_shots_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/video_intelligence.html#using-the-operator",
+""
+    ]
+},
+"CloudVisionAddProductToProductSetOperator":{
+    "prefix": "CloudVisionAddProductToProductSetOperator",
+    "body": [
+        "CloudVisionAddProductToProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id='{{ task_instance.xcom_pull('product_set_create') }}',",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='add_product_to_product_set'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#using-the-operator",
+""
+    ]
+},
+"CloudVisionAddProductToProductSetOperator":{
+    "prefix": "CloudVisionAddProductToProductSetOperator",
+    "body": [
+        "CloudVisionAddProductToProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id=GCP_VISION_PRODUCT_SET_ID,",
+"    product_id=GCP_VISION_PRODUCT_ID,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='add_product_to_product_set_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#using-the-operator",
+""
+    ]
+},
+"CloudVisionImageAnnotateOperator":{
+    "prefix": "CloudVisionImageAnnotateOperator",
+    "body": [
+        "CloudVisionImageAnnotateOperator(",
+"    request=annotate_image_request, retry=Retry(maximum=10.0), timeout=5, task_id='annotate_image'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id1",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('annotate_image')",
+"    '['logoAnnotations'][0]['description'] }}',",
+"    task_id='annotate_image_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id1",
+""
+    ]
+},
+"CloudVisionCreateProductOperator":{
+    "prefix": "CloudVisionCreateProductOperator",
+    "body": [
+        "CloudVisionCreateProductOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product=product,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='product_create'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id4",
+""
+    ]
+},
+"CloudVisionCreateProductOperator":{
+    "prefix": "CloudVisionCreateProductOperator",
+    "body": [
+        "CloudVisionCreateProductOperator(",
+"    product_id=GCP_VISION_PRODUCT_ID,",
+"    location=GCP_VISION_LOCATION,",
+"    product=product,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='product_create_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id4",
+""
+    ]
+},
+"CloudVisionDeleteProductOperator":{
+    "prefix": "CloudVisionDeleteProductOperator",
+    "body": [
+        "CloudVisionDeleteProductOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    task_id='product_delete'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id7",
+""
+    ]
+},
+"CloudVisionDeleteProductOperator":{
+    "prefix": "CloudVisionDeleteProductOperator",
+    "body": [
+        "CloudVisionDeleteProductOperator(",
+"    location=GCP_VISION_LOCATION, product_id=GCP_VISION_PRODUCT_ID, task_id='product_delete_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id7",
+""
+    ]
+},
+"CloudVisionGetProductOperator":{
+    "prefix": "CloudVisionGetProductOperator",
+    "body": [
+        "CloudVisionGetProductOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    task_id='product_get'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id10",
+""
+    ]
+},
+"CloudVisionGetProductOperator":{
+    "prefix": "CloudVisionGetProductOperator",
+    "body": [
+        "CloudVisionGetProductOperator(",
+"    location=GCP_VISION_LOCATION, product_id=GCP_VISION_PRODUCT_ID, task_id='product_get_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id10",
+""
+    ]
+},
+"CloudVisionCreateProductSetOperator":{
+    "prefix": "CloudVisionCreateProductSetOperator",
+    "body": [
+        "CloudVisionCreateProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set=product_set,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='product_set_create'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id13",
+""
+    ]
+},
+"CloudVisionCreateProductSetOperator":{
+    "prefix": "CloudVisionCreateProductSetOperator",
+    "body": [
+        "CloudVisionCreateProductSetOperator(",
+"    product_set_id=GCP_VISION_PRODUCT_SET_ID,",
+"    location=GCP_VISION_LOCATION,",
+"    product_set=product_set,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='product_set_create_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id13",
+""
+    ]
+},
+"CloudVisionDeleteProductSetOperator":{
+    "prefix": "CloudVisionDeleteProductSetOperator",
+    "body": [
+        "CloudVisionDeleteProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id='{{ task_instance.xcom_pull('product_set_create') }}',",
+"    task_id='product_set_delete'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id16",
+""
+    ]
+},
+"CloudVisionDeleteProductSetOperator":{
+    "prefix": "CloudVisionDeleteProductSetOperator",
+    "body": [
+        "CloudVisionDeleteProductSetOperator(",
+"    location=GCP_VISION_LOCATION, product_set_id=GCP_VISION_PRODUCT_SET_ID, task_id='product_set_delete_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id16",
+""
+    ]
+},
+"CloudVisionGetProductSetOperator":{
+    "prefix": "CloudVisionGetProductSetOperator",
+    "body": [
+        "CloudVisionGetProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id='{{ task_instance.xcom_pull('product_set_create') }}',",
+"    task_id='product_set_get'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id19",
+""
+    ]
+},
+"CloudVisionGetProductSetOperator":{
+    "prefix": "CloudVisionGetProductSetOperator",
+    "body": [
+        "CloudVisionGetProductSetOperator(",
+"    location=GCP_VISION_LOCATION, product_set_id=GCP_VISION_PRODUCT_SET_ID, task_id='product_set_get_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id19",
+""
+    ]
+},
+"CloudVisionUpdateProductSetOperator":{
+    "prefix": "CloudVisionUpdateProductSetOperator",
+    "body": [
+        "CloudVisionUpdateProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id='{{ task_instance.xcom_pull('product_set_create') }}',",
+"    product_set=ProductSet(display_name='My Product Set 2'),",
+"    task_id='product_set_update'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id22",
+""
+    ]
+},
+"CloudVisionUpdateProductSetOperator":{
+    "prefix": "CloudVisionUpdateProductSetOperator",
+    "body": [
+        "CloudVisionUpdateProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id=GCP_VISION_PRODUCT_SET_ID,",
+"    product_set=ProductSet(display_name='My Product Set 2'),",
+"    task_id='product_set_update_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id22",
+""
+    ]
+},
+"CloudVisionUpdateProductOperator":{
+    "prefix": "CloudVisionUpdateProductOperator",
+    "body": [
+        "CloudVisionUpdateProductOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    product=Product(display_name='My Product 2', description='My updated description'),",
+"    task_id='product_update'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id25",
+""
+    ]
+},
+"CloudVisionUpdateProductOperator":{
+    "prefix": "CloudVisionUpdateProductOperator",
+    "body": [
+        "CloudVisionUpdateProductOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_id=GCP_VISION_PRODUCT_ID,",
+"    product=Product(display_name='My Product 2', description='My updated description'),",
+"    task_id='product_update_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id25",
+""
+    ]
+},
+"CloudVisionCreateReferenceImageOperator":{
+    "prefix": "CloudVisionCreateReferenceImageOperator",
+    "body": [
+        "CloudVisionCreateReferenceImageOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    reference_image=reference_image,",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    reference_image_id=GCP_VISION_REFERENCE_IMAGE_ID,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='reference_image_create'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id28",
+""
+    ]
+},
+"CloudVisionCreateReferenceImageOperator":{
+    "prefix": "CloudVisionCreateReferenceImageOperator",
+    "body": [
+        "CloudVisionCreateReferenceImageOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    reference_image=reference_image,",
+"    product_id=GCP_VISION_PRODUCT_ID,",
+"    reference_image_id=GCP_VISION_REFERENCE_IMAGE_ID,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='reference_image_create_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id28",
+""
+    ]
+},
+"CloudVisionDeleteReferenceImageOperator":{
+    "prefix": "CloudVisionDeleteReferenceImageOperator",
+    "body": [
+        "CloudVisionDeleteReferenceImageOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    reference_image_id=GCP_VISION_REFERENCE_IMAGE_ID,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='reference_image_delete'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id31",
+""
+    ]
+},
+"CloudVisionDeleteReferenceImageOperator":{
+    "prefix": "CloudVisionDeleteReferenceImageOperator",
+    "body": [
+        "CloudVisionDeleteReferenceImageOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    reference_image_id=GCP_VISION_REFERENCE_IMAGE_ID,",
+"    product_id=GCP_VISION_PRODUCT_ID,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='reference_image_delete_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id31",
+""
+    ]
+},
+"CloudVisionRemoveProductFromProductSetOperator":{
+    "prefix": "CloudVisionRemoveProductFromProductSetOperator",
+    "body": [
+        "CloudVisionRemoveProductFromProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id='{{ task_instance.xcom_pull('product_set_create') }}',",
+"    product_id='{{ task_instance.xcom_pull('product_create') }}',",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='remove_product_from_product_set'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id34",
+""
+    ]
+},
+"CloudVisionRemoveProductFromProductSetOperator":{
+    "prefix": "CloudVisionRemoveProductFromProductSetOperator",
+    "body": [
+        "CloudVisionRemoveProductFromProductSetOperator(",
+"    location=GCP_VISION_LOCATION,",
+"    product_set_id=GCP_VISION_PRODUCT_SET_ID,",
+"    product_id=GCP_VISION_PRODUCT_ID,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='remove_product_from_product_set_2'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id34",
+""
+    ]
+},
+"CloudVisionDetectTextOperator":{
+    "prefix": "CloudVisionDetectTextOperator",
+    "body": [
+        "CloudVisionDetectTextOperator(",
+"    image=DETECT_IMAGE,",
+"    retry=Retry(maximum=10.0),",
+"    timeout=5,",
+"    task_id='detect_text',",
+"    language_hints='en',",
+"    web_detection_params={'include_geo_results': True}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id37",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('detect_text')['textAnnotations'][0] }}',",
+"    task_id='detect_text_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id1",
+""
+    ]
+},
+"CloudVisionTextDetectOperator":{
+    "prefix": "CloudVisionTextDetectOperator",
+    "body": [
+        "CloudVisionTextDetectOperator(",
+"    image=DETECT_IMAGE, retry=Retry(maximum=10.0), timeout=5, task_id='document_detect_text'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id40",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('document_detect_text')['textAnnotations'][0] }}',",
+"    task_id='document_detect_text_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id1",
+""
+    ]
+},
+"CloudVisionDetectImageLabelsOperator":{
+    "prefix": "CloudVisionDetectImageLabelsOperator",
+    "body": [
+        "CloudVisionDetectImageLabelsOperator(",
+"    image=DETECT_IMAGE, retry=Retry(maximum=10.0), timeout=5, task_id='detect_labels'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id43",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('detect_labels')['labelAnnotations'][0] }}',",
+"    task_id='detect_labels_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id1",
+""
+    ]
+},
+"CloudVisionDetectImageSafeSearchOperator":{
+    "prefix": "CloudVisionDetectImageSafeSearchOperator",
+    "body": [
+        "CloudVisionDetectImageSafeSearchOperator(",
+"    image=DETECT_IMAGE, retry=Retry(maximum=10.0), timeout=5, task_id='detect_safe_search'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id46",
+""
+    ]
+},
+"BashOperator":{
+    "prefix": "BashOperator",
+    "body": [
+        "BashOperator(",
+"    bash_command='echo {{ task_instance.xcom_pull('detect_safe_search') }}',",
+"    task_id='detect_safe_search_result'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/vision.html#id1",
+""
+    ]
+},
+"WorkflowsCreateWorkflowOperator":{
+    "prefix": "WorkflowsCreateWorkflowOperator",
+    "body": [
+        "WorkflowsCreateWorkflowOperator(",
+"    task_id='create_workflow',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID,",
+"    workflow=WORKFLOW,",
+"    workflow_id=WORKFLOW_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#create-workflow",
+""
+    ]
+},
+"WorkflowsUpdateWorkflowOperator":{
+    "prefix": "WorkflowsUpdateWorkflowOperator",
+    "body": [
+        "WorkflowsUpdateWorkflowOperator(",
+"    task_id='update_workflows',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID,",
+"    workflow_id=WORKFLOW_ID,",
+"    update_mask={'paths': ['name', 'description']}",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#update-workflow",
+""
+    ]
+},
+"WorkflowsGetWorkflowOperator":{
+    "prefix": "WorkflowsGetWorkflowOperator",
+    "body": [
+        "WorkflowsGetWorkflowOperator(",
+"    task_id='get_workflow', location=LOCATION, project_id=PROJECT_ID, workflow_id=WORKFLOW_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#get-workflow",
+""
+    ]
+},
+"WorkflowsListWorkflowsOperator":{
+    "prefix": "WorkflowsListWorkflowsOperator",
+    "body": [
+        "WorkflowsListWorkflowsOperator(",
+"    task_id='list_workflows',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#list-workflows",
+""
+    ]
+},
+"WorkflowsDeleteWorkflowOperator":{
+    "prefix": "WorkflowsDeleteWorkflowOperator",
+    "body": [
+        "WorkflowsDeleteWorkflowOperator(",
+"    task_id='delete_workflow', location=LOCATION, project_id=PROJECT_ID, workflow_id=WORKFLOW_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#delete-workflow",
+""
+    ]
+},
+"WorkflowsCreateExecutionOperator":{
+    "prefix": "WorkflowsCreateExecutionOperator",
+    "body": [
+        "WorkflowsCreateExecutionOperator(",
+"    task_id='create_execution',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID,",
+"    execution=EXECUTION,",
+"    workflow_id=WORKFLOW_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#create-execution",
+""
+    ]
+},
+"WorkflowExecutionSensor":{
+    "prefix": "WorkflowExecutionSensor",
+    "body": [
+        "WorkflowExecutionSensor(",
+"    task_id='wait_for_execution',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID,",
+"    workflow_id=WORKFLOW_ID,",
+"    execution_id='{{ task_instance.xcom_pull('create_execution', key='execution_id') }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#create-execution",
+""
+    ]
+},
+"WorkflowsGetExecutionOperator":{
+    "prefix": "WorkflowsGetExecutionOperator",
+    "body": [
+        "WorkflowsGetExecutionOperator(",
+"    task_id='get_execution',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID,",
+"    workflow_id=WORKFLOW_ID,",
+"    execution_id='{{ task_instance.xcom_pull('create_execution', key='execution_id') }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#get-execution",
+""
+    ]
+},
+"WorkflowsListExecutionsOperator":{
+    "prefix": "WorkflowsListExecutionsOperator",
+    "body": [
+        "WorkflowsListExecutionsOperator(",
+"    task_id='list_executions', location=LOCATION, project_id=PROJECT_ID, workflow_id=WORKFLOW_ID",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#list-executions",
+""
+    ]
+},
+"WorkflowsCancelExecutionOperator":{
+    "prefix": "WorkflowsCancelExecutionOperator",
+    "body": [
+        "WorkflowsCancelExecutionOperator(",
+"    task_id='cancel_execution',",
+"    location=LOCATION,",
+"    project_id=PROJECT_ID,",
+"    workflow_id=SLEEP_WORKFLOW_ID,",
+"    execution_id='{{ task_instance.xcom_pull('create_execution_for_cancel', key='execution_id') }}'",
+")",
+"# Reference available at: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/workflows.html#cancel-execution",
+""
+    ]
+},
+
+}

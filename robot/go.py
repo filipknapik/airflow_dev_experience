@@ -17,7 +17,6 @@ def loadURLs(fileName):
         Files.append(item.strip())
     return Files
 
-
 def addEntry(newEntry):
     entries.append(newEntry)
     return
@@ -104,6 +103,27 @@ def createPyCharm(entries):
     AirflowFile.write(buffer)
     return
 
+def createVSCode(entries):
+    buffer = "{\n"
+
+    vscodeTemplateFile = open("vscodeTemplate.txt", "r")
+    vscodeTemplate = vscodeTemplateFile.read()
+
+    for theEntry in entries:
+        value = theEntry['body']+"\n# Reference available at: " + theEntry['link'] + "\n"
+        value = value.replace("\"","\\\"")
+        value = value.replace("\n","\",\n\"")
+        newEntry = vscodeTemplate
+        newEntry = newEntry.replace("#value",value)
+        newEntry = newEntry.replace("#method",theEntry['method'])
+        buffer += newEntry
+
+    buffer += "\n}"
+    AirflowFile = open("python.json", "w")
+    AirflowFile.write(buffer)
+    return
+
 files = loadURLs("url.txt")
 processURLs(files)
 createPyCharm(entries)
+createVSCode(entries)
