@@ -1,13 +1,9 @@
 # VS Code Autocomplete for Apache Airflow
 
-This code allows 
-Example for VS Code:
+This code enables Airflow Operators and Sensors autocomplete for VS Code. 
 
-In both cases, the code comes with a URL to the full specification and additional context on a particular Operator or Sensor. Both IDEs allow clicking on the link, which provides seamless documentation access. 
-
-The repo also comes with a generator that automatically refreshes the configurations for both IDEs based on public Airflow documentation.
-
-Next steps:
-+ [Install PyCharm Autocomplete in your environment](Intellij_autocomplete/)
-+ [Install VS Code Autocomplete in your environment](VSCode_autocomplete/)
-+ [Regenerate the configurations for both IDEs based on Airflow documentation](Generator/)
+To install Airflow Autocomplete for VS Code, follow this process:
+1. Open VS Code
+2. Go to Preferences -> User Snippets and type in **python.json**
+3. If the python.json file has no other snippets (empty JSON), replace its contents with the contents of python.json file from this folder
+4. If the python.json file in your VS Code has some user snippets in it, add the contents of python.json file in this folder into your VS Code python.js, ensuring that newly added snippets are placed inside the curly brackets of the local python.json file. 
