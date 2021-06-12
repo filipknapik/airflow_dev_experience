@@ -1,0 +1,144 @@
+#!/bin/sh
+
+########################################################################################
+#
+# This script starts local Airflow instance based on a Cloud Composer environment
+# Google.com
+# June 2021
+#
+#######################################################################################
+
+# Stop the script in case of any error
+set -e
+
+# Prepare path to the folder with config settings
+MYDIR=$(pwd)
+CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+
+# Read config - initialize variables from the env.cfg file
+. ${CONFIG_FOLDER}/env.cfg
+
+# Create a space separated list of PyPi packages that are listed in pypi.cfg file
+NEW_MODULES=""
+while IFS="" read -r p || [ -n "$p" ]
+do
+    NEW_MODULES=${NEW_MODULES}${p}" "
+done < ${CONFIG_FOLDER}/pypi.cfg
+
+# Retrieve target Composer environment settings: Storage bucket for DAG deployment
+bucket=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.dagGcsPrefix)")
+
+# Retrieve target Composer environment settings: Airflow version
+airflow_ver=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.imageVersion)" | awk -F- '{print $(NF)}')
+
+# Retrieve target Composer environment settings: PyPi modules already installed
+pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.pypiPackages)"  | tr -d ''[:space:]''  | sed ''s/=//g'' | sed 's/;/ /g')
+
+# Create a local DAGs folder if it doesn't exist
+mkdir -p ${DAGFOLDER}
+
+# Pull container image with a version matching the target environment 
+docker pull gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest
+
+# Tag the image as 'airflowimage'
+docker tag gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest airflowimage:latest
+
+# Stop the container in case it's already running (to make it restart). || true added so that this line
+# doesn't stop the script in case the container is not there (note that there is set -e at the top)
+docker container stop ${CONTAINER} || true
+
+# Remove the container if it's there
+docker container rm ${CONTAINER} || true
+
+# Run the container with a proper name and port. Memory set to 2 GB
+# Mounting DAGFOLDER so that DAGs from the host (local environment) are visible in the container
+docker run --name ${CONTAINER} --entrypoint /bin/bash -p ${PORT}:${PORT} --memory=2g -d -t --mount type=bind,source=${DAGFOLDER},target=/home/airflow/airflow/dags airflowimage 
+
+# We are starting to build a devstart.sh script that will be later shipped to the container and executed at once
+# The script is dynamically generated as it's dependent on environment settings
+
+# Create a shebang
+echo "#!/bin/sh" > devstart.sh
+
+# Stop if any error encounter
+echo "set -e" >> devstart.sh
+
+# Change ownership of the parent of the mounted folder so that Airflow can access it
+echo "sudo chown airflow:airflow airflow" >> devstart.sh
+
+# Install PyPi modules from the target Composer environment
+echo "pip3 install ${pypi_modules}" >> devstart.sh
+
+# Install PyPi that you have selected for this development
+echo "pip3 install ${NEW_MODULES}" >> devstart.sh
+
+# Enforce Python 3 as the image contains both 2 and 3 and we want to support Python 3 only
+echo "export COMPOSER_PYTHON_VERSION=3" >> devstart.sh
+echo "/var/local/setup_python_command.sh" >> devstart.sh
+
+# Set default AIRFLOW_HOME path
+echo "export AIRFLOW_HOME=/home/airflow/airflow" >> devstart.sh
+
+# Define an environment variable that sets a proper connection to Google Cloud
+# so that GCP operators are authenticated in the local environment
+echo "export AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT='google_cloud_platform://?extra__google_cloud_platform__key_path=%2Fhome%2Fairflow%2Fkey%2Fkey.json&extra__google_cloud_platform__project=${PROJECT_ID}&extra__google_cloud_platform__scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&extra__google_cloud_platform__num_retries=12'" >> devstart.sh
+
+# Init the Airflow DB to get default config files
+echo "airflow db init" >> devstart.sh
+#echo "airflow connections delete google_cloud_default" >> devstart.sh
+
+# Enable preview of the Airflow configuration in the UI 
+echo "sudo sed -i 's/expose_config = False/expose_config = True/g' /home/airflow/airflow/airflow.cfg" >> devstart.sh
+
+# Change the config so that we skip example DAGs
+echo "sudo sed -i 's/load_examples = True/load_examples = False/g' /home/airflow/airflow/airflow.cfg" >> devstart.sh
+
+# Update 
+echo "sudo sed -i 's/dag_dir_list_interval = 300/dag_dir_list_interval = ${dag_dir_list_interval}/g' /home/airflow/airflow/airflow.cfg" >> devstart.sh
+
+# Allow non-authenticated access to UI for Airflow 2.*
+echo "echo \"AUTH_ROLE_PUBLIC = 'Admin'\" >> /home/airflow/airflow/webserver_config.py" >> devstart.sh
+
+# Reset the Airflow DB for changes above to be implemented
+echo "airflow db reset -y" >> devstart.sh
+
+# Create a folder for Google Cloud Service Account access key
+docker exec ${CONTAINER} sh -c "mkdir /home/airflow/key"
+
+# Copy the key to the container
+docker cp ${KEYPATH} ${CONTAINER}:/home/airflow/key/key.json
+
+# Iterate through Variables defined in variables.cfg and add them to Airflow
+while IFS="" read -r p || [ -n "$p" ]
+do
+    if  [[ $p != \#* ]] ; then
+        echo "airflow variables set ${p}" >> devstart.sh
+    fi
+done < ${CONFIG_FOLDER}/variables.cfg
+
+# Start Airflow Scheduler in the background
+echo "airflow scheduler > /usr/local/lib/airflow/airflow/scheduler_log.txt &" >> devstart.sh
+
+# Start Web Server as a deamon
+echo "airflow webserver --port ${PORT} -D > /usr/local/lib/airflow/airflow/webserver_log.txt" >> devstart.sh
+
+# Give hints to the user on what's next
+echo "echo \"\n --------------------------------------------\n\"">> devstart.sh
+echo "echo \" Local Environment started.\"" >> devstart.sh
+echo "echo \"  1. Put your DAGs to ${DAGFOLDER}\"" >> devstart.sh
+echo "echo \"  2. Access Airflow at http://localhost:${PORT}\"" >> devstart.sh
+echo "echo \"  3. To stop Airflow, run './stop'. Your DAGs will stay in the folder from point #1.\n\"" >> devstart.sh
+
+# Now that we have a script ready, we need to make it executable
+chmod a+x devstart.sh
+
+# and ship to the container
+docker cp ./devstart.sh ${CONTAINER}:/home/airflow/devstart.sh
+
+# and then run in the container for all this set up to take effect
+docker exec ${CONTAINER} sh -c "/home/airflow/devstart.sh"
+
+# Delete the script from the local file system (clean up)
+rm devstart.sh
+
+# For troubleshooting or accesss to the container, use this: docker exec -it ${CONTAINER} bash

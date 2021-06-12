@@ -1,0 +1,22 @@
+#!/bin/sh
+
+########################################################################################
+#
+# This script stops local Airflow based on a Cloud Composer environment
+# Google.com
+#
+#######################################################################################
+
+# Stop the script in case of any error
+set -e
+
+# Initialize settings
+MYDIR=$(pwd)
+CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+
+. ${CONFIG_FOLDER}/env.cfg
+
+docker container stop ${CONTAINER}
+echo "Airflow service successfully stopped."
+
+# For troubleshooting or accesss to the container, use this: docker exec -it ${CONTAINER} bash
