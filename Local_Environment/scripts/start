@@ -38,7 +38,7 @@ pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=$
 mkdir -p ${DAGFOLDER}
 
 # Pull container image with a version matching the target environment 
-docker pull gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest
+#docker pull gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest
 
 # Tag the image as 'airflowimage'
 docker tag gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest airflowimage:latest
