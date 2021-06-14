@@ -18,6 +18,30 @@ CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
 # Read config - initialize variables from the env.cfg file
 . ${CONFIG_FOLDER}/env.cfg
 
+if [ $ENVIRONMENT = "null" ]; then
+    echo 
+    read -p "Name of the Composer environment to be used as a base for local Airflow instance:"  ENVIRONMENT
+    sed -i '' "s/ENVIRONMENT=null/ENVIRONMENT=\"${ENVIRONMENT}\"/g" ${CONFIG_FOLDER}/env.cfg
+fi
+
+if [ $REGION = "null" ]; then
+    echo 
+    read -p "Region of the Composer environment to be used as a base for local Airflow instance:"  REGION
+    sed -i '' "s/REGION=null/REGION=\"${REGION}\"/g" ${CONFIG_FOLDER}/env.cfg
+fi
+
+if [ $PROJECT_ID = "null" ]; then
+    echo 
+    read -p "Project_ID of resources that your DAGs will mostly interact with:" PROJECT_ID
+    sed -i '' "s/PROJECT_ID=null/PROJECT_ID=\"${PROJECT_ID}\"/g" ${CONFIG_FOLDER}/env.cfg
+fi
+
+if [ $KEYPATH = "null" ]; then
+    read -p "Path to a Service Account JSON Key file that will allow DAGs to interact with Google Cloud Resources:"  KEYPATH
+    ESC_KEYPATH=${KEYPATH////\\/}
+    sed -i '' "s/KEYPATH=null/KEYPATH=\"${ESC_KEYPATH}\"/g" ${CONFIG_FOLDER}/env.cfg
+fi
+
 # Create a space separated list of PyPi packages that are listed in pypi.cfg file
 NEW_MODULES=""
 while IFS="" read -r p || [ -n "$p" ]
