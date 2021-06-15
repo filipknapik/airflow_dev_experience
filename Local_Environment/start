@@ -13,8 +13,8 @@ set -e
 
 # Prepare path to the folder with config settings
 MYDIR=$(pwd)
-CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
-TO_COPY_FOLDER=$(dirname "${MYDIR}")"/to_copy"
+CONFIG_FOLDER=${MYDIR}"/config"
+TO_COPY_FOLDER=${MYDIR}"/to_copy"
 
 # Read config - initialize variables from the env.cfg file
 . ${CONFIG_FOLDER}/env.cfg
@@ -164,9 +164,9 @@ echo "echo \" Local Environment started.\"" >> devstart.sh
 echo "echo \"  1. Put your DAGs to ${DAGFOLDER}\"" >> devstart.sh
 echo "echo \"  2. Access Airflow at http://localhost:${PORT}\"" >> devstart.sh
 echo "echo \"\n To change settings, edit (and run ./start again):\"" >> devstart.sh
-echo "echo \"  - PyPi packages: ../configs/pypi.cfg\"" >> devstart.sh
-echo "echo \"  - Airflow variables: ../configs/variables.cfg\"" >> devstart.sh
-echo "echo \"  - Connections: ../configs/others.cfg\"" >> devstart.sh
+echo "echo \"  - PyPi packages: config/pypi.cfg\"" >> devstart.sh
+echo "echo \"  - Airflow variables: config/variables.cfg\"" >> devstart.sh
+echo "echo \"  - Connections: config/others.sh\"" >> devstart.sh
 echo "echo \"\n You may also use: \"" >> devstart.sh
 echo "echo \"  ./test - tests all your DAGs\"" >> devstart.sh
 echo "echo \"  ./cli - starts a bash session with access to a local Airflow CLI\"" >> devstart.sh

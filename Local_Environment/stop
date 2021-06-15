@@ -12,7 +12,7 @@ set -e
 
 # Initialize settings
 MYDIR=$(pwd)
-CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+CONFIG_FOLDER=${MYDIR}"/config"
 
 . ${CONFIG_FOLDER}/env.cfg
 

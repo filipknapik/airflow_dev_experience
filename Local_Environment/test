@@ -12,7 +12,7 @@ set -e
 
 # Initialize settings
 MYDIR=$(pwd)
-CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+CONFIG_FOLDER=${MYDIR}"/config"
 GREEN='\033[0;32m'
 NEUTRAL='\033[0m'
 
