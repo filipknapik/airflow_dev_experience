@@ -1,0 +1,26 @@
+#!/bin/sh
+
+########################################################################################
+#
+# This script wraps DAGs tester
+# Google.com
+#
+#######################################################################################
+
+# Initialize defaults
+RED='\033[0;31m'
+NEUTRAL='\033[0m'
+
+# Switch text to red so that as any input will be an error or warning
+printf "${RED}"
+
+# Test a DAG and save the result (0 - OK, >0 NOT OK)
+python $1
+RESULT=$?
+
+# Switch the color back to neutral
+printf "${NEUTRAL}"
+
+if [ ${RESULT} != 0 ]; then
+    exit 1
+fi

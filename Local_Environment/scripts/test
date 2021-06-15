@@ -1,0 +1,33 @@
+#!/bin/sh
+
+########################################################################################
+#
+# This script stops tests DAGs
+# Google.com
+#
+#######################################################################################
+
+# Stop the script in case of any error
+set -e
+
+# Initialize settings
+MYDIR=$(pwd)
+CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+GREEN='\033[0;32m'
+NEUTRAL='\033[0m'
+
+. ${CONFIG_FOLDER}/env.cfg
+
+echo "\n##### Python compilation tests #####"
+for filepath in ${DAGFOLDER}/*.py; do
+    filename=$(basename ${filepath})
+    printf "${filename}..."
+    docker exec ${CONTAINER} sh -c "./dag_tester /home/airflow/airflow/dags/"${filename}
+    printf "${GREEN}OK${NEUTRAL}\n"
+done
+
+echo "\n##### DAG load tests #####"
+docker exec ${CONTAINER} sh -c "python loaddags.py"
+
+printf "${GREEN}ALL TESTS PASSED${NEUTRAL}\n"
+

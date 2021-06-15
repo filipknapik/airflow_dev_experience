@@ -14,6 +14,7 @@ set -e
 # Prepare path to the folder with config settings
 MYDIR=$(pwd)
 CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+TO_COPY_FOLDER=$(dirname "${MYDIR}")"/to_copy"
 
 # Read config - initialize variables from the env.cfg file
 . ${CONFIG_FOLDER}/env.cfg
@@ -91,10 +92,10 @@ echo "set -e" >> devstart.sh
 echo "sudo chown airflow:airflow airflow" >> devstart.sh
 
 # Install PyPi modules from the target Composer environment
-echo "pip3 install ${pypi_modules}" >> devstart.sh
+#echo "pip3 install ${pypi_modules}" >> devstart.sh
 
 # Install PyPi that you have selected for this development
-echo "pip3 install ${NEW_MODULES}" >> devstart.sh
+#echo "pip3 install ${NEW_MODULES}" >> devstart.sh
 
 # Enforce Python 3 as the image contains both 2 and 3 and we want to support Python 3 only
 echo "export COMPOSER_PYTHON_VERSION=3" >> devstart.sh
@@ -158,6 +159,9 @@ chmod a+x devstart.sh
 
 # and ship to the container
 docker cp ./devstart.sh ${CONTAINER}:/home/airflow/devstart.sh
+
+# and ship to the container
+docker cp ${TO_COPY_FOLDER}/. ${CONTAINER}:/home/airflow/
 
 # and then run in the container for all this set up to take effect
 docker exec ${CONTAINER} sh -c "/home/airflow/devstart.sh"
