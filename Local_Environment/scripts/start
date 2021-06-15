@@ -38,7 +38,8 @@ if [ $PROJECT_ID = "null" ]; then
 fi
 
 if [ $KEYPATH = "null" ]; then
-    read -p "To make your DAGs work with Google Cloud resources for testing, you need to authenticate using Service Account key (https://cloud.google.com/iam/docs/creating-managing-service-account-keys). Provide a path to a Service Account JSON Key file in your local file system:"  KEYPATH
+    echo "\nTo make your DAGs work with Google Cloud resources for testing, your DAGs need to authenticate using a Service Account key (https://cloud.google.com/iam/docs/creating-managing-service-account-keys)."
+    read -p "Provide a path to a Service Account JSON Key file in your local file system:"  KEYPATH
     ESC_KEYPATH=${KEYPATH////\\/}
     sed -i '' "s/KEYPATH=null/KEYPATH=\"${ESC_KEYPATH}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
@@ -47,7 +48,9 @@ fi
 NEW_MODULES=""
 while IFS="" read -r p || [ -n "$p" ]
 do
-    NEW_MODULES=${NEW_MODULES}${p}" "
+    if  [[ $p != \#* ]] ; then
+        NEW_MODULES=${NEW_MODULES}${p}" "
+    fi
 done < ${CONFIG_FOLDER}/pypi.cfg
 
 # Retrieve target Composer environment settings: Storage bucket for DAG deployment
@@ -92,10 +95,12 @@ echo "set -e" >> devstart.sh
 echo "sudo chown airflow:airflow airflow" >> devstart.sh
 
 # Install PyPi modules from the target Composer environment
-#echo "pip3 install ${pypi_modules}" >> devstart.sh
+echo "pip3 install ${pypi_modules}" >> devstart.sh
 
 # Install PyPi that you have selected for this development
-#echo "pip3 install ${NEW_MODULES}" >> devstart.sh
+if  [[ ${#NEW_MODULES} != 0 ]] ; then
+    echo "pip3 install ${NEW_MODULES}" >> devstart.sh
+fi
 
 # Enforce Python 3 as the image contains both 2 and 3 and we want to support Python 3 only
 echo "export COMPOSER_PYTHON_VERSION=3" >> devstart.sh
@@ -118,7 +123,7 @@ echo "sudo sed -i 's/expose_config = False/expose_config = True/g' /home/airflow
 # Change the config so that we skip example DAGs
 echo "sudo sed -i 's/load_examples = True/load_examples = False/g' /home/airflow/airflow/airflow.cfg" >> devstart.sh
 
-# Update 
+# Update interval for loading new DAGs
 echo "sudo sed -i 's/dag_dir_list_interval = 300/dag_dir_list_interval = ${dag_dir_list_interval}/g' /home/airflow/airflow/airflow.cfg" >> devstart.sh
 
 # Allow non-authenticated access to UI for Airflow 2.*
@@ -127,11 +132,17 @@ echo "echo \"AUTH_ROLE_PUBLIC = 'Admin'\" >> /home/airflow/airflow/webserver_con
 # Reset the Airflow DB for changes above to be implemented
 echo "airflow db reset -y" >> devstart.sh
 
+# Trigger local script with user-defined contents in 'others.sh'
+echo "/home/airflow/airflow/others.sh" >> devstart.sh
+
 # Create a folder for Google Cloud Service Account access key
 docker exec ${CONTAINER} sh -c "mkdir /home/airflow/key"
 
 # Copy the key to the container
 docker cp ${KEYPATH} ${CONTAINER}:/home/airflow/key/key.json
+
+# Copy the others.sh file to the container
+docker cp ${CONFIG_FOLDER}/others.sh ${CONTAINER}:/home/airflow/airflow/others.sh
 
 # Iterate through Variables defined in variables.cfg and add them to Airflow
 while IFS="" read -r p || [ -n "$p" ]
@@ -152,11 +163,15 @@ echo "echo \"\n --------------------------------------------\n\"">> devstart.sh
 echo "echo \" Local Environment started.\"" >> devstart.sh
 echo "echo \"  1. Put your DAGs to ${DAGFOLDER}\"" >> devstart.sh
 echo "echo \"  2. Access Airflow at http://localhost:${PORT}\"" >> devstart.sh
-echo "echo \"\n   You may also use: \"" >> devstart.sh
-echo "echo \"    ./test - tests all your DAGs\"" >> devstart.sh
-echo "echo \"    ./cli - starts a bash session with access to a local Airflow CLI\"" >> devstart.sh
-echo "echo \"    ./pushdags - transfers local DAGs to a Composer development environment\"" >> devstart.sh
-echo "echo \"    ./stop - stops local Airflow environment. Doesn't affect your local DAGs\n\"" >> devstart.sh
+echo "echo \"\n To change settings, edit (and run ./start again):\"" >> devstart.sh
+echo "echo \"  - PyPi packages: ../configs/pypi.cfg\"" >> devstart.sh
+echo "echo \"  - Airflow variables: ../configs/variables.cfg\"" >> devstart.sh
+echo "echo \"  - Connections: ../configs/others.cfg\"" >> devstart.sh
+echo "echo \"\n You may also use: \"" >> devstart.sh
+echo "echo \"  ./test - tests all your DAGs\"" >> devstart.sh
+echo "echo \"  ./cli - starts a bash session with access to a local Airflow CLI\"" >> devstart.sh
+echo "echo \"  ./pushdags - transfers local DAGs to a Composer development environment\"" >> devstart.sh
+echo "echo \"  ./stop - stops local Airflow environment. Doesn't affect your local DAGs\n\"" >> devstart.sh
 
 # Now that we have a script ready, we need to make it executable
 chmod a+x devstart.sh

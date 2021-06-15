@@ -23,3 +23,8 @@ bucket=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGIO
 for filepath in ${DAGFOLDER}/*.py; do
     gsutil cp ${filepath} ${bucket}
 done
+
+echo "Your DAGs were transferred successfully.\n"
+echo "!IMPORTANT!"
+echo "You may need to add Environment Variables and PyPi packages from this environment (from config/variables.cfg and configs/pypi.cfg) to your Composer instance."
+echo "This step is not performed automatically as it may result in conflicts."
