@@ -1,0 +1,24 @@
+#!/bin/sh
+
+########################################################################################
+#
+# This script sends DAGs over to the GCS bucket of the target Composer environment
+# Google.com
+#
+#######################################################################################
+
+# Stop the script in case of any error
+set -e
+
+# Initialize settings
+MYDIR=$(pwd)
+CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+
+. ${CONFIG_FOLDER}/env.cfg
+
+# Retrieve target Composer environment settings: Storage bucket for DAG deployment
+bucket=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.dagGcsPrefix)")
+
+for filepath in ${DAGFOLDER}/*.py; do
+    gsutil cp ${filepath} ${bucket}
+done

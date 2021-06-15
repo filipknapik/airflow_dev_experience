@@ -152,7 +152,10 @@ echo "echo \"\n --------------------------------------------\n\"">> devstart.sh
 echo "echo \" Local Environment started.\"" >> devstart.sh
 echo "echo \"  1. Put your DAGs to ${DAGFOLDER}\"" >> devstart.sh
 echo "echo \"  2. Access Airflow at http://localhost:${PORT}\"" >> devstart.sh
-echo "echo \"  3. To stop Airflow, run './stop'. Your DAGs will stay in the folder from point #1.\n\"" >> devstart.sh
+echo "echo \"\n   You may also use: \"" >> devstart.sh
+echo "echo \"    ./stop - stops local Airflow environment. Doesn't affect your local DAGs.\"" >> devstart.sh
+echo "echo \"    ./cli - starts a bash session with access to a local Airflow CLI\"" >> devstart.sh
+echo "echo \"    ./pushdags - transfers local DAGs to a Composer development environment\n\"" >> devstart.sh
 
 # Now that we have a script ready, we need to make it executable
 chmod a+x devstart.sh

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+########################################################################################
+#
+# This script stops local Airflow based on a Cloud Composer environment
+# Google.com
+#
+#######################################################################################
+
+# Stop the script in case of any error
+set -e
+
+# Initialize settings
+MYDIR=$(pwd)
+CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
+
+. ${CONFIG_FOLDER}/env.cfg
+
+echo "\nEntering a container running Airflow. To interact with Airflow CLI, use e.g.:"
+echo "\033[0;31mairflow dags list\033[0m\n"
+
+docker exec -it ${CONTAINER} bash
