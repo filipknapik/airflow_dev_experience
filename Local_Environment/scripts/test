@@ -18,16 +18,28 @@ NEUTRAL='\033[0m'
 
 . ${CONFIG_FOLDER}/env.cfg
 
+# Check whether all DAG files compile in the local environemnt
 echo "\n##### Python compilation tests #####"
 for filepath in ${DAGFOLDER}/*.py; do
+    # Get DAG file name from the complete file path
     filename=$(basename ${filepath})
     printf "${filename}..."
+
+    # Trigger a testing script in the Airflow container - for this DAG file
     docker exec ${CONTAINER} sh -c "./dag_tester /home/airflow/airflow/dags/"${filename}
+
+    # If we are still here, it must have been successful. Print OK in green.
     printf "${GREEN}OK${NEUTRAL}\n"
 done
 
+# Start DAG load test using our python script loaddags.py in the Airflow container
 echo "\n##### DAG load tests #####"
 docker exec ${CONTAINER} sh -c "python loaddags.py"
 
+# Print DAG statistics
+echo "\n##### DAG statistics, including load time #####"
+docker exec ${CONTAINER} sh -c "airflow dags report"
+
+# If we are still here - it must have been successful (note that there is 'set -e')
 printf "${GREEN}ALL TESTS PASSED${NEUTRAL}\n"
 

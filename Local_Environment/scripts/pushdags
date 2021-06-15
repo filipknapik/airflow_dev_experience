@@ -19,6 +19,7 @@ CONFIG_FOLDER=$(dirname "${MYDIR}")"/config"
 # Retrieve target Composer environment settings: Storage bucket for DAG deployment
 bucket=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.dagGcsPrefix)")
 
+# Iterate through all DAG files and send them to the target bucket 
 for filepath in ${DAGFOLDER}/*.py; do
     gsutil cp ${filepath} ${bucket}
 done

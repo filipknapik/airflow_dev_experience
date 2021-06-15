@@ -33,12 +33,12 @@ fi
 
 if [ $PROJECT_ID = "null" ]; then
     echo 
-    read -p "Project_ID of resources that your DAGs will mostly interact with:" PROJECT_ID
+    read -p "Default Project_ID that Google Cloud operators will use:" PROJECT_ID
     sed -i '' "s/PROJECT_ID=null/PROJECT_ID=\"${PROJECT_ID}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
 if [ $KEYPATH = "null" ]; then
-    read -p "Path to a Service Account JSON Key file that will allow DAGs to interact with Google Cloud Resources:"  KEYPATH
+    read -p "To make your DAGs work with Google Cloud resources for testing, you need to authenticate using Service Account key (https://cloud.google.com/iam/docs/creating-managing-service-account-keys). Provide a path to a Service Account JSON Key file in your local file system:"  KEYPATH
     ESC_KEYPATH=${KEYPATH////\\/}
     sed -i '' "s/KEYPATH=null/KEYPATH=\"${ESC_KEYPATH}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
@@ -153,9 +153,10 @@ echo "echo \" Local Environment started.\"" >> devstart.sh
 echo "echo \"  1. Put your DAGs to ${DAGFOLDER}\"" >> devstart.sh
 echo "echo \"  2. Access Airflow at http://localhost:${PORT}\"" >> devstart.sh
 echo "echo \"\n   You may also use: \"" >> devstart.sh
-echo "echo \"    ./stop - stops local Airflow environment. Doesn't affect your local DAGs.\"" >> devstart.sh
+echo "echo \"    ./test - tests all your DAGs\"" >> devstart.sh
 echo "echo \"    ./cli - starts a bash session with access to a local Airflow CLI\"" >> devstart.sh
-echo "echo \"    ./pushdags - transfers local DAGs to a Composer development environment\n\"" >> devstart.sh
+echo "echo \"    ./pushdags - transfers local DAGs to a Composer development environment\"" >> devstart.sh
+echo "echo \"    ./stop - stops local Airflow environment. Doesn't affect your local DAGs\n\"" >> devstart.sh
 
 # Now that we have a script ready, we need to make it executable
 chmod a+x devstart.sh
