@@ -4,8 +4,7 @@
     "body": [
         "BashOperator(",
 "    task_id='run_after_loop',",
-"    bash_command='echo 1',",
-"    dag=dag",
+"    bash_command='echo 1'",
 ")",
 "# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/bash.html#bashoperator",
 ""
@@ -16,8 +15,7 @@
     "body": [
         "PythonOperator(",
 "    task_id='print_the_context',",
-"    python_callable=print_context,",
-"    dag=dag",
+"    python_callable=print_context",
 ")",
 "# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#pythonoperator",
 ""
@@ -30,8 +28,7 @@
 "    task_id='virtualenv_python',",
 "    python_callable=callable_virtualenv,",
 "    requirements=['colorama==0.4.0'],",
-"    system_site_packages=False,",
-"    dag=dag",
+"    system_site_packages=False",
 ")",
 "# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#pythonvirtualenvoperator",
 ""
@@ -41,14 +38,14 @@
     "prefix": "ExternalTaskSensor",
     "body": [
         "ExternalTaskSensor(",
-"        task_id='child_task1',",
-"        external_dag_id=parent_dag.dag_id,",
-"        external_task_id=parent_task.task_id,",
-"        timeout=600,",
-"        allowed_states=['success'],",
-"        failed_states=['failed', 'skipped'],",
-"        mode='reschedule',",
-"    )",
+"    task_id='child_task1',",
+"    external_dag_id=parent_dag.dag_id,",
+"    external_task_id=parent_task.task_id,",
+"    timeout=600,",
+"    allowed_states=['success'],",
+"    failed_states=['failed', 'skipped'],",
+"    mode='reschedule'",
+")",
 "# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/external_task_sensor.html#externaltasksensor",
 ""
     ]
@@ -2753,6 +2750,23 @@
 ""
     ]
 },
+"GCSTimeSpanFileTransformOperator":{
+    "prefix": "GCSTimeSpanFileTransformOperator",
+    "body": [
+        "GCSTimeSpanFileTransformOperator(",
+"        task_id='gcs_timespan_transform_files',",
+"        source_bucket=SOURCE_BUCKET,",
+"        source_prefix=SOURCE_PREFIX,",
+"        source_gcp_conn_id=SOURCE_GCP_CONN_ID,",
+"        destination_bucket=DESTINATION_BUCKET,",
+"        destination_prefix=DESTINATION_PREFIX,",
+"        destination_gcp_conn_id=DESTINATION_GCP_CONN_ID,",
+"        transform_script=['python', PATH_TO_TRANSFORM_SCRIPT],",
+"    )",
+"# Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#gcstimespanfiletransformoperator",
+""
+    ]
+},
 "GCSDeleteBucketOperator":{
     "prefix": "GCSDeleteBucketOperator",
     "body": [
@@ -4016,7 +4030,14 @@
 "",
 "snowflake_op_sql_list = SnowflakeOperator(",
 "    task_id='snowflake_op_sql_list', dag=dag, snowflake_conn_id=SNOWFLAKE_CONN_ID, sql=SQL_LIST",
-")snowflake_op_template_file = SnowflakeOperator(",
+")snowflake_op_sql_multiple_stmts = SnowflakeOperator(",
+"    task_id='snowflake_op_sql_multiple_stmts',",
+"    dag=dag,",
+"    snowflake_conn_id=SNOWFLAKE_CONN_ID,",
+"    sql=SQL_MULTIPLE_STMTS",
+")",
+"",
+"snowflake_op_template_file = SnowflakeOperator(",
 "    task_id='snowflake_op_template_file',",
 "    dag=dag,",
 "    snowflake_conn_id=SNOWFLAKE_CONN_ID,",

@@ -1,20 +1,20 @@
 <templateSet group="Airflow">
-  <template name="BashOperator" value="BashOperator(&#10;    task_id=&#39;run_after_loop&#39;,&#10;    bash_command=&#39;echo 1&#39;,&#10;    dag=dag&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/bash.html#bashoperator&#10;" description="Google Cloud - BashOperator" toReformat="false" toShortenFQNames="true">
+  <template name="BashOperator" value="BashOperator(&#10;    task_id=&#39;run_after_loop&#39;,&#10;    bash_command=&#39;echo 1&#39;&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/bash.html#bashoperator&#10;" description="Google Cloud - BashOperator" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="Python" value="true" />
     </context>
   </template>
-    <template name="PythonOperator" value="PythonOperator(&#10;    task_id=&#39;print_the_context&#39;,&#10;    python_callable=print_context,&#10;    dag=dag&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#pythonoperator&#10;" description="Google Cloud - PythonOperator" toReformat="false" toShortenFQNames="true">
+    <template name="PythonOperator" value="PythonOperator(&#10;    task_id=&#39;print_the_context&#39;,&#10;    python_callable=print_context&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#pythonoperator&#10;" description="Google Cloud - PythonOperator" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="Python" value="true" />
     </context>
   </template>
-    <template name="PythonVirtualenvOperator" value="PythonVirtualenvOperator(&#10;    task_id=&#39;virtualenv_python&#39;,&#10;    python_callable=callable_virtualenv,&#10;    requirements=[&#39;colorama==0.4.0&#39;],&#10;    system_site_packages=False,&#10;    dag=dag&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#pythonvirtualenvoperator&#10;" description="Google Cloud - PythonVirtualenvOperator" toReformat="false" toShortenFQNames="true">
+    <template name="PythonVirtualenvOperator" value="PythonVirtualenvOperator(&#10;    task_id=&#39;virtualenv_python&#39;,&#10;    python_callable=callable_virtualenv,&#10;    requirements=[&#39;colorama==0.4.0&#39;],&#10;    system_site_packages=False&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html#pythonvirtualenvoperator&#10;" description="Google Cloud - PythonVirtualenvOperator" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="Python" value="true" />
     </context>
   </template>
-    <template name="ExternalTaskSensor" value="ExternalTaskSensor(&#10;        task_id=&#39;child_task1&#39;,&#10;        external_dag_id=parent_dag.dag_id,&#10;        external_task_id=parent_task.task_id,&#10;        timeout=600,&#10;        allowed_states=[&#39;success&#39;],&#10;        failed_states=[&#39;failed&#39;, &#39;skipped&#39;],&#10;        mode=&#39;reschedule&#39;,&#10;    )&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/external_task_sensor.html#externaltasksensor&#10;" description="Google Cloud - ExternalTaskSensor" toReformat="false" toShortenFQNames="true">
+    <template name="ExternalTaskSensor" value="ExternalTaskSensor(&#10;    task_id=&#39;child_task1&#39;,&#10;    external_dag_id=parent_dag.dag_id,&#10;    external_task_id=parent_task.task_id,&#10;    timeout=600,&#10;    allowed_states=[&#39;success&#39;],&#10;    failed_states=[&#39;failed&#39;, &#39;skipped&#39;],&#10;    mode=&#39;reschedule&#39;&#10;)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/external_task_sensor.html#externaltasksensor&#10;" description="Google Cloud - ExternalTaskSensor" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="Python" value="true" />
     </context>
@@ -1034,6 +1034,11 @@
       <option name="Python" value="true" />
     </context>
   </template>
+    <template name="GCSTimeSpanFileTransformOperator" value="GCSTimeSpanFileTransformOperator(&#10;        task_id=&#39;gcs_timespan_transform_files&#39;,&#10;        source_bucket=SOURCE_BUCKET,&#10;        source_prefix=SOURCE_PREFIX,&#10;        source_gcp_conn_id=SOURCE_GCP_CONN_ID,&#10;        destination_bucket=DESTINATION_BUCKET,&#10;        destination_prefix=DESTINATION_PREFIX,&#10;        destination_gcp_conn_id=DESTINATION_GCP_CONN_ID,&#10;        transform_script=[&#39;python&#39;, PATH_TO_TRANSFORM_SCRIPT],&#10;    )&#10;# Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#gcstimespanfiletransformoperator&#10;" description="Google Cloud - GCSTimeSpanFileTransformOperator" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
     <template name="GCSDeleteBucketOperator" value="GCSDeleteBucketOperator(task_id=&#39;delete_bucket_1&#39;, bucket_name=BUCKET_1)delete_bucket_2 = GCSDeleteBucketOperator(task_id=&#39;delete_bucket_2&#39;, bucket_name=BUCKET_2)&#10;# Reference: https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/gcs.html#deleting-bucket&#10;" description="Google Cloud - GCSDeleteBucketOperator" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="Python" value="true" />
@@ -1484,7 +1489,7 @@
       <option name="Python" value="true" />
     </context>
   </template>
-    <template name="SnowflakeOperator" value="SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_sql_str&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=CREATE_TABLE_SQL_STRING,&#10;    warehouse=SNOWFLAKE_WAREHOUSE,&#10;    database=SNOWFLAKE_DATABASE,&#10;    schema=SNOWFLAKE_SCHEMA,&#10;    role=SNOWFLAKE_ROLE&#10;)&#10;&#10;snowflake_op_with_params = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_with_params&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=SQL_INSERT_STATEMENT,&#10;    parameters={&#39;id&#39;: 56},&#10;    warehouse=SNOWFLAKE_WAREHOUSE,&#10;    database=SNOWFLAKE_DATABASE,&#10;    schema=SNOWFLAKE_SCHEMA,&#10;    role=SNOWFLAKE_ROLE&#10;)&#10;&#10;snowflake_op_sql_list = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_sql_list&#39;, dag=dag, snowflake_conn_id=SNOWFLAKE_CONN_ID, sql=SQL_LIST&#10;)snowflake_op_template_file = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_template_file&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=&#39;/path/to/sql/&lt;filename&gt;.sql&#39;&#10;)&#10;&#10;&#10;# Reference: https://airflow.apache.org/docs/apache-airflow-providers-snowflake/stable/operators/snowflake.html#id1&#10;" description="Google Cloud - SnowflakeOperator" toReformat="false" toShortenFQNames="true">
+    <template name="SnowflakeOperator" value="SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_sql_str&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=CREATE_TABLE_SQL_STRING,&#10;    warehouse=SNOWFLAKE_WAREHOUSE,&#10;    database=SNOWFLAKE_DATABASE,&#10;    schema=SNOWFLAKE_SCHEMA,&#10;    role=SNOWFLAKE_ROLE&#10;)&#10;&#10;snowflake_op_with_params = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_with_params&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=SQL_INSERT_STATEMENT,&#10;    parameters={&#39;id&#39;: 56},&#10;    warehouse=SNOWFLAKE_WAREHOUSE,&#10;    database=SNOWFLAKE_DATABASE,&#10;    schema=SNOWFLAKE_SCHEMA,&#10;    role=SNOWFLAKE_ROLE&#10;)&#10;&#10;snowflake_op_sql_list = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_sql_list&#39;, dag=dag, snowflake_conn_id=SNOWFLAKE_CONN_ID, sql=SQL_LIST&#10;)snowflake_op_sql_multiple_stmts = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_sql_multiple_stmts&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=SQL_MULTIPLE_STMTS&#10;)&#10;&#10;snowflake_op_template_file = SnowflakeOperator(&#10;    task_id=&#39;snowflake_op_template_file&#39;,&#10;    dag=dag,&#10;    snowflake_conn_id=SNOWFLAKE_CONN_ID,&#10;    sql=&#39;/path/to/sql/&lt;filename&gt;.sql&#39;&#10;)&#10;&#10;&#10;# Reference: https://airflow.apache.org/docs/apache-airflow-providers-snowflake/stable/operators/snowflake.html#id1&#10;" description="Google Cloud - SnowflakeOperator" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="Python" value="true" />
     </context>
