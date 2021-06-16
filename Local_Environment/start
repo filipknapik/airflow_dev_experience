@@ -70,8 +70,8 @@ airflow_ver=$(gcloud composer environments describe ${ENVIRONMENT} --location=${
 # Retrieve target Composer environment settings: PyPi modules already installed
 pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.pypiPackages)"  | tr -d ''[:space:]''  | sed ''s/=//g'' | sed 's/;/ /g')
 
-# Create a local DAGs folder if it doesn't exist
-mkdir -p ${DAGFOLDER}
+# Create a symbolic link to the local DAGs folder
+ln -s ${DAGFOLDER} DAGs
 
 # Pull container image with a version matching the target environment 
 #docker pull gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest
