@@ -1,0 +1,77 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Test DAGs",
+        "command": "./test",
+        "type": "shell",
+        "group":  "test",
+        "options": {
+          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Restart Airflow environment",
+        "command": "./start",
+        "type": "shell",
+        "options": {
+          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+        },
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Terminal access to CLI",
+        "command": "./cli",
+        "type": "shell",        
+        "options": {
+          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+        },
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Push DAGs",
+        "command": "./pushdags",
+        "type": "shell",
+        "options": {
+          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+        },
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Stop Environment",
+        "command": "./stop",
+        "type": "shell",
+        "options": {
+          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+        },
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }

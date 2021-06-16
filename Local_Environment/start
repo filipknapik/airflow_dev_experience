@@ -12,6 +12,7 @@
 set -e
 
 # Prepare path to the folder with config settings
+
 MYDIR=$(pwd)
 CONFIG_FOLDER=${MYDIR}"/config"
 TO_COPY_FOLDER=${MYDIR}"/to_copy"
@@ -44,6 +45,13 @@ if [ $KEYPATH = "null" ]; then
     sed -i '' "s/KEYPATH=null/KEYPATH=\"${ESC_KEYPATH}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
+if [ $DAGFOLDER = "null" ]; then
+    echo 
+    read -p "Local path to a folder with DAGs:"  DAGFOLDER
+    ESC_DAGFOLDER=${DAGFOLDER////\\/}
+    sed -i '' "s/DAGFOLDER=null/DAGFOLDER=\"${ESC_DAGFOLDER}\"/g" ${CONFIG_FOLDER}/env.cfg
+fi
+
 # Create a space separated list of PyPi packages that are listed in pypi.cfg file
 NEW_MODULES=""
 while IFS="" read -r p || [ -n "$p" ]
@@ -73,10 +81,10 @@ docker tag gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}
 
 # Stop the container in case it's already running (to make it restart). || true added so that this line
 # doesn't stop the script in case the container is not there (note that there is set -e at the top)
-docker container stop ${CONTAINER} || true
+docker container stop ${CONTAINER} >> /dev/null || true
 
 # Remove the container if it's there
-docker container rm ${CONTAINER} || true
+docker container rm ${CONTAINER}  >> /dev/null || true
 
 # Run the container with a proper name and port. Memory set to 2 GB
 # Mounting DAGFOLDER so that DAGs from the host (local environment) are visible in the container
