@@ -16,10 +16,33 @@ The model supports:
 2. Identify a local folder you will use for DAG development. Ideally, link it with a source control tool like Cloud Source Repositories or GitLab (git init and remote push)
 3. Create a folder for local Airflow instance (independent of the DAG folder). Enter this folder and run 'git clone https://github.com/filipknapik/airflow_dev_experience'
 4. Enter 'airflow_dev_experience/Local_Environment/' and run './start'. The first time you run it, you will be asked a few questions. If you want to modify your responses in the future, edit 'config/env.cfg'.
+
 That's it!
 
 Your Airflow environment is available at [http://localhost:8068](http://localhost:8068). 
-DAGs from the folder you have provided when running ./start will automatically show up in the environment. 
+DAGs from a local folder you provided when running ./start will automatically show up in the environment. 
+
+## Interacting with the tool using shell scripts
+ You may also use: 
+  - ./test - tests all your DAGs
+  - ./cli - starts a bash session with access to a local Airflow CLI
+  - ./pushdags - transfers local DAGs to a Composer development environment
+  - ./stop - stops local Airflow environment. Doesn't affect your local DAGs
+  
+ To change settings, edit:
+  - PyPi packages: config/pypi.cfg
+  - Airflow variables: config/variables.cfg
+  - Connections: config/others.sh
+...and run ./start to apply changes
+
+## Interacting with the tool using VS Code
+ Open new VS Code window and open 'Local_Environment' folder that you have cloned. All your DAGs are available in the DAGs subfolder (they are linked there from the actual folder that you have provided for your DAGs)
+
+ You may also use: 
+  - ./test - tests all your DAGs
+  - ./cli - starts a bash session with access to a local Airflow CLI
+  - ./pushdags - transfers local DAGs to a Composer development environment
+  - ./stop - stops local Airflow environment. Doesn't affect your local DAGs
 
  To change settings, edit:
   - PyPi packages: config/pypi.cfg
@@ -27,9 +50,4 @@ DAGs from the folder you have provided when running ./start will automatically s
   - Connections: config/others.sh
 ...and run ./start to apply changes
 
- You may also use: 
-  ./test - tests all your DAGs
-  ./cli - starts a bash session with access to a local Airflow CLI
-  ./pushdags - transfers local DAGs to a Composer development environment
-  ./stop - stops local Airflow environment. Doesn't affect your local DAGs
 
