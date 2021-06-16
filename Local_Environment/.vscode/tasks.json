@@ -9,7 +9,7 @@
         "type": "shell",
         "group":  "test",
         "options": {
-          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+          "cwd": "${fileWorkspaceFolder}"
         },
         "presentation": {
           "reveal": "always",
@@ -22,7 +22,7 @@
         "command": "./start",
         "type": "shell",
         "options": {
-          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+          "cwd": "${fileWorkspaceFolder}"
         },
         "group": "test",
         "presentation": {
@@ -36,7 +36,7 @@
         "command": "./cli",
         "type": "shell",        
         "options": {
-          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+          "cwd": "${fileWorkspaceFolder}"
         },
         "group": "test",
         "presentation": {
@@ -50,7 +50,7 @@
         "command": "./pushdags",
         "type": "shell",
         "options": {
-          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+          "cwd": "${fileWorkspaceFolder}"
         },
         "group": "test",
         "presentation": {
@@ -64,7 +64,7 @@
         "command": "./stop",
         "type": "shell",
         "options": {
-          "cwd": "${fileWorkspaceFolder}/Local_Environment"
+          "cwd": "${fileWorkspaceFolder}"
         },
         "group": "test",
         "presentation": {
