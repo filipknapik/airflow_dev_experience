@@ -20,7 +20,9 @@ The model supports:
 That's it!
 
 Your Airflow environment is available at [http://localhost:8068](http://localhost:8068). 
-DAGs from a local folder you provided when running ./start will automatically show up in the environment. 
+Edit DAGs in the /DAGs folder of the Local environment. 
+
+If you provided a proper Service Account key, your DAGs will be able to orchestrate tasks in Google Cloud. 
 
 ## Interacting with the tool using shell scripts
  You may also use: 
