@@ -11,11 +11,11 @@ The model supports:
 - Works with Airflow 1.* and 2.*
 - The model was created under macOS but should work with other Linux distributions. There is currently no support for Windows. 
 
-## How to use:
-1. If not done yet, install gcloud and authenticate (gcloud auth login) to the project with a Cloud Composer environment that you will use for staging/test
-2. Identify a local folder you will use for DAG development. Ideally, link it with a source control tool like Cloud Source Repositories or GitLab (git init and remote push)
-3. Create a folder for local Airflow instance (independent of the DAG folder). Enter this folder and run 'git clone https://github.com/filipknapik/airflow_dev_experience'
-4. Enter 'airflow_dev_experience/Local_Environment/' and run './start'. The first time you run it, you will be asked a few questions. If you want to modify your responses in the future, edit 'config/env.cfg'.
+## Installation guide
+1. If not done yet, install gcloud and select a project (gcloud config set project *myprojectid*) with a Cloud Composer environment that you use for staging/test
+2. Identify a local folder you use for your DAGs. Ideally, link it with a source control tool like Cloud Source Repositories (git init and remote push)
+3. Create a folder for local Airflow instance (outside of the DAG folder). Enter this folder and run 'git clone https://github.com/filipknapik/airflow_dev_experience'
+4. Enter 'airflow_dev_experience/Local_Environment/' folder and run './start'. The first time you run it, you will be asked a few questions. If you want to modify your responses in the future, edit 'config/env.cfg'.
 
 That's it!
 
