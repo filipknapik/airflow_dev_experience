@@ -71,10 +71,11 @@ airflow_ver=$(gcloud composer environments describe ${ENVIRONMENT} --location=${
 pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.pypiPackages)"  | tr -d ''[:space:]''  | sed ''s/=//g'' | sed 's/;/ /g')
 
 # Create a symbolic link to the local DAGs folder
-#ln -s ${DAGFOLDER} DAGs
+rm -rf DAGs
+ln -s ${DAGFOLDER} DAGs
 
 # Pull container image with a version matching the target environment 
-#docker pull gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest
+docker pull gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest
 
 # Tag the image as 'airflowimage'
 docker tag gcr.io/cloud-airflow-releaser/airflow-worker-scheduler-${airflow_ver}:latest airflowimage:latest
