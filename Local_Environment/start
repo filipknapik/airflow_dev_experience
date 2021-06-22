@@ -16,6 +16,8 @@ set -e
 MYDIR=$(pwd)
 CONFIG_FOLDER=${MYDIR}"/config"
 TO_COPY_FOLDER=${MYDIR}"/to_copy"
+echo ${CONFIG_FOLDER}
+cat ${CONFIG_FOLDER}/env.cfg
 
 # Read config - initialize variables from the env.cfg file
 . ${CONFIG_FOLDER}/env.cfg
@@ -104,7 +106,9 @@ echo "set -e" >> devstart.sh
 echo "sudo chown airflow:airflow airflow" >> devstart.sh
 
 # Install PyPi modules from the target Composer environment
-echo "pip3 install ${pypi_modules}" >> devstart.sh
+if  [[ ${#pypi_modules} != 0 ]] ; then
+    echo "pip3 install ${pypi_modules}" >> devstart.sh
+fi
 
 # Install PyPi that you have selected for this development
 if  [[ ${#NEW_MODULES} != 0 ]] ; then
@@ -172,6 +176,8 @@ echo "echo \"\n --------------------------------------------\n\"">> devstart.sh
 echo "echo \" Local Environment started.\"" >> devstart.sh
 echo "echo \"  1. Put your DAGs to ${DAGFOLDER}\"" >> devstart.sh
 echo "echo \"  2. Access Airflow at http://localhost:${PORT}\"" >> devstart.sh
+echo "echo \"  3. Open airflow_dev_experience/Local_Environment folder in your IDE. Edit DAGs in the (linked) DAGs subfolder\"" >> devstart.sh
+
 echo "echo \"\n To change settings, edit (and run ./start again):\"" >> devstart.sh
 echo "echo \"  - PyPi packages: config/pypi.cfg\"" >> devstart.sh
 echo "echo \"  - Airflow variables: config/variables.cfg\"" >> devstart.sh

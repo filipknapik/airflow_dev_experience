@@ -20,6 +20,7 @@ NEUTRAL='\033[0m'
 
 # Check whether all DAG files compile in the local environemnt
 echo "\n##### Python compilation tests #####"
+
 for filepath in ${DAGFOLDER}/*.py; do
     # Get DAG file name from the complete file path
     filename=$(basename ${filepath})
