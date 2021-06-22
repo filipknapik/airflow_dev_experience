@@ -16,8 +16,6 @@ set -e
 MYDIR=$(pwd)
 CONFIG_FOLDER=${MYDIR}"/config"
 TO_COPY_FOLDER=${MYDIR}"/to_copy"
-echo ${CONFIG_FOLDER}
-cat ${CONFIG_FOLDER}/env.cfg
 
 # Read config - initialize variables from the env.cfg file
 . ${CONFIG_FOLDER}/env.cfg
