@@ -52,6 +52,22 @@ if [ $DAGFOLDER = "null" ]; then
     sed -i '' "s/DAGFOLDER=null/DAGFOLDER=\"${ESC_DAGFOLDER}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
+# Retrieve target Composer environment settings: Storage bucket for DAG deployment
+bucket=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.dagGcsPrefix)")
+
+# Retrieve target Composer environment settings: Airflow version
+airflow_ver=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.imageVersion)" | awk -F- '{print $(NF)}')
+
+# Retrieve target Composer environment settings: PyPi modules already installed
+pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.pypiPackages)"  | tr -d ''[:space:]''  | sed 's/===/#/g' | sed 's/=//g' | sed 's/#/==/g' | sed 's/;/ /g')
+
+rm ${CONFIG_FOLDER}/pypi_from_composer.cfg
+if  [[ ${#pypi_modules} != 0 ]] ; then
+    for one_module in $(echo $pypi_modules); do
+        echo $one_module >> ${CONFIG_FOLDER}/pypi_from_composer.cfg
+    done
+fi
+
 # Create a space separated list of PyPi packages that are listed in pypi.cfg file
 NEW_MODULES=""
 while IFS="" read -r p || [ -n "$p" ]
@@ -60,15 +76,6 @@ do
         NEW_MODULES=${NEW_MODULES}${p}" "
     fi
 done < ${CONFIG_FOLDER}/pypi.cfg
-
-# Retrieve target Composer environment settings: Storage bucket for DAG deployment
-bucket=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.dagGcsPrefix)")
-
-# Retrieve target Composer environment settings: Airflow version
-airflow_ver=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.imageVersion)" | awk -F- '{print $(NF)}')
-
-# Retrieve target Composer environment settings: PyPi modules already installed
-pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.pypiPackages)"  | tr -d ''[:space:]''  | sed ''s/=//g'' | sed 's/;/ /g')
 
 # Create a symbolic link to the local DAGs folder
 rm -rf DAGs
