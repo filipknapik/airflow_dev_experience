@@ -190,7 +190,7 @@ echo "echo \"  - Connections: config/others.sh\"" >> devstart.sh
 echo "echo \"\n You may also use: \"" >> devstart.sh
 echo "echo \"  ./test - tests all your DAGs\"" >> devstart.sh
 echo "echo \"  ./cli - starts a bash session with access to a local Airflow CLI\"" >> devstart.sh
-echo "echo \"  ./pushdags - transfers local DAGs to a Composer development environment\"" >> devstart.sh
+echo "echo \"  ./senddags - transfers local DAGs to a Composer development environment\"" >> devstart.sh
 echo "echo \"  ./stop - stops local Airflow environment. Doesn't affect your local DAGs\n\"" >> devstart.sh
 
 # Now that we have a script ready, we need to make it executable

@@ -46,8 +46,8 @@
         "problemMatcher": []
       },
       {
-        "label": "Push DAGs",
-        "command": "./pushdags",
+        "label": "Send DAGs to Composer's bucket",
+        "command": "./senddags",
         "type": "shell",
         "options": {
           "cwd": "${fileWorkspaceFolder}"
