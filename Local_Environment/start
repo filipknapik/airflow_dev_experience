@@ -131,9 +131,12 @@ echo "export AIRFLOW_HOME=/home/airflow/airflow" >> devstart.sh
 # so that GCP operators are authenticated in the local environment
 echo "export AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT='google_cloud_platform://?extra__google_cloud_platform__key_path=%2Fhome%2Fairflow%2Fkey%2Fkey.json&extra__google_cloud_platform__project=${PROJECT_ID}&extra__google_cloud_platform__scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&extra__google_cloud_platform__num_retries=12'" >> devstart.sh
 
-# Init the Airflow DB to get default config files
-echo "airflow db init" >> devstart.sh
-#echo "airflow connections delete google_cloud_default" >> devstart.sh
+# Init the Airflow DB to get default config files. Note that CLI changed as of 1.10.14
+if [[ ${airflow_ver} < "1.10.14"]]; then
+    echo "airflow initdb" >> devstart.sh
+else
+    echo "airflow db init" >> devstart.sh
+fi
 
 # Enable preview of the Airflow configuration in the UI 
 echo "sudo sed -i 's/expose_config = False/expose_config = True/g' /home/airflow/airflow/airflow.cfg" >> devstart.sh
