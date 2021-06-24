@@ -61,7 +61,7 @@ airflow_ver=$(gcloud composer environments describe ${ENVIRONMENT} --location=${
 # Retrieve target Composer environment settings: PyPi modules already installed
 pypi_modules=$(gcloud composer environments describe ${ENVIRONMENT} --location=${REGION} --format="value(config.softwareConfig.pypiPackages)"  | tr -d ''[:space:]''  | sed 's/===/#/g' | sed 's/=//g' | sed 's/#/==/g' | sed 's/;/ /g')
 
-rm ${CONFIG_FOLDER}/pypi_from_composer.cfg
+rm -f ${CONFIG_FOLDER}/pypi_from_composer.cfg
 if  [[ ${#pypi_modules} != 0 ]] ; then
     for one_module in $(echo $pypi_modules); do
         echo $one_module >> ${CONFIG_FOLDER}/pypi_from_composer.cfg
@@ -152,7 +152,12 @@ echo "sudo sed -i 's/dag_dir_list_interval = 300/dag_dir_list_interval = ${dag_d
 echo "echo \"AUTH_ROLE_PUBLIC = 'Admin'\" >> /home/airflow/airflow/webserver_config.py" >> devstart.sh
 
 # Reset the Airflow DB for changes above to be implemented
-echo "airflow db reset -y" >> devstart.sh
+if [[ ${airflow_ver} < "1.10.14" ]]
+then
+    echo "airflow resetdb -y" >> devstart.sh
+else
+    echo "airflow db reset -y" >> devstart.sh
+fi
 
 # Trigger local script with user-defined contents in 'others.sh'
 echo "/home/airflow/airflow/others.sh" >> devstart.sh
