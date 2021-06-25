@@ -62,24 +62,24 @@ Your Airflow environment is now available at [http://localhost:8068](http://loca
   Option 2 - install tasks that you run from within PyCharm. This requires some setup effort but could be more convenient.  
 
   To set it up click on the following option to edit configurations:
-  (to_copy/Images/scr1.png)
+  ![VS Code](to_copy/Images/scr1.png)
 
   Then add new configuration: 
-  (to_copy/Images/scr2.png)
+  ![VS Code](to_copy/Images/scr2.png)
 
   and use Shell script as type:
-  (to_copy/Images/scr3.png)
+  ![VS Code](to_copy/Images/scr3.png)
 
   Ensure that Local_Environment is a working directory that you cloned:
-  (to_copy/Images/scr4.png)
+  ![VS Code](to_copy/Images/scr4.png)
 
   Copy and paste and local directory to the script path, and then add script name e.g. /test:
-  (to_copy/Images/scr8.png)
+  ![VS Code](to_copy/Images/scr8.png)
 
   To run it, just click on Run:
-  (to_copy/Images/scr5.png)
+  ![VS Code](to_copy/Images/scr5.png)
 
   And then select the task you just created
-  (to_copy/Images/scr6.png)
+  ![VS Code](to_copy/Images/scr6.png)
 
   Repeat the process for other scripts from point 2.1.
