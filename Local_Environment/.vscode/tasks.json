@@ -60,7 +60,7 @@
         "problemMatcher": []
       },
       {
-        "label": "Stop Environment",
+        "label": "Stop Airflow Environment",
         "command": "./stop",
         "type": "shell",
         "options": {
