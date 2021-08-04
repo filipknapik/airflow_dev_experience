@@ -17,39 +17,47 @@ MYDIR=$(pwd)
 CONFIG_FOLDER=${MYDIR}"/config"
 TO_COPY_FOLDER=${MYDIR}"/to_copy"
 
+# Define "sed" option depending on the OS type (MacOS/Linux)
+SEDOPTION=
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  SEDOPTION="-i ''"
+else
+  SEDOPTION="-i"
+fi
+
 # Read config - initialize variables from the env.cfg file
 . ${CONFIG_FOLDER}/env.cfg
 
 if [ $ENVIRONMENT = "null" ]; then
     echo 
     read -p "Name of the Composer environment to be used as a base for local Airflow instance:"  ENVIRONMENT
-    sed -i '' "s/ENVIRONMENT=null/ENVIRONMENT=\"${ENVIRONMENT}\"/g" ${CONFIG_FOLDER}/env.cfg
+    sed $SEDOPTION "s/ENVIRONMENT=null/ENVIRONMENT=\"${ENVIRONMENT}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
 if [ $REGION = "null" ]; then
     echo 
     read -p "Region of the Composer environment to be used as a base for local Airflow instance:"  REGION
-    sed -i '' "s/REGION=null/REGION=\"${REGION}\"/g" ${CONFIG_FOLDER}/env.cfg
+    sed $SEDOPTION "s/REGION=null/REGION=\"${REGION}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
 if [ $PROJECT_ID = "null" ]; then
     echo 
     read -p "Default Project_ID that Google Cloud operators will use:" PROJECT_ID
-    sed -i '' "s/PROJECT_ID=null/PROJECT_ID=\"${PROJECT_ID}\"/g" ${CONFIG_FOLDER}/env.cfg
+    sed $SEDOPTION "s/PROJECT_ID=null/PROJECT_ID=\"${PROJECT_ID}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
 if [ $KEYPATH = "null" ]; then
     echo "\nTo make your DAGs work with Google Cloud resources for testing, your DAGs need to authenticate using a Service Account key (https://cloud.google.com/iam/docs/creating-managing-service-account-keys)."
     read -p "Provide a path to a Service Account JSON Key file in your local file system:"  KEYPATH
     ESC_KEYPATH=${KEYPATH////\\/}
-    sed -i '' "s/KEYPATH=null/KEYPATH=\"${ESC_KEYPATH}\"/g" ${CONFIG_FOLDER}/env.cfg
+    sed $SEDOPTION "s/KEYPATH=null/KEYPATH=\"${ESC_KEYPATH}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
 if [ $DAGFOLDER = "null" ]; then
     echo 
     read -p "Local path to a folder with DAGs:"  DAGFOLDER
     ESC_DAGFOLDER=${DAGFOLDER////\\/}
-    sed -i '' "s/DAGFOLDER=null/DAGFOLDER=\"${ESC_DAGFOLDER}\"/g" ${CONFIG_FOLDER}/env.cfg
+    sed $SEDOPTION "s/DAGFOLDER=null/DAGFOLDER=\"${ESC_DAGFOLDER}\"/g" ${CONFIG_FOLDER}/env.cfg
 fi
 
 # Retrieve target Composer environment settings: Storage bucket for DAG deployment
@@ -171,6 +179,9 @@ docker cp ${KEYPATH} ${CONTAINER}:/home/airflow/key/key.json
 # Copy the others.sh file to the container
 docker cp ${CONFIG_FOLDER}/others.sh ${CONTAINER}:/home/airflow/airflow/others.sh
 
+# Change ownership of the others.sh file
+docker exec ${CONTAINER} sudo chown airflow:airflow /home/airflow/airflow/others.sh
+
 # Iterate through Variables defined in variables.cfg and add them to Airflow
 while IFS="" read -r p || [ -n "$p" ]
 do
@@ -210,6 +221,9 @@ docker cp ./devstart.sh ${CONTAINER}:/home/airflow/devstart.sh
 
 # and ship to the container
 docker cp ${TO_COPY_FOLDER}/. ${CONTAINER}:/home/airflow/
+
+# Change ownership of the devstart.sh file
+docker exec ${CONTAINER} sudo chown airflow:airflow /home/airflow/devstart.sh
 
 # and then run in the container for all this set up to take effect
 docker exec ${CONTAINER} sh -c "/home/airflow/devstart.sh"
